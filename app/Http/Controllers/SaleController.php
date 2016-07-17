@@ -13,14 +13,9 @@ class SaleController extends Controller
       return view('sales/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+      return view('sales/create');
     }
 
     /**

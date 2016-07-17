@@ -13,14 +13,9 @@ class CustomerController extends Controller
       return view('customers/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+      return view('customers/create');
     }
 
     /**

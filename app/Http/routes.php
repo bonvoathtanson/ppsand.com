@@ -13,3 +13,9 @@ Route::get('/view/import', 'importcontroller@index');
 
 Route::get('/create/user', 'usercontroller@create');
 Route::get('/create/item', 'itemcontroller@create');
+Route::get('/create/customer', 'customercontroller@create');
+Route::get('/create/supplier', 'suppliercontroller@create');
+Route::get('/create/income', 'incomecontroller@create');
+Route::get('/create/expanse', 'expansecontroller@create');
+Route::get('/create/sale', 'salecontroller@create');
+Route::get('/create/import', 'importcontroller@create');

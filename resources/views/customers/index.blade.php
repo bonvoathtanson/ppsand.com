@@ -6,7 +6,7 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <button type="button" class="btn btn-primary">បន្ថែម</button>
+      <a href="{{url('/create/customer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
     </div>
   </div>
 </div>

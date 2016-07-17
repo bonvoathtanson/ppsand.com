@@ -12,12 +12,7 @@ class UserController extends Controller
     {
       return view('users/index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
       return view('users/create');
