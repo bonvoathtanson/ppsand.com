@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-  តារាងមុខទំនិញ
+  បញ្ចីរាយនាមអតិថិជន់
 </div>
 <div class="row memu-bar">
   <div class="col-sm-12">
@@ -17,10 +17,12 @@
         <tr class="warning">
           <th>ល.រ</th>
           <th>លេខកូដ</th>
-          <th>ឈ្មោះទំនិញ</th>
-          <th>តំលៃលក់</th>
-          <th>ចំនួនក្នុងស្តុក</th>
-          <th>សកម្មភាព</th>
+          <th>ឈ្មោះអតិថិជន់</th>
+          <th>ប្រភេទ</th>
+          <th>ភេទ</th>
+          <th>លេខទូរស័ព្ទ</th>
+          <th>អស័យដ្ឋាន</th>
+          <th class="center" style="width:120px;">សកម្មភាព</th>
         </tr>
       </thead>
     </table>

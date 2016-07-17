@@ -1,28 +1,27 @@
 @extends('layouts.admin')
-@section('css')
-
-@endsection
 @section('content')
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="" style="padding:5px;">
-          <a href="#" class="btn btn-primary btn-sm">បន្ថែម</a>
-        </div>
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr class="active">
-              <th>ល.រ</th>
-              <th>លេខកូដ</th>
-              <th>ឈ្មោះទំនិញ</th>
-              <th>តំលៃលក់</th>
-              <th>ចំនួនក្នុងស្តុក</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+<div class="box-title">
+  តារាងមុខទំនិញ
+</div>
+<div class="row memu-bar">
+  <div class="col-sm-12">
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary">បន្ថែម</button>
     </div>
-@endsection
-
-@section('script')
-
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="warning">
+          <th class="center" style="width:100px;">ល.រ</th>
+          <th>ឈ្មោះគណនេយ្យ</th>
+          <th>ថ្ងៃបង្កើត</th>
+          <th class="center" style="width:120px;">សកម្មភាព</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
 @endsection

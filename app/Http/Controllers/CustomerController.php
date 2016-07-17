@@ -8,14 +8,9 @@ use App\Http\Requests;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+      return view('customers/index');
     }
 
     /**

@@ -12,7 +12,7 @@
   <header>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="navbar-header"><a class="navbar-brand" href="#">ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a></div>
+        <div class="navbar-header"><a class="navbar-brand" href="{{url('/')}}">ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a></div>
       </div>
     </nav>
   </header>
@@ -21,10 +21,14 @@
       <div class="col-sm-2">
         <div class="list-group">
           <a href="javascript:void(0);" class="list-group-item active">មាតិការ</a>
-          <a href="#" class="list-group-item">ការលក់</a>
-          <a href="#" class="list-group-item">ការទិញ</a>
-          <a href="#" class="list-group-item">ចំណូល</a>
-          <a href="#" class="list-group-item">ចំណាយ</a>
+          <a href="{{url('/view/sale/')}}" class="list-group-item">ការលក់ចេញ</a>
+          <a href="{{url('/view/import/')}}" class="list-group-item">ការទិញចូល</a>
+          <a href="{{url('/view/customer/')}}" class="list-group-item">អតិថិជន់</a>
+          <a href="{{url('/view/supplier/')}}" class="list-group-item">អ្នកផ្គត់ផ្គង់</a>
+          <a href="{{url('/view/income/')}}" class="list-group-item">ចំណូល</a>
+          <a href="{{url('/view/expanse/')}}" class="list-group-item">ចំណាយ</a>
+          <a href="{{url('/view/item/')}}" class="list-group-item">មុខទំនិញ</a>
+          <a href="{{url('/view/user/')}}" class="list-group-item">គណនេយ្យអ្នកប្រើប្រាស់</a>
         </div>
       </div>
       <div class="col-sm-10">
