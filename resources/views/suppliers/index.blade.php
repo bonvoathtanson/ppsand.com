@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-  <i class="fa fa-list" aria-hidden="true"></i> តារាងចំណូល
+  <i class="fa fa-list" aria-hidden="true"></i> បញ្ចីរាយនាមអ្នកផ្គត់ផ្គង់
 </div>
 <div class="row memu-bar">
   <div class="col-sm-12">
@@ -16,10 +16,12 @@
       <thead>
         <tr class="warning">
           <th>ល.រ</th>
-          <th>ថ្ងៃខែឆ្នាំចំណូល</th>
-          <th>ប្រភេទចំណូល</th>
-          <th>បរិយាយ</th>
-          <th>ចំនួនសរុប</th>
+          <th>លេខកូដ</th>
+          <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
+          <th>ប្រភេទ</th>
+          <th>ភេទ</th>
+          <th>លេខទូរស័ព្ទ</th>
+          <th>អស័យដ្ឋាន</th>
           <th class="center" style="width:120px;">សកម្មភាព</th>
         </tr>
       </thead>

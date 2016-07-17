@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-  តារាងមុខទំនិញ
+  <i class="fa fa-list" aria-hidden="true"></i> តារាងមុខទំនិញ
 </div>
 <div class="row memu-bar">
   <div class="col-sm-12">

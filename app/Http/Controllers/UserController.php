@@ -8,14 +8,9 @@ use App\Http\Requests;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+      return view('users/index');
     }
 
     /**
@@ -25,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+      return view('users/create');
     }
 
     /**

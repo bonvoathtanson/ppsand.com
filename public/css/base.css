@@ -1,6 +1,13 @@
+@font-face {
+    font-family: khmerM1;
+    src: url('fonts/khmer M1.volt.ttf') format('truetype');
+}
 body{
   font-family: 'Khmer Os Content';
   font-size: 12pt;
+}
+.font-M1{
+  font-family: 'khmerM1';
 }
 .btn{
   border:none;
@@ -21,7 +28,7 @@ body{
   border-color: #bce8f1;
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-radius: 3px;
   margin-bottom: 5px;
+  font-family: 'khmerM1';
 }

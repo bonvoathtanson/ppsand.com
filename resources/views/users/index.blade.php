@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-  តារាងមុខទំនិញ
+  <i class="fa fa-list" aria-hidden="true"></i> តារាងឈ្មោះគណនេយ្យអ្្នកប្រើប្រាស់
 </div>
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <button type="button" class="btn btn-primary">បន្ថែម</button>
+      <a href="{{url('/create/user')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
     </div>
   </div>
 </div>

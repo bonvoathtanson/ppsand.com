@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-  បញ្ចីរាយនាមអតិថិជន់
+  <i class="fa fa-list" aria-hidden="true"></i> បញ្ចីរាយនាមអតិថិជន់
 </div>
 <div class="row memu-bar">
   <div class="col-sm-12">
