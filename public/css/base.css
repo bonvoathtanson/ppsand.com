@@ -5,3 +5,23 @@ body{
 .btn{
   border:none;
 }
+.memu-bar{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.navbar{
+  border-radius: 0;
+}
+.center{
+  text-align: center;
+}
+.box-title{
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  margin-bottom: 5px;
+}

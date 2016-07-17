@@ -5,9 +5,7 @@ Route::get('/', function () {
 Route::get('/view/user', function () {
     return view('users/index');
 });
-Route::get('/view/item', function () {
-    return view('users/index');
-});
+Route::get('/view/item', 'itemcontroller@index');
 Route::get('/view/customer', function () {
     return view('users/index');
 });
