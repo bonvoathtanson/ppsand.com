@@ -15,6 +15,12 @@ class ItemController extends Controller
     return view('items.index', ['items' => $items]);
   }
 
+  public function search(){
+    $items = Item::all();
+    $this->Results['Data'] = $items;
+    return response()->json($this->Results);
+  }
+
   public function create()
   {
     return view('items.create');
@@ -42,13 +48,6 @@ class ItemController extends Controller
     //
   }
 
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
   public function update(Request $request, $id)
   {
     //
@@ -60,7 +59,7 @@ class ItemController extends Controller
     if($rowAffect == 0)
     {
       $this->Results['IsError'] = true;
-      $this->Results['Message'] = 'ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត';
+      $this->Results['Message'] = 'ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត';
     }
     return response()->json($this->Results);
   }
