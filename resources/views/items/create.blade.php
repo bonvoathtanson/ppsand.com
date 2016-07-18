@@ -3,7 +3,7 @@
 <div class="box-title">
   <i class="fa fa-plus-square" aria-hidden="true"></i> បន្ថែមមុខទំនិញថ្មី
 </div>
-<form class="form-horizontal" action="{{url('/insert/item')}}" method="post">
+<form id="formItem" class="form-horizontal" action="" method="post" onsubmit="return false;">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="box-form">
     <div class="form-group">
@@ -33,10 +33,13 @@
     <div class="form-group">
       <label class="col-sm-2 control-label"></label>
       <div class="col-sm-5">
-        <button type="summit" name="button" class="btn btn-success">រក្សាទុក</button>
+        <button type="button" id="save" class="btn btn-success">រក្សាទុក</button>
         <a href="{{url('/view/item')}}" class="btn btn-danger">បោះបង់</a>
       </div>
     </div>
   </div>
 </form>
+@endsection
+@section('script')
+  <script src="{{url('/script/items/itemed.js')}}" charset="utf-8"></script>
 @endsection

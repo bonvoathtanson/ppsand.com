@@ -35,7 +35,8 @@ class ItemController extends Controller
     $item->UnitInStock = $request->quantity;
     $item->DateCreated = date('Y-m-d H:i:s');
     $item->save();
-    return redirect('view/item');
+    $this->Results['Data'] = $item;
+    return response()->json($this->Results);
   }
 
   public function show($id)
