@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expanse extends Model
 {
-    //
+  protected $table = 'expanses';
 }
