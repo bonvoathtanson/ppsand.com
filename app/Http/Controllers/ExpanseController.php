@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Expanse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +10,8 @@ class ExpanseController extends Controller
 {
     public function index()
     {
-      return view('expanses/index');
+      $expanses = Expanse::all();
+      return view('expanses.index', ['expanses' => $expanses]);
     }
 
     public function create()
