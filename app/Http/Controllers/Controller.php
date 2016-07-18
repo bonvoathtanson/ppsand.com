@@ -11,9 +11,25 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     protected $Results = array(
       'IsError' => false,
-      'Message' => ''
+      'Message' => '',
+      'Data' => ''
     );
+
+    protected function SetError($iserror){
+      $this->Results['IsError'] = $iserror;
+    }
+
+    protected function SetMessage($message){
+      $this->Results['Message'] = $message;
+    }
+
+    protected function SetData($data){
+        $this->Results['Data'] = $data;
+    }
 }

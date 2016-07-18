@@ -42,6 +42,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" charset="utf-8"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="{{url('/script/plugin/sweet/sweetalert.min.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/plugin/bootstrap/bootstrapValidator.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/app.js')}}" charset="utf-8"></script>
 @yield('script')
 </html>

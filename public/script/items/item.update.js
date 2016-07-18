@@ -5,7 +5,7 @@
     var item = $('#formItem').serialize();
     $.ajax({
       type: 'POST',
-      url: burl + '/insert/item',
+      url: burl + '/update/item',
       data: item
     }).done(function (data) {
       if (data.IsError == false) {

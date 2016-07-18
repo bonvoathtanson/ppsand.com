@@ -11,8 +11,7 @@ class ItemController extends Controller
 {
   public function index()
   {
-    $items = Item::all();
-    return view('items.index', ['items' => $items]);
+    return view('items.index');
   }
 
   public function search(){
@@ -29,13 +28,12 @@ class ItemController extends Controller
   public function store(Request $request)
   {
     $item = new Item();
-    $item->ItemCode = $request->itemcode;
+    $item['ItemCode'] = $request['itemcode'];
     $item->ItemName = $request->itemname;
     $item->SalePrice = $request->price;
     $item->UnitInStock = $request->quantity;
     $item->DateCreated = date('Y-m-d H:i:s');
     $item->save();
-    $this->Results['Data'] = $item;
     return response()->json($this->Results);
   }
 
@@ -46,17 +44,26 @@ class ItemController extends Controller
 
   public function edit($id)
   {
-    //
+    $item = Item::find($id);
+    return view('items.edit', ['item' => $item]);
   }
 
-  public function update(Request $request, $id)
+  public function update(Request $request)
   {
-    //
+    $id = $request->id;
+    $item = Item::find($id);
+    $item->ItemCode = $request->itemcode;
+    $item->ItemName = $request->itemname;
+    $item->SalePrice = $request->price;
+    $item->UnitInStock = $request->quantity;
+    $item->LastUpdated = date('Y-m-d H:i:s');
+    $item->save();
+    return response()->json($this->Results);
   }
 
   public function destroy($id)
   {
-    $rowAffect = Item::where('Id', '=', $id)->delete();
+    $rowAffect = Item::find($id)->delete();
     if($rowAffect == 0)
     {
       $this->Results['IsError'] = true;

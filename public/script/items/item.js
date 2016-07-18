@@ -10,6 +10,7 @@
   }
 
   function GetItems(callback) {
+    $('body').append(Loading());
     $.ajax({
       url: burl + '/find/item',
       type: 'GET',
@@ -21,6 +22,8 @@
           callback(data.Data);
         }
       }
+    }).complete(function (data) {
+      $('body').find('.loading').remove();
     });
   }
 
@@ -34,7 +37,7 @@
                       '<td class="center">' + item.SalePrice + '</td>' +
                       '<td class="center">' + item.UnitInStock + '</td>' +
                       '<td class="center">' +
-                         '<button class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> ' +
+                         '<a href="' + burl + '/edit/item/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                          '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                       '</td>'
                    '</tr>';
@@ -57,19 +60,21 @@
       cancelButtonText: 'បោះបង់',
       closeOnConfirm: false
     }, function () {
+      $('body').append(Loading());
       $.ajax({
         type: 'GET',
         url: burl+'/delete/item/'+id,
         dataType: "JSON",
         contentType: 'application/json; charset=utf-8',
       }).done(function (data) {
-        console.log(data);
         if (data.IsError == false) {
           swal('ទិន្នន័យត្រូវបានលុបជោគជ័យ', '', 'success');
           $(select).remove();
         } else {
           swal(data.Message, '', 'success');
         }
+      }).complete(function (data) {
+        $('body').find('.loading').remove();
       });
     });
   });
