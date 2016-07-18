@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Item;
 use App\Http\Requests;
 
 class ItemController extends Controller
 {
     public function index()
     {
-      return view('items/index');
+      $items = Item::all();
+      return view('items.index', ['items' => $items]);
     }
 
     public function create()
     {
-      return view('items/create');
+      return view('items.create');
     }
 
     /**

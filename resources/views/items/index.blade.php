@@ -15,14 +15,29 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr class="warning">
-          <th>ល.រ</th>
+          <th class="center">ល.រ</th>
           <th>លេខកូដ</th>
           <th>ឈ្មោះទំនិញ</th>
-          <th>តំលៃលក់</th>
-          <th>ចំនួនក្នុងស្តុក</th>
-          <th>សកម្មភាព</th>
+          <th class="center">តំលៃលក់</th>
+          <th class="center">ចំនួនក្នុងស្តុក</th>
+          <th style="width:80px;"></th>
         </tr>
       </thead>
+      <tbody>
+        <?php foreach ($items as $key => $value): ?>
+          <tr data-id="{{$value->Id}}">
+            <td class="center">{{$key+1}}</td>
+            <td>{{$value->ItemCode}}</td>
+            <td>{{$value->ItemName}}</td>
+            <td class="center">{{$value->SalePrice}}</td>
+            <td class="center">{{$value->UnitInStock}}</td>
+            <td class="center">
+              <button class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button class="btn btn-danger btn-e"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
     </table>
   </div>
 </div>

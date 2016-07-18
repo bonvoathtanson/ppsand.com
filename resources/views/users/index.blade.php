@@ -18,9 +18,23 @@
           <th class="center" style="width:100px;">ល.រ</th>
           <th>ឈ្មោះគណនេយ្យ</th>
           <th>ថ្ងៃបង្កើត</th>
-          <th class="center" style="width:120px;">សកម្មភាព</th>
+          <th class="center" style="width:20px;"></th>
         </tr>
       </thead>
+      <tbody>
+        <?php
+          foreach ($users as $key => $value) {
+            echo '<tr data-id="'.$value->Id.'">';
+              echo '<td class="center">'.($key+1).'</td>';
+              echo '<td>'.$value->Name.'</td>';
+              echo '<td>'.$value->DateCreated.'</td>';
+              echo '<td class="center">';
+              echo '<button class="btn btn-danger btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>';
+              echo '</td>';
+            echo '</tr>';
+          }
+        ?>
+      </tbody>
     </table>
   </div>
 </div>

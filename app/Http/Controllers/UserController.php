@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
 
 class UserController extends Controller
 {
     public function index()
     {
-      return view('users/index');
+      $users = DB::table('users')->get();
+      return view('users.index', ['users'=>$users]);
     }
-    
+
     public function create()
     {
-      return view('users/create');
+      return view('users.create');
     }
 
     /**
