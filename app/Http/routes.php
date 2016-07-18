@@ -19,3 +19,7 @@ Route::get('/create/income', 'incomecontroller@create');
 Route::get('/create/expanse', 'expansecontroller@create');
 Route::get('/create/sale', 'salecontroller@create');
 Route::get('/create/import', 'importcontroller@create');
+
+Route::post('/insert/item', 'itemcontroller@store');
+
+Route::get('/delete/item/{id}', 'itemcontroller@destroy');

@@ -15,7 +15,6 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr class="warning">
-          <th class="center">ល.រ</th>
           <th>លេខកូដ</th>
           <th>ឈ្មោះទំនិញ</th>
           <th class="center">តំលៃលក់</th>
@@ -26,14 +25,13 @@
       <tbody>
         <?php foreach ($items as $key => $value): ?>
           <tr data-id="{{$value->Id}}">
-            <td class="center">{{$key+1}}</td>
             <td>{{$value->ItemCode}}</td>
             <td>{{$value->ItemName}}</td>
             <td class="center">{{$value->SalePrice}}</td>
             <td class="center">{{$value->UnitInStock}}</td>
             <td class="center">
               <button class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button class="btn btn-danger btn-e"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -41,4 +39,7 @@
     </table>
   </div>
 </div>
+@endsection
+@section('script')
+  <script src="{{url('/script/items/item.js')}}" charset="utf-8"></script>
 @endsection

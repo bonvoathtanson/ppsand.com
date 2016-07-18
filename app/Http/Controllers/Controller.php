@@ -12,5 +12,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
-    public $results = array();
+    protected $Results = array(
+      'IsError' => false,
+      'Message' => ''
+    );
 }

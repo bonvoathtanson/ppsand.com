@@ -5,73 +5,63 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Http\Requests;
+use DB;
 
 class ItemController extends Controller
 {
-    public function index()
-    {
-      $items = Item::all();
-      return view('items.index', ['items' => $items]);
-    }
+  public function index()
+  {
+    $items = Item::all();
+    return view('items.index', ['items' => $items]);
+  }
 
-    public function create()
-    {
-      return view('items.create');
-    }
+  public function create()
+  {
+    return view('items.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  public function store(Request $request)
+  {
+    $item = new Item();
+    $item->ItemCode = $request->itemcode;
+    $item->ItemName = $request->itemname;
+    $item->SalePrice = $request->price;
+    $item->UnitInStock = $request->quantity;
+    $item->DateCreated = date('Y-m-d H:i:s');
+    $item->save();
+    return redirect('view/item');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  public function show($id)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  public function edit($id)
+  {
+    //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function update(Request $request, $id)
+  {
+    //
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+  public function destroy($id)
+  {
+    $rowAffect = Item::where('Id', '=', $id)->delete();
+    if($rowAffect == 0)
     {
-        //
+      $this->Results['IsError'] = true;
+      $this->Results['Message'] = 'ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត';
     }
+    return response()->json($this->Results);
+  }
 }
