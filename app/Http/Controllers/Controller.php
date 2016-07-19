@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'login']);
     }
 
     protected $Results = array(

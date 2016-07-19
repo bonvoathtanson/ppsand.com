@@ -22,10 +22,6 @@ class User extends Authenticatable
       return $this->Password;
     }
 
-    public function getAuthUsername() {
-      return $this->Name;
-    }
-
     public function getRememberToken()
     {
       return '';

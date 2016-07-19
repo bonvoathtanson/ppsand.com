@@ -15,6 +15,9 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header"><a class="navbar-brand font-M1" href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a></div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> ចាក់ចេញ</a></li>
+        </ul>
       </div>
     </nav>
   </header>

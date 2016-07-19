@@ -34,8 +34,6 @@ Route::get('/edit/item/{id}', 'itemcontroller@edit');
 // Route update block
 Route::post('/update/item', 'itemcontroller@update');
 
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
+Route::get('/login', 'usercontroller@login');
+Route::post('/dologin', 'usercontroller@dologin');
+Route::get('/logout', 'usercontroller@logout');
