@@ -36,7 +36,6 @@
                       '<td>' + item.Email + '</td>' +
                       '<td class="center">' + item.DateCreated + '</td>' +
                       '<td class="center">' +
-                         '<a href="' + burl + '/edit/item/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                          '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                       '</td>'
                    '</tr>';

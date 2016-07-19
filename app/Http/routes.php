@@ -1,7 +1,5 @@
 <?php
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', 'homecontroller@index');
 // View Block
 Route::get('/view/user', 'usercontroller@index');
 Route::get('/view/item', 'itemcontroller@index');
@@ -25,6 +23,7 @@ Route::get('/create/expanse', 'expansecontroller@create');
 Route::get('/create/sale', 'salecontroller@create');
 Route::get('/create/import', 'importcontroller@create');
 
+Route::post('/insert/user', 'usercontroller@store');
 Route::post('/insert/item', 'itemcontroller@store');
 
 Route::get('/delete/item/{id}', 'itemcontroller@destroy');

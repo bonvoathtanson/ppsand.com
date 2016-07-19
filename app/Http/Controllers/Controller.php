@@ -13,21 +13,21 @@ class Controller extends BaseController
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'login']);
+        $this->middleware('auth', ['except' => ['login', 'dologin']]);
     }
 
     protected $Results = array(
-      'IsError' => false,
-      'Message' => '',
-      'Data' => ''
+        'IsError' => false,
+        'Message' => '',
+        'Data' => ''
     );
-
+    
     protected function SetError($iserror){
-      $this->Results['IsError'] = $iserror;
+        $this->Results['IsError'] = $iserror;
     }
 
     protected function SetMessage($message){
-      $this->Results['Message'] = $message;
+        $this->Results['Message'] = $message;
     }
 
     protected function SetData($data){

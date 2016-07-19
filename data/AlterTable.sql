@@ -1,0 +1,2 @@
+ALTER TABLE `Users`
+ADD Email VARCHAR(50)

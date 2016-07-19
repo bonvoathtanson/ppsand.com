@@ -18,7 +18,7 @@
           <th>ឈ្មោះគណនេយ្យ</th>
           <th>អ៊ីម៉ែល</th>
           <th class="center">ថ្ងៃបង្កើត</th>
-          <th class="center" style="width:80px;"></th>
+          <th class="center" style="width:30px;"></th>
         </tr>
       </thead>
       <tbody></tbody>
