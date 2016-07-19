@@ -34,6 +34,8 @@ Route::get('/edit/item/{id}', 'itemcontroller@edit');
 // Route update block
 Route::post('/update/item', 'itemcontroller@update');
 
+Route::get('/home', 'HomeController@index');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

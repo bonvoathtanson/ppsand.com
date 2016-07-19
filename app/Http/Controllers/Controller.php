@@ -15,6 +15,7 @@ class Controller extends BaseController
     {
         $this->middleware('auth');
     }
+    
     protected $Results = array(
       'IsError' => false,
       'Message' => '',
