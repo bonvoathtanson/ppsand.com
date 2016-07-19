@@ -14,6 +14,7 @@ Route::get('/view/import', 'importcontroller@index');
 
 // Get Search Block
 Route::get('/find/item', 'itemcontroller@search');
+Route::get('/find/user', 'usercontroller@search');
 
 Route::get('/create/user', 'usercontroller@create');
 Route::get('/create/item', 'itemcontroller@create');
@@ -27,6 +28,7 @@ Route::get('/create/import', 'importcontroller@create');
 Route::post('/insert/item', 'itemcontroller@store');
 
 Route::get('/delete/item/{id}', 'itemcontroller@destroy');
+Route::get('/delete/user/{id}', 'usercontroller@destroy');
 
 // Route edit Block
 Route::get('/edit/item/{id}', 'itemcontroller@edit');

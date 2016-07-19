@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
@@ -11,14 +10,17 @@ use App\User;
 
 class UserController extends Controller
 {
-  public function __construct()
-  {
-    //$this->middleware('auth');
-  }
   public function index()
   {
-    $users = DB::table('users')->get();
+    $users = User::all();
     return view('users.index', ['users'=>$users]);
+  }
+
+  public function search()
+  {
+      $users = User::all();
+      $this->SetData($users);
+      return response()->json($this->Results);
   }
 
   public function create()
@@ -26,60 +28,40 @@ class UserController extends Controller
     return view('users.create');
   }
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
   public function store(Request $request)
   {
-    //
+    $user = new User();
+    $user->Name = $request->name;
+    $user->Email = $request->email;
+    $user->Password = bcrypt($request->password);
+    $item->DateCreated = date('Y-m-d H:i:s');
+    $user->save();
+    return response()->json($this->Results);
   }
 
-  /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
   public function show($id)
   {
     //
   }
 
-  /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
   public function edit($id)
   {
     //
   }
 
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
   public function update(Request $request, $id)
   {
     //
   }
 
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
   public function destroy($id)
   {
-    //
+    $rowaffect = User::find($id)->delete();
+    if($rowaffect == 0){
+      $this->SetError(true);
+      $this->Results['Message'] = 'ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត';
+    }
+    return response()->json($this->Results);
   }
 
   public function login()
@@ -92,7 +74,6 @@ class UserController extends Controller
     $data = $request->all();
     if (Auth::attempt(['Name' => $data['name'], 'password' => $data['password']])) {
       return Redirect::intended('/');
-      //return redirect('/');
     } else {
       return Redirect::back()->withErrors('That username/password combo does not exist.');
     }

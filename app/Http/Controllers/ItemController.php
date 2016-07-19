@@ -67,7 +67,7 @@ class ItemController extends Controller
     if($rowAffect == 0)
     {
       $this->Results['IsError'] = true;
-      $this->Results['Message'] = 'ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត';
+      $this->SetMessage('ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត');
     }
     return response()->json($this->Results);
   }
