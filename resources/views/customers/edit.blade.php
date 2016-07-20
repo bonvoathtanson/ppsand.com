@@ -19,6 +19,7 @@
 </div>
 <form id="formCustomer" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
+    <input type="hidden" name="Id" value="{{$customer->Id}}">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">

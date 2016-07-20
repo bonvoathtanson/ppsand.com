@@ -36,7 +36,7 @@ class CustomerController extends Controller
         $customer->TypeId = 1;
         $customer->DateCreated = date('Y-m-d H:i:s');
         $customer->save();
-        $this->SetData($customer);
+
         return response()->json($this->Results);
     }
 
@@ -65,9 +65,20 @@ class CustomerController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->Id;
+        $customer = Customer::find($id);
+        $customer->CustomerCode = $request->CustomerCode;
+        $customer->CustomerName = $request->CustomerName;
+        $customer->Sex = $request->Sex;
+        $customer->PhoneNumber = $request->PhoneNumber;
+        $customer->Address = $request->Address;
+        $customer->TypeId = $request->TypeId;
+        $customer->LastUpdated = date('Y-m-d H:i:s');
+        $customer->save();
+
+        return response()->json($this->Results);
     }
 
     public function destroy($id)

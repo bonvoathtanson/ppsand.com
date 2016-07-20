@@ -37,6 +37,7 @@ Route::get('/edit/customer/{id}', 'customercontroller@edit');
 Route::get('/edit/item/{id}', 'itemcontroller@edit');
 
 // Route update block
+Route::post('/update/customer', 'customercontroller@update');
 Route::post('/update/item', 'itemcontroller@update');
 
 Route::get('/login', 'usercontroller@login');
