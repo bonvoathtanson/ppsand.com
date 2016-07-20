@@ -1,45 +1,62 @@
 <?php
-Route::get('/', 'homecontroller@index');
-// View Block
-Route::get('/view/user', 'usercontroller@index');
-Route::get('/view/item', 'itemcontroller@index');
-Route::get('/view/customer', 'customercontroller@index');
-Route::get('/view/supplier', 'suppliercontroller@index');
-Route::get('/view/income', 'incomecontroller@index');
-Route::get('/view/expanse', 'expansecontroller@index');
-Route::get('/view/sale', 'salecontroller@index');
-Route::get('/view/import', 'importcontroller@index');
+Route::group(['prefix' => '/'], function(){
+    Route::get('', 'homecontroller@index');
+    Route::get('login', 'usercontroller@login');
+    Route::post('dologin', 'usercontroller@dologin');
+    Route::get('logout', 'usercontroller@logout');
+});
 
-// Get Search Block
-Route::get('/find/customer', 'customercontroller@search');
-Route::get('/find/item', 'itemcontroller@search');
-Route::get('/find/user', 'usercontroller@search');
+Route::group(['prefix' => 'view'], function(){
+    Route::get('/user', 'usercontroller@index');
+    Route::get('/item', 'itemcontroller@index');
+    Route::get('/customer', 'customercontroller@index');
+    Route::get('/supplier', 'suppliercontroller@index');
+    Route::get('/income', 'incomecontroller@index');
+    Route::get('/expanse', 'expansecontroller@index');
+    Route::get('/sale', 'salecontroller@index');
+    Route::get('/import', 'importcontroller@index');
+});
 
-Route::get('/create/user', 'usercontroller@create');
-Route::get('/create/item', 'itemcontroller@create');
-Route::get('/create/customer', 'customercontroller@create');
-Route::get('/create/supplier', 'suppliercontroller@create');
-Route::get('/create/income', 'incomecontroller@create');
-Route::get('/create/expanse', 'expansecontroller@create');
-Route::get('/create/sale', 'salecontroller@create');
-Route::get('/create/import', 'importcontroller@create');
+Route::group(['prefix' => 'find'], function(){
+    Route::get('/customer', 'customercontroller@search');
+    Route::get('/supplier', 'suppliercontroller@search');
+    Route::get('/item', 'itemcontroller@search');
+    Route::get('/user', 'usercontroller@search');
+});
 
-Route::post('/insert/customer', 'customercontroller@store');
-Route::post('/insert/user', 'usercontroller@store');
-Route::post('/insert/item', 'itemcontroller@store');
+Route::group(['prefix' => 'create'], function(){
+    Route::get('/user', 'usercontroller@create');
+    Route::get('/item', 'itemcontroller@create');
+    Route::get('/customer', 'customercontroller@create');
+    Route::get('/supplier', 'suppliercontroller@create');
+    Route::get('/income', 'incomecontroller@create');
+    Route::get('/expanse', 'expansecontroller@create');
+    Route::get('/sale', 'salecontroller@create');
+    Route::get('/import', 'importcontroller@create');
+});
 
-Route::get('/delete/customer/{id}', 'customercontroller@destroy');
-Route::get('/delete/item/{id}', 'itemcontroller@destroy');
-Route::get('/delete/user/{id}', 'usercontroller@destroy');
+Route::group(['prefix' => 'insert'], function(){
+    Route::post('/customer', 'customercontroller@store');
+    Route::post('/supplier', 'suppliercontroller@store');
+    Route::post('/user', 'usercontroller@store');
+    Route::post('/item', 'itemcontroller@store');
+});
 
-// Route edit Block
-Route::get('/edit/customer/{id}', 'customercontroller@edit');
-Route::get('/edit/item/{id}', 'itemcontroller@edit');
+Route::group(['prefix' => 'delete'], function(){
+    Route::get('/customer/{id}', 'customercontroller@destroy');
+    Route::get('/supplier/{id}', 'suppliercontroller@destroy');
+    Route::get('/item/{id}', 'itemcontroller@destroy');
+    Route::get('/user/{id}', 'usercontroller@destroy');
+});
 
-// Route update block
-Route::post('/update/customer', 'customercontroller@update');
-Route::post('/update/item', 'itemcontroller@update');
+Route::group(['prefix' => 'edit'], function(){
+    Route::get('/customer/{id}', 'customercontroller@edit');
+    Route::get('/supplier/{id}', 'suppliercontroller@edit');
+    Route::get('/item/{id}', 'itemcontroller@edit');
+});
 
-Route::get('/login', 'usercontroller@login');
-Route::post('/dologin', 'usercontroller@dologin');
-Route::get('/logout', 'usercontroller@logout');
+Route::group(['prefix' => 'update'], function(){
+    Route::post('/customer', 'customercontroller@update');
+    Route::post('/supplier', 'suppliercontroller@update');
+    Route::post('/item', 'itemcontroller@update');
+});
