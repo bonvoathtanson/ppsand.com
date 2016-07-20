@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> កែប្រែព័ត៍មានអតិថិជន់ថ្មី
+    <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៍មានអតិថិជន់ថ្មី
 </div>
 <form id="formUser" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}

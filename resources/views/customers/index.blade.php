@@ -12,20 +12,22 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <table class="table table-bordered table-hover">
+    <table id="customerTable" class="table table-bordered table-hover">
       <thead>
         <tr class="warning">
-          <th>ល.រ</th>
           <th>លេខកូដ</th>
           <th>ឈ្មោះអតិថិជន់</th>
-          <th>ប្រភេទ</th>
           <th>ភេទ</th>
           <th>លេខទូរស័ព្ទ</th>
           <th>អស័យដ្ឋាន</th>
-          <th class="center" style="width:120px;">សកម្មភាព</th>
+          <th class="center" style="width:80px;"></th>
         </tr>
       </thead>
+      <tbody></tbody>
     </table>
   </div>
 </div>
+@endsection
+@section('script')
+<script src="{{url('/script/customers/customer.index.js')}}" charset="utf-8"></script>
 @endsection
