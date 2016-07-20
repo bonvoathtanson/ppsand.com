@@ -20,6 +20,8 @@ Route::group(['prefix' => 'view'], function(){
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'customercontroller@search');
     Route::get('/supplier', 'suppliercontroller@search');
+    Route::get('/income', 'incomecontroller@search');
+    Route::get('/expanse', 'expansecontroller@search');
     Route::get('/item', 'itemcontroller@search');
     Route::get('/user', 'usercontroller@search');
 });

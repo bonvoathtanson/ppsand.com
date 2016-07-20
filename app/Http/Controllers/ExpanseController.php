@@ -10,13 +10,20 @@ class ExpanseController extends Controller
 {
     public function index()
     {
-      $expanses = Expanse::all();
-      return view('expanses.index', ['expanses' => $expanses]);
+      return view('expanses.index');
     }
 
     public function create()
     {
       return view('expanses/create');
+    }
+
+    public function search(){
+        $expanses = Expanse::all();
+        $expanses->load('Supplier');
+        $this->SetData($expanses);
+
+        return response()->json($this->Results);
     }
 
     /**

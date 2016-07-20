@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class IncomeController extends Controller
@@ -18,15 +18,27 @@ class IncomeController extends Controller
       return view('incomes/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function search(){
+        $incomes = Income::all();
+        $incomes->load('Customer');
+        $this->SetData($incomes);
+
+        return response()->json($this->Results);
+    }
+
     public function store(Request $request)
     {
-        //
+        $income = new Income();
+        $income->CustomerCode = $request->CustomerCode;
+        $income->CustomerName = $request->CustomerName;
+        $income->Sex = $request->Sex;
+        $income->PhoneNumber = $request->PhoneNumber;
+        $income->Address = $request->Address;
+        $income->TypeId = 1;
+        $income->DateCreated = date('Y-m-d H:i:s');
+        $income->save();
+
+        return response()->json($this->Results);
     }
 
     /**

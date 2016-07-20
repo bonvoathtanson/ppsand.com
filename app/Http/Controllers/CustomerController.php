@@ -39,18 +39,7 @@ class CustomerController extends Controller
 
         return response()->json($this->Results);
     }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-        //
-    }
-
+    
     public function edit($id)
     {
         $customer = Customer::find($id);
