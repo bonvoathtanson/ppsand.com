@@ -21,18 +21,23 @@ class CustomerController extends Controller
     public function search(){
         $customers = Customer::all();
         $this->SetData($customers);
+
         return response()->json($this->Results);
     }
 
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer();
+        $customer->CustomerCode = $request->CustomerCode;
+        $customer->CustomerName = $request->CustomerName;
+        $customer->Sex = $request->Sex;
+        $customer->PhoneNumber = $request->PhoneNumber;
+        $customer->Address = $request->Address;
+        $customer->TypeId = 1;
+        $customer->DateCreated = date('Y-m-d H:i:s');
+        $customer->save();
+        $this->SetData($customer);
+        return response()->json($this->Results);
     }
 
     /**
