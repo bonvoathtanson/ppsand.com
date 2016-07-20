@@ -58,5 +58,6 @@ Route::group(['prefix' => 'edit'], function(){
 Route::group(['prefix' => 'update'], function(){
     Route::post('/customer', 'customercontroller@update');
     Route::post('/supplier', 'suppliercontroller@update');
+    Route::post('/supplier', 'suppliercontroller@update');
     Route::post('/item', 'itemcontroller@update');
 });

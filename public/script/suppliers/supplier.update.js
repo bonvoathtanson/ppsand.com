@@ -5,14 +5,14 @@
     SetValidation();
     function SaveOrUpdate() {
         $('body').append(Loading());
-        var item = $('#formCustomer').serialize();
+        var item = $('#formSupplier').serialize();
         $.ajax({
             type: 'POST',
-            url: burl + '/update/customer',
+            url: burl + '/insert/supplier',
             data: item
         }).done(function (data) {
             if (data.IsError == false) {
-                window.location.href = burl + '/view/customer';
+                window.location.href = burl + '/view/supplier';
             } else {
                 swal(data.Message, '', 'success');
             }
@@ -21,7 +21,7 @@
         });
     }
     function SetValidation() {
-        var form = $('body').find('#formCustomer');
+        var form = $('body').find('#formSupplier');
         form.bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -29,14 +29,14 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                CustomerCode: {
+                SupplierCode: {
                     validators: {
                         notEmpty: {
                             message: 'លេខកូដ​ តំរូវអោយបញ្ចូល'
                         }
                     }
                 },
-                CustomerName: {
+                SupplierName: {
                     validators: {
                         notEmpty: {
                             message: 'ឈ្មោះអតិថិជន់ តំរូវអោយបញ្ចូល'

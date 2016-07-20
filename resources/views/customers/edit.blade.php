@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('css')
+    <link rel="stylesheet" href="{{url('/css/plugin/icheck/iCheck.css')}}" media="screen" title="no title" charset="utf-8">
+@endsection
 @section('content')
 <?php
     function sel($value, $comvalue)
@@ -75,5 +78,6 @@
 </form>
 @endsection
 @section('script')
+<script src="{{url('/script/plugin/icheck/icheck.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/customers/customer.update.js')}}" charset="utf-8"></script>
 @endsection

@@ -34,8 +34,8 @@ class SupplierController extends Controller
         $supplier->Sex = $request->Sex;
         $supplier->PhoneNumber = $request->PhoneNumber;
         $supplier->Address = $request->Address;
-        $customer->LastUpdated = date('Y-m-d H:i:s');
-        $customer->save();
+        $supplier->LastUpdated = date('Y-m-d H:i:s');
+        $supplier->save();
 
         return response()->json($this->Results);
     }

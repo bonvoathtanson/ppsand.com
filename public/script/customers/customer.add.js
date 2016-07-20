@@ -1,4 +1,7 @@
 (function(){
+    $(':radio').iCheck({
+        radioClass: 'iradio_minimal'
+    });
     SetValidation();
     function SaveOrUpdate() {
         $('body').append(Loading());

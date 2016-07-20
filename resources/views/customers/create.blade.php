@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('css')
+    <link rel="stylesheet" href="{{url('/css/plugin/icheck/iCheck.css')}}" media="screen" title="no title" charset="utf-8">
+@endsection
 @section('content')
 <div class="box-title">
     <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៍មានអតិថិជន់ថ្មី
@@ -60,5 +63,6 @@
 </form>
 @endsection
 @section('script')
+<script src="{{url('/script/plugin/icheck/icheck.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/customers/customer.add.js')}}" charset="utf-8"></script>
 @endsection
