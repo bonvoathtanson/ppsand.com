@@ -6,7 +6,8 @@
 <div class="row memu-bar">
     <div class="col-sm-12">
         <div class="pull-right">
-            <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
+            <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> ចំណូលកាលក់</a>
+            <a href="{{url('/create/otherincome')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណូលផ្សេងៗ</a>
         </div>
     </div>
 </div>
