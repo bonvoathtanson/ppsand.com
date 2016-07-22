@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Customer;
 use App\Http\Requests;
 
 class SaleController extends Controller
 {
     public function index()
     {
-      return view('sales/index');
+      return view('sales.index');
     }
 
-    public function create()
+    public function filter_customer()
     {
-      return view('sales/create');
+        return view('sales.filter_customer');
+    }
+
+    public function create($id)
+    {
+        $customer = Customer::find($id);
+        return view('sales.create', ['customer' => $customer]);
     }
 
     /**

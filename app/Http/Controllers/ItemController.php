@@ -16,7 +16,7 @@ class ItemController extends Controller
     public function search(){
         $items = Item::all();
         $this->Results['Data'] = $items;
-        
+
         return response()->json($this->Results);
     }
 
@@ -38,9 +38,12 @@ class ItemController extends Controller
         return response()->json($this->Results);
     }
 
-    public function show($id)
+    public function detail($id)
     {
-        //
+        $item = Item::where('ItemCode', '=', $id)->first();
+        $this->SetData($item);
+
+        return response()->json($this->Results);
     }
 
     public function edit($id)

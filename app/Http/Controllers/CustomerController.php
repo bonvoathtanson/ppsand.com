@@ -18,8 +18,21 @@ class CustomerController extends Controller
         return view('customers/create');
     }
 
-    public function search(){
+    public function search()
+    {
         $customers = Customer::all();
+        $this->SetData($customers);
+
+        return response()->json($this->Results);
+    }
+
+    public function filter($keyword='')
+    {
+        $key = "%$keyword%";
+        $customers = Customer::where('CustomerCode', 'Like', $key)
+                            ->orwhere('CustomerName', 'Like', $key)
+                            ->orwhere('PhoneNumber', 'Like', $key)
+                            ->get();
         $this->SetData($customers);
 
         return response()->json($this->Results);
@@ -39,7 +52,7 @@ class CustomerController extends Controller
 
         return response()->json($this->Results);
     }
-    
+
     public function edit($id)
     {
         $customer = Customer::find($id);

@@ -6,7 +6,7 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <a href="{{url('/create/sale')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
+      <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន់</a>
     </div>
   </div>
 </div>
