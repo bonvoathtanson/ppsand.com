@@ -25,8 +25,8 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ភេទ</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <span>ប្រុស <input type="radio" name="Sex" value="1" checked="checked"/></span>
-                    <span style="margin-left:15px;">ស្រី <input type="radio" name="Sex" value="2"/></span>
+                    <span>ប្រុស <input type="radio" class="form-control" name="Sex" value="1" checked="checked"/></span>
+                    <span style="margin-left:15px;">ស្រី <input type="radio" class="form-control" name="Sex" value="2"/></span>
                 </div>
             </div>
             <div class="form-group">
