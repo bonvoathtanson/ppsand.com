@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="navbar-header"><a class="navbar-brand font-M1" href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i> ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a></div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> ចាក់ចេញ</a></li>
+          <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> ចាកចេញ</a></li>
         </ul>
       </div>
     </nav>
@@ -25,15 +25,15 @@
     <div class="row">
       <div class="col-sm-2">
         <div class="list-group">
-          <a href="javascript:void(0);" class="list-group-item active font-M1 center">មាតិការ</a>
+          <a href="javascript:void(0);" class="list-group-item active font-M1 center">មាតិកា</a>
           <a href="{{url('/view/sale/')}}" class="list-group-item"><i class="fa fa-cart-plus" aria-hidden="true"></i> ការលក់ចេញ</a>
           <a href="{{url('/view/import/')}}" class="list-group-item"><i class="fa fa-download" aria-hidden="true"></i> ការទិញចូល</a>
-          <a href="{{url('/view/customer/')}}" class="list-group-item"><i class="fa fa-user-secret" aria-hidden="true"></i> អតិថិជន់</a>
+          <a href="{{url('/view/customer/')}}" class="list-group-item"><i class="fa fa-user-secret" aria-hidden="true"></i> អតិថិជន</a>
           <a href="{{url('/view/supplier/')}}" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i> អ្នកផ្គត់ផ្គង់</a>
           <a href="{{url('/view/income/')}}" class="list-group-item"><i class="fa fa-money" aria-hidden="true"></i> ចំណូល</a>
           <a href="{{url('/view/expanse/')}}" class="list-group-item"><i class="fa fa-share-alt-square" aria-hidden="true"></i> ចំណាយ</a>
           <a href="{{url('/view/item/')}}" class="list-group-item"><i class="fa fa-shopping-bag" aria-hidden="true"></i> មុខទំនិញ</a>
-          <a href="{{url('/view/user/')}}" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> គណនេយ្យអ្នកប្រើប្រាស់</a>
+          <a href="{{url('/view/user/')}}" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> គណនីអ្នកប្រើប្រាស់</a>
         </div>
       </div>
       <div class="col-sm-10">

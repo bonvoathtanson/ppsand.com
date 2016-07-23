@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-    <i class="fa fa-list" aria-hidden="true"></i> តារាងឈ្មោះគណនេយ្យអ្្នកប្រើប្រាស់
+    <i class="fa fa-list" aria-hidden="true"></i> តារាងឈ្មោះគណនីអ្្នកប្រើប្រាស់
 </div>
 <div class="row memu-bar">
     <div class="col-sm-12">
@@ -15,7 +15,7 @@
         <table id="userTable" class="table table-bordered table-hover">
             <thead>
                 <tr class="warning">
-                    <th>ឈ្មោះគណនេយ្យ</th>
+                    <th>ឈ្មោះគណនី</th>
                     <th>អ៊ីម៉ែល</th>
                     <th class="center">ថ្ងៃបង្កើត</th>
                     <th class="center" style="width:30px;"></th>

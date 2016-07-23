@@ -6,7 +6,7 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន់</a>
+      <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន</a>
     </div>
   </div>
 </div>
@@ -15,7 +15,7 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr class="warning">
-          <th>ឈ្មោះអតិថិជន់</th>
+          <th>ឈ្មោះអតិថិជន</th>
           <th>លេខកូដលក់</th>
           <th>ថ្ងៃខែឆ្នាំលក់</th>
           <th>លេខឡាន</th>

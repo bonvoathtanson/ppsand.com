@@ -16,7 +16,7 @@
         <table id="incomeTable" class="table table-bordered table-hover">
             <thead>
                 <tr class="warning">
-                    <th>អតិថិជន់</th>
+                    <th>អតិថិជន</th>
                     <th>ថ្ងៃខែឆ្នាំចំណូល</th>
                     <th>ប្រភេទចំណូល</th>
                     <th>បរិយាយ</th>

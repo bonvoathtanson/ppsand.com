@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន់ដែលត្រូវលក់
+    <i class="fa fa-plus-square" aria-hidden="true"></i> ជ្រើសរើសអតិថិជនដែលត្រូវលក់
 </div>
 <form class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">ស្វែងរកអតិថិជន់</label>
+                <label class="col-sm-1 control-label" style="width:150px;">ស្វែងរកអតិថិជន</label>
                 <div class="col-sm-1" style="width:320px;">
                     <input type="text" id="inputsearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
                     <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>
-                    <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជន់ថ្មី</a>
+                    <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជនថ្មី</a>
                 </div>
             </div>
         </div>

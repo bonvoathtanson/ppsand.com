@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title">
-    <i class="fa fa-list" aria-hidden="true"></i> បញ្ចីរាយនាមអតិថិជន់
+    <i class="fa fa-list" aria-hidden="true"></i> បញ្ចីរាយនាមអតិថិជន
 </div>
 <div class="row memu-bar">
     <div class="col-sm-12">
@@ -16,7 +16,7 @@
             <thead>
                 <tr class="warning">
                     <th>លេខកូដ</th>
-                    <th>ឈ្មោះអតិថិជន់</th>
+                    <th>ឈ្មោះអតិថិជន</th>
                     <th>ភេទ</th>
                     <th>លេខទូរស័ព្ទ</th>
                     <th>អស័យដ្ឋាន</th>

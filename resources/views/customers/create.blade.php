@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៍មានអតិថិជន់ថ្មី
+    <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៍មានអតិថិជនថ្មី
 </div>
 <form id="formCustomer" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">គោលដៅអតិថិជន់</label>
+                <label class="col-sm-1 control-label" style="width:150px;">គោលដៅអតិថិជន</label>
                 <div class="col-sm-2">
                     <select class="form-control" id="typeid" style="font-size:10pt;">
                         <option value="0"></option>

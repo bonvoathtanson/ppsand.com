@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាកាលក់របស់អតិថិជន់ [{{$customer->CustomerName}}]
+    <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាកាលក់របស់អតិថិជន [{{$customer->CustomerName}}]
 </div>
 <form class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
@@ -12,13 +12,13 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន់</label>
+                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
                     <input type="text" class="form-control" disabled="disabled" value="{{$customer->CustomerName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
-                    <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន់</a>
-                    <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជន់ថ្មី</a>
+                    <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a>
+                    <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជនថ្មី</a>
                 </div>
             </div>
             <div class="form-group">

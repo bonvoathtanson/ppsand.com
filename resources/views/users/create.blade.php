@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 @section('content')
 <div class="box-title" style="margin-bottom:25px;">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> បន្ថែមគណនេយ្យអ្្នកប្រើប្រាស់
+    <i class="fa fa-plus-square" aria-hidden="true"></i> បន្ថែមគណនីអ្្នកប្រើប្រាស់
 </div>
 <form id="formUser" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="col-sm-2 control-label">ឈ្មោះគណនេយ្យ</label>
+                <label class="col-sm-2 control-label">ឈ្មោះគណនី</label>
                 <div class="col-sm-5">
                     <input type="text" name="Name" class="form-control" placeholder="ឈ្មោះគណនេយ្យ">
                 </div>

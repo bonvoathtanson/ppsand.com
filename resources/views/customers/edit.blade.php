@@ -18,7 +18,7 @@
     }
 ?>
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> កែប្រែព័ត៍មានអតិថិជន់
+    <i class="fa fa-plus-square" aria-hidden="true"></i> កែប្រែព័ត៍មានអតិថិជន
 </div>
 <form id="formCustomer" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
