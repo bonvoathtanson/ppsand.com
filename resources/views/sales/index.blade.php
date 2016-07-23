@@ -12,20 +12,25 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <table class="table table-bordered table-hover">
+    <table id="saleTable" class="table table-bordered table-hover">
       <thead>
         <tr class="warning">
           <th>ឈ្មោះអតិថិជន</th>
-          <th>លេខកូដលក់</th>
+          <th>មុខទំនិញ</th>
           <th>ថ្ងៃខែឆ្នាំលក់</th>
           <th>លេខឡាន</th>
           <th>ចំនួន</th>
           <th>តំលៃលក់</th>
-          <th>ទឹកប្រាក់សរុប</th>
-          <th class="center" style="width:120px;">សកម្មភាព</th>
+          <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
+          <th class="center" style="width:80px;"></th>
         </tr>
       </thead>
+      <tbody></tbody>
     </table>
   </div>
 </div>
+@endsection
+@section('script')
+<script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/sales/sale.index.js')}}" charset="utf-8"></script>
 @endsection

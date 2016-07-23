@@ -5,3 +5,12 @@ function Loading() {
                 '</div>';
   return element;
 }
+
+function CDate(datetime){
+    var ret = '';
+    ret = moment(datetime).format('DD-MM-YYYY HH:mm');
+    if(ret == 'Invalided'){
+        ret = '';
+    }
+    return ret;
+}

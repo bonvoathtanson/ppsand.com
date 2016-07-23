@@ -24,6 +24,7 @@ Route::group(['prefix' => 'filter'], function(){
 
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'customercontroller@search');
+    Route::get('/sale', 'salecontroller@search');
     Route::get('/supplier', 'suppliercontroller@search');
     Route::get('/income', 'incomecontroller@search');
     Route::get('/expanse', 'expansecontroller@search');
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'update'], function(){
 });
 
 Route::group(['prefix' => 'delete'], function(){
+    Route::get('/sale/{id}', 'salecontroller@destroy');
     Route::get('/customer/{id}', 'customercontroller@destroy');
     Route::get('/supplier/{id}', 'suppliercontroller@destroy');
     Route::get('/item/{id}', 'itemcontroller@destroy');
