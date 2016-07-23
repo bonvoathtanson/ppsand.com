@@ -38,7 +38,8 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/item', 'itemcontroller@create');
     Route::get('/customer', 'customercontroller@create');
     Route::get('/supplier', 'suppliercontroller@create');
-    Route::get('/income', 'incomecontroller@create');
+    Route::get('/income/{id}', 'incomecontroller@create');
+    Route::get('/otherincome', 'incomecontroller@otherincome');
     Route::get('/expanse', 'expansecontroller@create');
     Route::get('/sale/{id}', 'salecontroller@create');
     Route::get('/import', 'importcontroller@create');

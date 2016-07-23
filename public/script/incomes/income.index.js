@@ -35,13 +35,16 @@
                 if(item.customer != null){
                     name = item.customer.CustomerName;
                 }
-                console.log(item);
+                var type = 'ចំណូលផ្សេងៗ';
+                if(item.IncomeType != 0){
+                    type = 'ចំណូលកាលក់';
+                }
                 element += '<tr data-id="' + item.Id + '">' +
+                                '<td>' + moment(item.IncomeDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td>' + name + '</td>' +
-                                '<td>' + item.IncomeDate + '</td>' +
-                                '<td class="center">' + item.IncomeType + '</td>' +
+                                '<td class="center">' + type + '</td>' +
                                 '<td class="center">' + item.Description + '</td>' +
-                                '<td class="center">' + item.TotalAmount + '</td>' +
+                                '<td style="text-align:right;">' + item.TotalAmount + '</td>' +
                                 '<td class="center">' +
                                     '<a href="' + burl + '/edit/income/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +

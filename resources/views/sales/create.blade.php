@@ -29,10 +29,13 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="form-group">
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-sm-12" style="padding-left:0;">
             <div class="col-sm-1" style="width:200px;">
                 <input type="text" id="itemcode" class="form-control" placeholder="លេខកូដ">
+            </div>
+            <div class="pull-right">
+                <a href="{{url('/create/income').'/'.$customer->Id}}" class="btn btn-danger">បង់លុយ</a>
             </div>
         </div>
     </div>

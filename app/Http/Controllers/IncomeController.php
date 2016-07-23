@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
+use App\Models\Customer;
 use App\Models\Income;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -10,12 +12,25 @@ class IncomeController extends Controller
 {
     public function index()
     {
-        return view('incomes/index');
+        return view('incomes.index');
     }
 
-    public function create()
+    public function create($id)
     {
-      return view('incomes/create');
+        $customer = Customer::find($id);
+        $sales = Sale::where('CustomerId', '=', $id)
+                    ->where('SubTotal', '>', DB::raw('PayAmount'))
+                    ->orderBy('SaleDate', 'ASC')->get();
+        $results = array(
+            'customer' => $customer,
+            'sales' => $sales
+        );
+        return view('incomes.create', $results);
+    }
+
+    public function otherincome()
+    {
+        return view('incomes.other');
     }
 
     public function search(){
