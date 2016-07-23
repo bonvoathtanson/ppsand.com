@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('css')
-    <link rel="stylesheet" href="{{url('/css/plugin/datetimepicker/bootstrap-datetimepicker.min.css')}}" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="{{url('/css/plugin/datetimepicker/bootstrap-datetimepicker.min.css')}}" media="screen" title="no title" charset="utf-8">
 @endsection
 @section('content')
 <div class="box-title">
     <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាកាលក់របស់អតិថិជន [{{$customer->CustomerName}}]
 </div>
-<form class="form-horizontal" onsubmit="return false;">
+<form id="formSale" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
     <input type="hidden" name="CustomerId" value="{{$customer->Id}}">
     <div class="panel panel-default">
@@ -36,19 +36,94 @@
             </div>
         </div>
     </div>
-    <div>
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr class="warning">
-              <th>លេខកូដលក់</th>
-              <th>ថ្ងៃខែឆ្នាំលក់</th>
-              <th>លេខឡាន</th>
-              <th>ចំនួន</th>
-              <th>តំលៃលក់</th>
-              <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
-            </tr>
-          </thead>
-        </table>
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#box-tap1" class="font-M1" aria-controls="home" role="tab" data-toggle="tab">មិនទាន់ដឹកចេញ</a></li>
+            <li role="presentation"><a href="#box-tap2" class="font-M1" aria-controls="home" role="tab" data-toggle="tab">មិនទាន់ទូទាត់</a></li>
+            <li role="presentation"><a href="#box-tap3" class="font-M1" aria-controls="home" role="tab" data-toggle="tab">ទូទាត់ហើយ</a></li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="box-tap1">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="warning">
+                            <th>មុខទំនិញ</th>
+                            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">លេខឡាន</th>
+                            <th class="center">ចំនួន</th>
+                            <th class="center">ត្រូវដឹកចេញ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($transfers as $key => $value): ?>
+                            <tr>
+                                <td>{{$value->Item->ItemName}}</td>
+                                <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
+                                <td class="center">{{$value->CarNumber}}</td>
+                                <td class="center">{{$value->Quantity}}</td>
+                                <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d ម៉ោង H:i')}}</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="box-tap2">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="warning">
+                            <th>មុខទំនិញ</th>
+                            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">លេខឡាន</th>
+                            <th class="center">ចំនួន</th>
+                            <th class="center">តំលៃលក់</th>
+                            <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
+                            <th style="text-align:right;">ទឹកប្រាក់បង់</th>
+                            <th style="text-align:right;">ទឹកនៅសល់</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($oncredits as $key => $value): ?>
+                            <tr>
+                                <td>{{$value->Item->ItemName}}</td>
+                                <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
+                                <td class="center">{{$value->CarNumber}}</td>
+                                <td class="center">{{$value->Quantity}}</td>
+                                <td class="center">{{$value->SalePrice}}</td>
+                                <td style="text-align:right;">{{$value->SubTotal}}</td>
+                                <td style="text-align:right;">{{$value->PayAmount}}</td>
+                                <td style="text-align:right;">{{$value->SubTotal - $value->PayAmount}}</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="box-tap3">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="warning">
+                            <th>មុខទំនិញ</th>
+                            <th>ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">លេខឡាន</th>
+                            <th class="center">ចំនួន</th>
+                            <th class="center">តំលៃលក់</th>
+                            <th style="text-align:right;">ចំនួនទឹកប្រាក់</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($onpayoffs as $key => $value): ?>
+                            <tr>
+                                <td>{{$value->Item->ItemName}}</td>
+                                <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
+                                <td class="center">{{$value->CarNumber}}</td>
+                                <td class="center">{{$value->Quantity}}</td>
+                                <td class="center">{{$value->SalePrice}}</td>
+                                <td style="text-align:right;">{{$value->SubTotal}}</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog" role="document">
@@ -70,6 +145,9 @@
                         <div class="col-sm-1" style="width:150px;">
                             <input type="text" id="quantity" name="Quantity" class="form-control">
                         </div>
+                        <div class="col-sm-1" style="width:150px; padding-left:0;">
+                             <label class="control-label">ចំនួនក្នុងស្តុក <span id="viewqty" style="color:blue;">0</span></label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label" style="width:150px;">តំលៃលក់ចេញ</label>
@@ -86,9 +164,9 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label" style="width:150px;">ដឹកចេញ</label>
                         <div class="col-sm-1" style="width:200px;">
-                            <select class="form-control" id="typeid" name="TypeId">
-                                <option value="1">ដឹកចេញភ្លាម</option>
-                                <option value="2">ដឹកចេញពេលក្រោយ</option>
+                            <select class="form-control" id="typeid" name="IsOrder">
+                                <option value="0">ដឹកចេញភ្លាម</option>
+                                <option value="1">ដឹកចេញពេលក្រោយ</option>
                             </select>
                         </div>
                     </div>
@@ -113,7 +191,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">បិទ</button>
-                    <button type="button" class="btn btn-primary">រក្សាទុក</button>
+                    <button type="button" class="btn btn-primary" id="save">រក្សាទុក</button>
                 </div>
             </div>
         </div>

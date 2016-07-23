@@ -40,7 +40,7 @@
                     disdel = '';
                 }
                 element += '<tr data-id="' + item.Id + '">' +
-                                '<td>' + item.customer.CustomerName + '</td>' +
+                                '<td><a href="'+ burl +'/create/sale/'+ item.customer.Id +'">' + item.customer.CustomerName + '</a></td>' +
                                 '<td>' + item.item.ItemName + '</td>' +
                                 '<td class="center">' + CDate(item.SaleDate) + '</td>' +
                                 '<td class="center">' + item.CarNumber + '</td>' +

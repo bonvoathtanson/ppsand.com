@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Sale;
@@ -11,7 +11,7 @@ class SaleController extends Controller
 {
     public function index()
     {
-      return view('sales.index');
+        return view('sales.index');
     }
 
     public function search(){
@@ -30,49 +30,76 @@ class SaleController extends Controller
     public function create($id)
     {
         $customer = Customer::find($id);
-        return view('sales.create', ['customer' => $customer]);
+        $sales = Sale::where('CustomerId', '=', $id)->orderBy('SaleDate', 'DESC')->get();
+        $transfers = Sale::where('CustomerId', '=', $id)
+                        ->where('IsOrder', '=', 1)
+                        ->orderBy('SaleDate', 'DESC')->get();
+
+        $oncredits = Sale::where('CustomerId', '=', $id)
+                        ->where('SubTotal', '>', DB::raw('PayAmount'))
+                        ->orderBy('SaleDate', 'DESC')->get();
+
+        $onpayoffs = Sale::where('CustomerId', '=', $id)
+                        ->where('SubTotal', '<=', DB::raw('PayAmount'))
+                        ->orderBy('SaleDate', 'DESC')->get();
+
+        $results = array(
+            'customer' => $customer,
+            'transfers' => $transfers,
+            'oncredits' => $oncredits,
+            'onpayoffs' => $onpayoffs
+        );
+        return view('sales.create', $results);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $sale = new Sale();
+        $sale->SaleDate = date_create($request->SaleDate);
+        $sale->TransferDate = date_create($request->TransferDate);
+        $sale->CustomerId = $request->CustomerId;
+        $sale->ItemId = $request->ItemId;
+        $sale->CarNumber = $request->CarNumber;
+        $sale->Quantity = $request->Quantity;
+        $sale->SalePrice = $request->SalePrice;
+        $sale->DateCreated = date('Y-m-d H:i:s');
+        $sale->SubTotal = $this->CalTotal($request->Quantity, $request->SalePrice);
+        $sale->PayAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
+        $sale->IsOrder = $request->IsOrder;
+        $sale->save();
+
+        return response()->json($this->Results);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function show($id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function edit($id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, $id)
     {
         //
@@ -88,5 +115,21 @@ class SaleController extends Controller
         }
 
         return response()->json($this->Results);
+    }
+
+    private function CalTotal($quantity, $saleprice)
+    {
+        $qty = 0;
+        $price = 0;
+        if($quantity != "")
+        {
+            $qty = $quantity;
+        }
+        if($saleprice != "")
+        {
+            $price = $saleprice;
+        }
+
+        return ($qty * $price);
     }
 }

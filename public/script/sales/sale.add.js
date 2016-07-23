@@ -1,7 +1,12 @@
 (function() {
+    $('body').on('click', '#save', function(){
+        SaveOrUpdate();
+    });
+
     $('#saledate').datetimepicker({
         defaultDate: new Date()
     });
+
     $('#transferdate').datetimepicker({
         defaultDate: new Date()
     });
@@ -15,6 +20,7 @@
                     if(item != null && item != undefined)
                     {
                         $('#itemid').val(item.Id);
+                        $('#viewqty').text(item.UnitInStock);
                         $('#itemname').text('ឈ្មោះមុខទំនិញ [ ' + item.ItemName + ' ]');
                         $('#saleprice').val(item.SalePrice);
                         $('#myModal').modal({
@@ -26,17 +32,18 @@
             $(this).val('');
         }
     });
+
     $('#myModal').on('shown.bs.modal', function (e) {
         $('#quantity').focus();
     });
 
     $('#myModal').on('hidden.bs.modal', function (e) {
-        $('#itemid').val('');
+        $('#itemid, #saleprice, #quantity, #carnumber').val('');
         $('#itemname').text('');
-        $('#quantity').val('');
-        $('#saleprice').val('');
-        $('#carnumber').val('');
         $('#typeid option[value="1"]').prop('selected', true).change();
+        $('#totalamount, #payamount').val('0');
+        $('#saledate').data("DateTimePicker").date(new Date());
+        $('#transferdate').data("DateTimePicker").date(new Date());
     });
 
     $('body').on('keypress', '#quantity', function(event){
@@ -45,10 +52,17 @@
             $('#saleprice').focus();
         }
     });
+
     $('body').on('keypress', '#saleprice', function(event){
         if(event.which == 13){
             CalTotal();
             $('#carnumber').focus();
+        }
+    });
+
+    $('body').on('keypress', '#carnumber', function(event){
+        if(event.which == 13){
+            $('#payamount').focus();
         }
     });
 
@@ -64,6 +78,26 @@
             $('#group-date').show();
         }
     });
+
+    function SaveOrUpdate() {
+        $('body').append(Loading());
+        var item = $('#formSale').serialize();
+        $.ajax({
+            type: 'POST',
+            url: burl + '/insert/sale',
+            data: item
+        }).done(function (data) {
+            if (data.IsError == false) {
+                location.reload();
+                $('#myModal').modal('hide');
+            } else {
+                swal(data.Message, '', 'success');
+            }
+        }).complete(function (data) {
+            $('body').find('.loading').remove();
+        });
+    }
+
     function GetItemDetail(id, callback) {
         $.ajax({
           url: burl + '/find/itemdetail/' + id,

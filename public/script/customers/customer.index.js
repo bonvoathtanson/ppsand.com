@@ -37,7 +37,7 @@
                 }
                 element += '<tr data-id="' + item.Id + '">' +
                                 '<td>' + item.CustomerCode + '</td>' +
-                                '<td>' + item.CustomerName + '</td>' +
+                                '<td><a href="'+ burl +'/create/sale/'+ item.Id +'">' + item.CustomerName + '</a></td>' +
                                 '<td class="center">' + sex + '</td>' +
                                 '<td class="center">' + item.PhoneNumber + '</td>' +
                                 '<td class="center">' + item.Address + '</td>' +
