@@ -44,12 +44,14 @@ class IncomeController extends Controller
     public function store(Request $request)
     {
         $income = new Income();
-        $income->CustomerCode = $request->CustomerCode;
-        $income->CustomerName = $request->CustomerName;
-        $income->Sex = $request->Sex;
-        $income->PhoneNumber = $request->PhoneNumber;
-        $income->Address = $request->Address;
-        $income->TypeId = 1;
+        $income->IncomeDate = date_create($request->IncomeDate);
+        if($request->CustomerId != '')
+        {
+            $income->CustomerId = $request->CustomerId;
+        }
+        $income->TotalAmount = $request->TotalAmount;
+        $income->IncomeType = $request->IncomeType;
+        $income->Description = $request->Description;
         $income->DateCreated = date('Y-m-d H:i:s');
         $income->save();
 
@@ -67,27 +69,29 @@ class IncomeController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $income = Income::find($id);
+
+        return view('incomes.edit', ['income' => $income]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->Id;
+        $income = Income::find($id);
+        $income->IncomeDate = date_create($request->IncomeDate);
+        if($request->CustomerId != '')
+        {
+            $income->CustomerId = $request->CustomerId;
+        }
+        $income->TotalAmount = $request->TotalAmount;
+        $income->IncomeType = $request->IncomeType;
+        $income->Description = $request->Description;
+        $income->DateCreated = date('Y-m-d H:i:s');
+        $income->save();
+
+        return response()->json($this->Results);
     }
 
     /**

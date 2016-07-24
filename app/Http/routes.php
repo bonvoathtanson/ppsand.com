@@ -47,6 +47,7 @@ Route::group(['prefix' => 'create'], function(){
 
 Route::group(['prefix' => 'insert'], function(){
     Route::post('/sale', 'salecontroller@store');
+    Route::post('/income', 'incomecontroller@store');
     Route::post('/customer', 'customercontroller@store');
     Route::post('/supplier', 'suppliercontroller@store');
     Route::post('/user', 'usercontroller@store');
@@ -56,13 +57,14 @@ Route::group(['prefix' => 'insert'], function(){
 Route::group(['prefix' => 'edit'], function(){
     Route::get('/customer/{id}', 'customercontroller@edit');
     Route::get('/supplier/{id}', 'suppliercontroller@edit');
+    Route::get('/income/{id}', 'incomecontroller@edit');
     Route::get('/item/{id}', 'itemcontroller@edit');
 });
 
 Route::group(['prefix' => 'update'], function(){
     Route::post('/customer', 'customercontroller@update');
     Route::post('/supplier', 'suppliercontroller@update');
-    Route::post('/supplier', 'suppliercontroller@update');
+    Route::post('/income', 'incomecontroller@update');
     Route::post('/item', 'itemcontroller@update');
 });
 
