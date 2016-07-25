@@ -15,6 +15,22 @@ class SaleController extends Controller
         return view('sales.index');
     }
 
+    public function transfer()
+    {
+        $sales = Sale::where('IsOrder', '=', 1)->get();
+
+        return view('sales.transfer', ['sales' => $sales]);
+    }
+
+    public function timetransfer()
+    {
+        $sales = Sale::where('IsOrder', '=', 1)
+                    ->where('TransferDate', '<=', date('Y-m-d H:i:s'))
+                    ->get();
+
+        return view('sales.transfer', ['sales' => $sales]);
+    }
+
     public function search(){
         $sales = Sale::all();
         $sales->load(['Customer', 'Item']);

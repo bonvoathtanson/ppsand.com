@@ -136,3 +136,9 @@ body{
     background: #fff;
     padding: 10px;
 }
+
+.badge{
+    background: red;
+    padding: 6px;
+    border:1px solid #f2f2f2;
+}

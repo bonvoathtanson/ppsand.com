@@ -18,6 +18,8 @@ Route::group(['prefix' => 'view'], function(){
     Route::get('/income', 'incomecontroller@index');
     Route::get('/expanse', 'expansecontroller@index');
     Route::get('/sale', 'salecontroller@index');
+    Route::get('/transfer', 'salecontroller@transfer');
+    Route::get('/timetransfer', 'salecontroller@timetransfer');
     Route::get('/selectcustomer', 'salecontroller@filter_customer');
     Route::get('/import', 'importcontroller@index');
 });
