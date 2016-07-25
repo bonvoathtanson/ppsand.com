@@ -6,6 +6,10 @@ Route::group(['prefix' => '/'], function(){
     Route::get('logout', 'usercontroller@logout');
 });
 
+Route::group(['prefix' => 'transfer'], function(){
+    Route::get('/sale/{id}', 'salecontroller@updatetransfer');
+});
+
 Route::group(['prefix' => 'view'], function(){
     Route::get('/user', 'usercontroller@index');
     Route::get('/item', 'itemcontroller@index');

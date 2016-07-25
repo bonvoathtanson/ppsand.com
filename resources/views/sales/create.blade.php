@@ -55,16 +55,20 @@
                             <th class="center">លេខឡាន</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">ត្រូវដឹកចេញ</th>
+                            <th style="width:25px;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($transfers as $key => $value): ?>
-                            <tr>
+                            <tr data-id="{{$value->Id}}">
                                 <td>{{$value->Item->ItemName}}</td>
                                 <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
                                 <td class="center">{{$value->CarNumber}}</td>
                                 <td class="center">{{$value->Quantity}}</td>
                                 <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d ម៉ោង H:i')}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-e transfer">ដឹកចេញ</button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

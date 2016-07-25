@@ -5,6 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Sale;
+use App\Models\Item;
 use App\Http\Requests;
 
 class SaleController extends Controller
@@ -25,6 +26,24 @@ class SaleController extends Controller
     public function filter_customer()
     {
         return view('sales.filter_customer');
+    }
+
+    public function updatetransfer($id)
+    {
+        try {
+            DB::beginTransaction();
+            $sale = Sale::find($id);
+            $sale->IsOrder = 0;
+            $sale->save();
+            $this->UpdateStock($sale->ItemId, $sale->Quantity);
+            DB::commit();
+        } catch (Exception $e) {
+            $this->SetError(true);
+            $this->SetMessage($e);
+            DB::rollBack();
+        }
+
+        return response()->json($this->Results);
     }
 
     public function create($id)
@@ -54,19 +73,31 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-        $sale = new Sale();
-        $sale->SaleDate = date_create($request->SaleDate);
-        $sale->TransferDate = date_create($request->TransferDate);
-        $sale->CustomerId = $request->CustomerId;
-        $sale->ItemId = $request->ItemId;
-        $sale->CarNumber = $request->CarNumber;
-        $sale->Quantity = $request->Quantity;
-        $sale->SalePrice = $request->SalePrice;
-        $sale->DateCreated = date('Y-m-d H:i:s');
-        $sale->SubTotal = $this->CalTotal($request->Quantity, $request->SalePrice);
-        $sale->PayAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
-        $sale->IsOrder = $request->IsOrder;
-        $sale->save();
+        try {
+            DB::beginTransaction();
+            $sale = new Sale();
+            $sale->SaleDate = date_create($request->SaleDate);
+            $sale->TransferDate = date_create($request->TransferDate);
+            $sale->CustomerId = $request->CustomerId;
+            $sale->ItemId = $request->ItemId;
+            $sale->CarNumber = $request->CarNumber;
+            $sale->Quantity = $request->Quantity;
+            $sale->SalePrice = $request->SalePrice;
+            $sale->DateCreated = date('Y-m-d H:i:s');
+            $sale->SubTotal = $this->CalTotal($request->Quantity, $request->SalePrice);
+            $sale->PayAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
+            $sale->IsOrder = $request->IsOrder;
+            $sale->save();
+            if($request->IsOrder == "0")
+            {
+                $this->UpdateStock($request->ItemId, $request->Quantity);
+            }
+            DB::commit();
+        } catch (Illuminate\Database\QueryException $e) {
+            $this->SetError(true);
+            $this->SetMessage($e);
+            DB::rollBack();
+        }
 
         return response()->json($this->Results);
     }
@@ -131,5 +162,12 @@ class SaleController extends Controller
         }
 
         return ($qty * $price);
+    }
+
+    private function UpdateStock($itemId, $quantity)
+    {
+        $item = Item::find($itemId);
+        $item->UnitInStock = ($item->UnitInStock - $quantity);
+        $item->save();
     }
 }

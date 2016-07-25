@@ -25,6 +25,7 @@ class IncomeController extends Controller
             'customer' => $customer,
             'sales' => $sales
         );
+
         return view('incomes.create', $results);
     }
 
@@ -33,7 +34,8 @@ class IncomeController extends Controller
         return view('incomes.other');
     }
 
-    public function search(){
+    public function search()
+    {
         $incomes = Income::all();
         $incomes->load('Customer');
         $this->SetData($incomes);
@@ -43,30 +45,16 @@ class IncomeController extends Controller
 
     public function store(Request $request)
     {
-        $income = new Income();
-        $income->IncomeDate = date_create($request->IncomeDate);
-        if($request->CustomerId != '')
+        if($request->IncomeType == "0")
         {
-            $income->CustomerId = $request->CustomerId;
+            $this->SaveOtherIncome($request);
         }
-        $income->TotalAmount = $request->TotalAmount;
-        $income->IncomeType = $request->IncomeType;
-        $income->Description = $request->Description;
-        $income->DateCreated = date('Y-m-d H:i:s');
-        $income->save();
+        else if($request->IncomeType == "1")
+        {
+            $this->SaveMoreIncome($request);
+        }
 
         return response()->json($this->Results);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -103,5 +91,42 @@ class IncomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function SaveOtherIncome($request)
+    {
+        $income = new Income();
+        $income->IncomeDate = date_create($request->IncomeDate);
+        $income->TotalAmount = $request->TotalAmount;
+        $income->IncomeType = $request->IncomeType;
+        $income->Description = $request->Description;
+        $income->DateCreated = date('Y-m-d H:i:s');
+        $income->save();
+    }
+
+    private function SaveMoreIncome($request)
+    {
+        $itemIds = $request->ItemIds;
+        $sales = Sale::whereIn('Id', $itemIds)->get();
+        foreach ($sales as $key => $value) {
+            $income = new Income();
+            $Income->SaleId = $value->Id;
+            $payAmount = $value->SubTotal - $value->PayAmount;
+            $income->CustomerId = $request->CustomerId;
+            $income->IncomeDate = date_create($request->IncomeDate);
+            $income->TotalAmount = $payAmount;
+            $income->IncomeType = 1;
+            $income->Description = $request->Description;
+            $income->DateCreated = date('Y-m-d H:i:s');
+            $income->save();
+            $this->UpdatePayAmount($value->Id, $value->SubTotal);
+        }
+    }
+
+    private function UpdatePayAmount($saleId, $payAmount)
+    {
+        $sale = Sale::find($saleId);
+        $sale->PayAmount = $payAmount;
+        $sale->save();
     }
 }

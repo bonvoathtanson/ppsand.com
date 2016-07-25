@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
-  protected $table = 'items';
-  protected $primaryKey = 'Id';
-  public $timestamps = false;
+    protected $table = 'items';
+    protected $primaryKey = 'Id';
+    public $timestamps = false;
 }

@@ -1,6 +1,38 @@
 (function() {
+
     $('body').on('click', '#save', function(){
         SaveOrUpdate();
+    });
+
+    $('body').on('click', '.transfer', function () {
+        var select = $(this).closest('tr');
+        var id = $(select).attr('data-id');
+        swal({
+            title: 'ដឹកទំនិញអោយគេ',
+            text: 'តើអ្នកពិតជាបានដឹកទំនិញចេញម៉ែនឬទេ?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'យល់ព្រម',
+            cancelButtonText: 'បោះបង់',
+            closeOnConfirm: false
+        }, function () {
+            $('body').append(Loading());
+            $.ajax({
+                type: 'GET',
+                url: burl + '/transfer/sale/' + id,
+                dataType: "JSON",
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (data) {
+                if (data.IsError == false) {
+                    swal('ទំនិញត្រូវបានដឹកចេញបានជោកជ័យ', '', 'success');
+                    $(select).remove();
+                } else {
+                    swal(data.Message, '', 'success');
+                }
+            }).complete(function (data) {
+                $('body').find('.loading').remove();
+            });
+        });
     });
 
     $('#saledate').datetimepicker({
@@ -72,7 +104,7 @@
 
     $('body').on('change', '#typeid', function(){
         var value = $(this).val();
-        if(value == 1){
+        if(value == 2){
             $('#group-date').hide();
         }else{
             $('#group-date').show();

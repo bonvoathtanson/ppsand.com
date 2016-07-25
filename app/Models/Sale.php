@@ -1,24 +1,24 @@
 <?php
 
 namespace App\Models;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-  protected $table = 'sales';
+    protected $table = 'sales';
 
-  protected $primaryKey = 'Id';
+    protected $primaryKey = 'Id';
 
-  public $timestamps = false;
+    public $timestamps = false;
 
-  public function Customer()
-  {
-    return $this->belongsTo('App\Models\Customer', 'CustomerId');
-  }
+    public function Customer()
+    {
+        return $this->belongsTo('App\Models\Customer', 'CustomerId');
+    }
 
-  public function Item()
-  {
-    return $this->belongsTo('App\Models\Item', 'ItemId');
-  }
+    public function Item()
+    {
+        return $this->belongsTo('App\Models\Item', 'ItemId');
+    }
 }

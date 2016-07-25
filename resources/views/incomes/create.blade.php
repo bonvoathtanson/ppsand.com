@@ -1,14 +1,16 @@
 @extends('layouts.admin')
 @section('css')
+<link rel="stylesheet" href="{{url('/css/plugin/icheck/iCheck.css')}}" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="{{url('/css/plugin/datetimepicker/bootstrap-datetimepicker.min.css')}}" media="screen" title="no title" charset="utf-8">
 @endsection
 @section('content')
 <div class="box-title">
   <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាចំណូល
 </div>
-<form id="formCustomer" class="form-horizontal" method="POST" onsubmit="return false;">
+<form id="formIncome" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
     <input type="hidden" name="CustomerId" value="{{$customer->Id}}">
+    <input type="hidden" name="IncomeType" value="1">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
@@ -58,7 +60,7 @@
             <tbody>
                 <?php foreach ($sales as $key => $value): ?>
                     <tr data-id="{{$value->Id}}">
-                        <td class="center"><input type="checkbox" name="ItemId[]" value="{{$value->Id}}"></td>
+                        <td class="center"><input type="checkbox" name="ItemIds[]" value="{{$value->Id}}"></td>
                         <td>{{$value->Item->ItemName}}</td>
                         <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d')}}</td>
                         <td class="center">{{$value->Quantity}}</td>
@@ -70,9 +72,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6">ចំនួនទឹកប្រាក់សរុប</td>
+                    <td colspan="6" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
                     <td style="text-align:right;">
-                        <input type="hidden" name="TotalAmount"> 0.00
+                        <input type="hidden" name="TotalAmount"><span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
                     </td>
                 </tr>
             </tfoot>
@@ -90,6 +92,7 @@
 </form>
 @endsection
 @section('script')
+<script src="{{url('/script/plugin/icheck/icheck.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
@@ -98,6 +101,78 @@
             format: 'YYYY-MM-DD',
             defaultDate: new Date()
         });
+
+        $(':checkbox').iCheck({
+            checkboxClass: 'icheckbox_minimal'
+        });
+
+        $('input').on('ifChecked', function(event){
+            var select = $(this).closest('tr');
+            var total = parseInt($(select).find('td:eq(6)').text()) + parseInt($('#totalamount').text());
+            $('#totalamount').text(total);
+        });
+
+        $('input').on('ifUnchecked', function(event){
+            var select = $(this).closest('tr');
+            var total = parseInt($('#totalamount').text()) - parseInt($(select).find('td:eq(6)').text());
+            $('#totalamount').text(total);
+        });
+
+        SetValidation();
+        function SaveOrUpdate() {
+            var checkeds = $(':checkbox:checked').length;
+            if(checkeds > 0){
+                $('body').append(Loading());
+                var item = $('#formIncome').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: burl + '/insert/income',
+                    data: item
+                }).done(function (data) {
+                    if (data.IsError == false) {
+                        window.location.href = burl + '/view/income';
+                    } else {
+                        swal(data.Message, '', 'success');
+                    }
+                }).complete(function (data) {
+                    $('body').find('.loading').remove();
+                });
+            }else{
+                swal('សូមជ្រើសរើសទំនិញ ដែលត្រូវបង់', '', 'warning');
+            }
+        }
+        function SetValidation() {
+            var form = $('body').find('#formIncome');
+            form.bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    IncomeDate: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ថ្ងៃខែឆ្មាំ តំរូវអោយបញ្ចូល'
+                            },
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: 'ទំរង់ថ្ងៃខែឆ្មាំមិនត្រឹមត្រូវ'
+                            }
+                        }
+                    },
+                    Description: {
+                        validators: {
+                            notEmpty: {
+                                message: 'កំណត់ត្រាឈ្មោះចំណូល តំរូវអោយបញ្ចូល'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {
+                SaveOrUpdate();
+            });
+        }
     })();
 </script>
 @endsection
