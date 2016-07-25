@@ -35,12 +35,6 @@
                     <input type="text" class="form-control" id="incomedate" name="IncomeDate">
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">កំណត់ត្រាផ្សេងៗ</label>
-                <div class="col-sm-1" style="width:550px;">
-                    <input type="text" class="form-control" name="Description">
-                </div>
-            </div>
         </div>
     </div>
 
@@ -60,7 +54,7 @@
             <tbody>
                 <?php foreach ($sales as $key => $value): ?>
                     <tr data-id="{{$value->Id}}">
-                        <td class="center"><input type="checkbox" name="ItemIds[]" value="{{$value->Id}}"></td>
+                        <td class="center"><input type="checkbox" name="SaleIds[]" value="{{$value->Id}}"></td>
                         <td>{{$value->Item->ItemName}}</td>
                         <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d')}}</td>
                         <td class="center">{{$value->Quantity}}</td>
@@ -74,7 +68,7 @@
                 <tr>
                     <td colspan="6" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
                     <td style="text-align:right;">
-                        <input type="hidden" name="TotalAmount"><span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
+                        <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
                     </td>
                 </tr>
             </tfoot>
@@ -85,7 +79,7 @@
         <div class="col-sm-12">
             <div class="pull-right">
                 <button type="submit" id="save" class="btn btn-success">រក្សាទុក</button>
-                <a href="{{url('/view/income')}}" class="btn btn-danger">បោះបង់</a>
+                <a href="{{url('/')}}" class="btn btn-danger">បោះបង់</a>
             </div>
         </div>
     </div>
@@ -120,8 +114,8 @@
 
         SetValidation();
         function SaveOrUpdate() {
-            var checkeds = $(':checkbox:checked').length;
-            if(checkeds > 0){
+            var checkeds = $(':checkbox:checked');
+            if(checkeds.length > 0){
                 $('body').append(Loading());
                 var item = $('#formIncome').serialize();
                 $.ajax({
@@ -130,7 +124,8 @@
                     data: item
                 }).done(function (data) {
                     if (data.IsError == false) {
-                        window.location.href = burl + '/view/income';
+                        $('tr:has(:checkbox:checked)').remove();
+                        $('#formIncome').bootstrapValidator('resetForm', true);
                     } else {
                         swal(data.Message, '', 'success');
                     }
@@ -158,13 +153,6 @@
                             date: {
                                 format: 'YYYY-MM-DD',
                                 message: 'ទំរង់ថ្ងៃខែឆ្មាំមិនត្រឹមត្រូវ'
-                            }
-                        }
-                    },
-                    Description: {
-                        validators: {
-                            notEmpty: {
-                                message: 'កំណត់ត្រាឈ្មោះចំណូល តំរូវអោយបញ្ចូល'
                             }
                         }
                     }

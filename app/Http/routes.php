@@ -74,6 +74,7 @@ Route::group(['prefix' => 'update'], function(){
 
 Route::group(['prefix' => 'delete'], function(){
     Route::get('/sale/{id}', 'salecontroller@destroy');
+    Route::get('/income/{id}', 'incomecontroller@destroy');
     Route::get('/customer/{id}', 'customercontroller@destroy');
     Route::get('/supplier/{id}', 'suppliercontroller@destroy');
     Route::get('/item/{id}', 'itemcontroller@destroy');

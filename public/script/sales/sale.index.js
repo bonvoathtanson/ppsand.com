@@ -34,12 +34,20 @@
             $.each(customers, function(index, item){
                 var disedit = 'disabled';
                 var disdel = 'disabled="disabled"';
-                if(item.IsOrder == 0)
+                var rowcolor = '';
+                var remain = (item.SubTotal-item.PayAmount);
+                if(item.IsOrder == 1)
                 {
-                    disedit = '';
-                    disdel = '';
+                    rowcolor = 'info';
+                    if(item.PayAmount == 0)
+                    {
+                        disedit = '';
+                        disdel = '';
+                    }
+                }else if(remain == 0){
+                    rowcolor = 'success';
                 }
-                element += '<tr data-id="' + item.Id + '">' +
+                element += '<tr class="' + rowcolor + '" data-id="' + item.Id + '">' +
                                 '<td><a href="'+ burl +'/create/sale/'+ item.customer.Id +'">' + item.customer.CustomerName + '</a></td>' +
                                 '<td>' + item.item.ItemName + '</td>' +
                                 '<td class="center">' + CDate(item.SaleDate) + '</td>' +
@@ -47,8 +55,9 @@
                                 '<td class="center">' + item.Quantity + '</td>' +
                                 '<td class="center">' + item.SalePrice + '</td>' +
                                 '<td class="center" style="text-align:right;">' + item.SubTotal + '</td>' +
+                                '<td class="center" style="text-align:right;">' + item.PayAmount + '</td>' +
+                                '<td class="center" style="text-align:right;">' + remain + '</td>' +
                                 '<td class="center">' +
-                                    '<a href="' + burl + '/edit/customer/' + item.Id + '" class="btn btn-success btn-e '+ disedit +'"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                     '<button type="button" class="btn btn-danger btn-e delete" ' + disdel + '><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';

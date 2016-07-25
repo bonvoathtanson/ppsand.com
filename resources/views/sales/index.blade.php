@@ -22,7 +22,9 @@
           <th>ចំនួន</th>
           <th>តំលៃលក់</th>
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
-          <th class="center" style="width:80px;"></th>
+          <th style="text-align:right;">ប្រាកទទួល</th>
+          <th style="text-align:right;">ប្រាក់នៅសល់</th>
+          <th class="center" style="width:40px;"></th>
         </tr>
       </thead>
       <tbody></tbody>

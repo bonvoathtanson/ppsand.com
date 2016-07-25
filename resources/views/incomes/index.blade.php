@@ -6,8 +6,8 @@
 <div class="row memu-bar">
     <div class="col-sm-12">
         <div class="pull-right">
-            <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> ចំណូលកាលក់</a>
-            <a href="{{url('/create/otherincome')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណូលផ្សេងៗ</a>
+            <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> សងប្រាក់</a>
+            <!-- <a href="{{url('/create/otherincome')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណូលផ្សេងៗ</a> -->
         </div>
     </div>
 </div>
@@ -18,10 +18,9 @@
                 <tr class="warning">
                     <th>ថ្ងៃខែឆ្នាំចំណូល</th>
                     <th>អតិថិជន</th>
-                    <th class="center">ប្រភេទចំណូល</th>
                     <th class="center">បរិយាយ</th>
                     <th style="text-align:right;">ចំនួនសរុប</th>
-                    <th class="center" style="width:80px;"></th>
+                    <th class="center" style="width:40px;"></th>
                 </tr>
             </thead>
             <tbody></tbody>

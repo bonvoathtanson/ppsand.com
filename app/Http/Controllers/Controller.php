@@ -21,7 +21,7 @@ class Controller extends BaseController
         'Message' => '',
         'Data' => ''
     );
-    
+
     protected function SetError($iserror){
         $this->Results['IsError'] = $iserror;
     }
@@ -32,5 +32,13 @@ class Controller extends BaseController
 
     protected function SetData($data){
         $this->Results['Data'] = $data;
+    }
+
+    protected function Success(){
+        $this->Results['IsError'] = true;
+    }
+
+    protected function Fail(){
+        $this->Results['IsError'] = false;
     }
 }

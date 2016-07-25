@@ -45,11 +45,11 @@ class IncomeController extends Controller
 
     public function store(Request $request)
     {
-        if($request->IncomeType == "0")
+        if($request->IncomeType == 0)
         {
             $this->SaveOtherIncome($request);
         }
-        else if($request->IncomeType == "1")
+        else if($request->IncomeType == 1)
         {
             $this->SaveMoreIncome($request);
         }
@@ -66,31 +66,55 @@ class IncomeController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->Id;
-        $income = Income::find($id);
-        $income->IncomeDate = date_create($request->IncomeDate);
-        if($request->CustomerId != '')
-        {
-            $income->CustomerId = $request->CustomerId;
+        DB::beginTransaction();
+        try {
+            $id = $request->Id;
+            $income = Income::find($id);
+            $income->IncomeDate = date_create($request->IncomeDate);
+            if($request->CustomerId != '')
+            {
+                $income->CustomerId = $request->CustomerId;
+            }
+            $income->TotalAmount = $request->TotalAmount;
+            $income->IncomeType = $request->IncomeType;
+            $income->Description = $request->Description;
+            $income->DateCreated = date('Y-m-d H:i:s');
+            $income->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            $this->SetError(true);
+            $this->SetMessage($e);
+            DB::rollBack();
         }
-        $income->TotalAmount = $request->TotalAmount;
-        $income->IncomeType = $request->IncomeType;
-        $income->Description = $request->Description;
-        $income->DateCreated = date('Y-m-d H:i:s');
-        $income->save();
+
 
         return response()->json($this->Results);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $income = Income::find($id);
+            $rowAffect = $income->delete();
+            if($rowAffect == 0)
+            {
+                $this->Results['IsError'] = true;
+                $this->SetMessage('ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត');
+            }else{
+                if($income->IncomeType == 1)
+                {
+                    $this->ResetPayment($income->SaleId, $income->TotalAmount);
+                }
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            $this->Fail();
+            $this->SetMessage($e);
+            DB::rollBack();
+        }
+
+        return response()->json($this->Results);
     }
 
     private function SaveOtherIncome($request)
@@ -106,20 +130,20 @@ class IncomeController extends Controller
 
     private function SaveMoreIncome($request)
     {
-        $itemIds = $request->ItemIds;
-        $sales = Sale::whereIn('Id', $itemIds)->get();
-        foreach ($sales as $key => $value) {
+        $saleIds = $request->SaleIds;
+        $sales = Sale::whereIn('Id', $saleIds)->get();
+        foreach ($sales as $index => $sale) {
             $income = new Income();
-            $Income->SaleId = $value->Id;
-            $payAmount = $value->SubTotal - $value->PayAmount;
+            $income->SaleId = $sale->Id;
+            $payAmount = $sale->SubTotal - $sale->PayAmount;
             $income->CustomerId = $request->CustomerId;
             $income->IncomeDate = date_create($request->IncomeDate);
             $income->TotalAmount = $payAmount;
             $income->IncomeType = 1;
-            $income->Description = $request->Description;
+            $income->Description = 'លក់ '.$sale->item->ItemName.' ​ទៅអោយអតិថិជនឈ្មោះ ['.$sale->customer->CustomerName.']';
             $income->DateCreated = date('Y-m-d H:i:s');
             $income->save();
-            $this->UpdatePayAmount($value->Id, $value->SubTotal);
+            $this->UpdatePayAmount($sale->Id, $sale->SubTotal);
         }
     }
 
@@ -127,6 +151,13 @@ class IncomeController extends Controller
     {
         $sale = Sale::find($saleId);
         $sale->PayAmount = $payAmount;
+        $sale->save();
+    }
+
+    private function ResetPayment($saleId, $payAmount)
+    {
+        $sale = Sale::find($saleId);
+        $sale->PayAmount = ($sale->PayAmount - $payAmount);
         $sale->save();
     }
 }
