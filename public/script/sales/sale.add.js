@@ -72,7 +72,7 @@
     $('#myModal').on('hidden.bs.modal', function (e) {
         $('#itemid, #saleprice, #quantity, #carnumber').val('');
         $('#itemname').text('');
-        $('#typeid option[value="1"]').prop('selected', true).change();
+        $('#typeid option[value="0"]').prop('selected', true).change();
         $('#totalamount, #payamount').val('0');
         $('#saledate').data("DateTimePicker").date(new Date());
         $('#transferdate').data("DateTimePicker").date(new Date());
@@ -104,7 +104,7 @@
 
     $('body').on('change', '#typeid', function(){
         var value = $(this).val();
-        if(value == 2){
+        if(value == 0){
             $('#group-date').hide();
         }else{
             $('#group-date').show();
