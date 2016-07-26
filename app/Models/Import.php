@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Import extends Model
 {
-    protected $table = 'imports';
+    protected $table = 'Imports';
 
     protected $primaryKey = 'Id';
 

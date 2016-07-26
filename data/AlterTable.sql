@@ -1,16 +1,1 @@
-ALTER TABLE `Users`
-ADD Email VARCHAR(50)
-
-ALTER TABLE `Sales`
-ADD `PayAmount` DECIMAL(18,2) DEFAULT 0 NOT NULL
-
-ALTER TABLE `Imports`
-ADD `PayAmount` DECIMAL(18,2) DEFAULT 0 NOT NULL
-
-ALTER TABLE `Incomes`
-ADD `SaleId` INT DEFAULT NULL
-
-ALTER TABLE `Expanses`
-ADD `ImportId` INT DEFAULT NULL
-
--- Change `Expanses`.`ExpansesDate` => `Expanses`.`ExpanseDate`
+INSERT INTO `Users`(`Email`, `Name`, `Password`, `DateCreated`)VALUES('admin@gmail.com','admin','$2y$10$YgGb5Fn3lX6zEWXP5w5y1eVpGcN3gXMG6el.2FGI2TA83EuETU7zi', '2016-07-19 02:16:44');

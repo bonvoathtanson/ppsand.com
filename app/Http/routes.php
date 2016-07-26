@@ -1,89 +1,89 @@
 <?php
 Route::group(['prefix' => '/'], function(){
-    Route::get('', 'homecontroller@index');
-    Route::get('login', 'usercontroller@login');
-    Route::post('dologin', 'usercontroller@dologin');
-    Route::get('logout', 'usercontroller@logout');
+    Route::get('', 'HomeController@index');
+    Route::get('login', 'UserController@login');
+    Route::post('dologin', 'UserController@dologin');
+    Route::get('logout', 'UserController@logout');
 });
 
 Route::group(['prefix' => 'transfer'], function(){
-    Route::get('/sale/{id}', 'salecontroller@updatetransfer');
+    Route::get('/sale/{id}', 'SaleController@updatetransfer');
 });
 
 Route::group(['prefix' => 'view'], function(){
-    Route::get('/user', 'usercontroller@index');
-    Route::get('/item', 'itemcontroller@index');
-    Route::get('/customer', 'customercontroller@index');
-    Route::get('/supplier', 'suppliercontroller@index');
-    Route::get('/income', 'incomecontroller@index');
-    Route::get('/expanse', 'expansecontroller@index');
-    Route::get('/sale', 'salecontroller@index');
-    Route::get('/transfer', 'salecontroller@transfer');
-    Route::get('/timetransfer', 'salecontroller@timetransfer');
-    Route::get('/selectcustomer', 'salecontroller@filter_customer');
-    Route::get('/selsupplier', 'suppliercontroller@filter_supplier');
-    Route::get('/import', 'importcontroller@index');
+    Route::get('/user', 'UserController@index');
+    Route::get('/item', 'ItemController@index');
+    Route::get('/customer', 'CustomerController@index');
+    Route::get('/supplier', 'SupplierController@index');
+    Route::get('/income', 'IncomeController@index');
+    Route::get('/expanse', 'ExpanseController@index');
+    Route::get('/sale', 'SaleController@index');
+    Route::get('/transfer', 'SaleController@transfer');
+    Route::get('/timetransfer', 'SaleController@timetransfer');
+    Route::get('/selectcustomer', 'SaleController@filter_customer');
+    Route::get('/selsupplier', 'SupplierController@filter_supplier');
+    Route::get('/import', 'ImportController@index');
 });
 
 Route::group(['prefix' => 'filter'], function(){
-    Route::get('/customer/{value}', 'customercontroller@filter');
-    Route::get('/supplier/{value}', 'suppliercontroller@filter');
+    Route::get('/customer/{value}', 'CustomerController@filter');
+    Route::get('/supplier/{value}', 'SupplierController@filter');
 });
 
 Route::group(['prefix' => 'find'], function(){
-    Route::get('/customer', 'customercontroller@search');
-    Route::get('/sale', 'salecontroller@search');
-    Route::get('/import', 'importcontroller@search');
-    Route::get('/supplier', 'suppliercontroller@search');
-    Route::get('/income', 'incomecontroller@search');
-    Route::get('/expanse', 'expansecontroller@search');
-    Route::get('/item', 'itemcontroller@search');
-    Route::get('/itemdetail/{id}', 'itemcontroller@detail');
-    Route::get('/user', 'usercontroller@search');
+    Route::get('/customer', 'CustomerController@search');
+    Route::get('/sale', 'SaleController@search');
+    Route::get('/import', 'ImportController@search');
+    Route::get('/supplier', 'SupplierController@search');
+    Route::get('/income', 'IncomeController@search');
+    Route::get('/expanse', 'ExpanseController@search');
+    Route::get('/item', 'ItemController@search');
+    Route::get('/itemdetail/{id}', 'ItemController@detail');
+    Route::get('/user', 'UserController@search');
 });
 
 Route::group(['prefix' => 'create'], function(){
-    Route::get('/user', 'usercontroller@create');
-    Route::get('/item', 'itemcontroller@create');
-    Route::get('/customer', 'customercontroller@create');
-    Route::get('/supplier', 'suppliercontroller@create');
-    Route::get('/income/{id}', 'incomecontroller@create');
-    Route::get('/otherincome', 'incomecontroller@otherincome');
-    Route::get('/expanse/{id}', 'expansecontroller@create');
-    Route::get('/sale/{id}', 'salecontroller@create');
-    Route::get('/import/{id}', 'importcontroller@create');
+    Route::get('/user', 'UserController@create');
+    Route::get('/item', 'ItemController@create');
+    Route::get('/customer', 'CustomerController@create');
+    Route::get('/supplier', 'SupplierController@create');
+    Route::get('/income/{id}', 'IncomeController@create');
+    Route::get('/otherincome', 'IncomeController@otherincome');
+    Route::get('/expanse/{id}', 'ExpanseController@create');
+    Route::get('/sale/{id}', 'SaleController@create');
+    Route::get('/import/{id}', 'ImportController@create');
 });
 
 Route::group(['prefix' => 'insert'], function(){
-    Route::post('/sale', 'salecontroller@store');
-    Route::post('/income', 'incomecontroller@store');
-    Route::post('/expanse', 'expansecontroller@store');
-    Route::post('/customer', 'customercontroller@store');
-    Route::post('/supplier', 'suppliercontroller@store');
-    Route::post('/user', 'usercontroller@store');
-    Route::post('/item', 'itemcontroller@store');
+    Route::post('/sale', 'SaleController@store');
+    Route::post('/income', 'IncomeController@store');
+    Route::post('/expanse', 'ExpanseController@store');
+    Route::post('/customer', 'CustomerController@store');
+    Route::post('/supplier', 'SupplierController@store');
+    Route::post('/user', 'UserController@store');
+    Route::post('/item', 'ItemController@store');
 });
 
 Route::group(['prefix' => 'edit'], function(){
-    Route::get('/customer/{id}', 'customercontroller@edit');
-    Route::get('/supplier/{id}', 'suppliercontroller@edit');
-    Route::get('/income/{id}', 'incomecontroller@edit');
-    Route::get('/item/{id}', 'itemcontroller@edit');
+    Route::get('/customer/{id}', 'CustomerController@edit');
+    Route::get('/supplier/{id}', 'SupplierController@edit');
+    Route::get('/income/{id}', 'IncomeController@edit');
+    Route::get('/item/{id}', 'ItemController@edit');
 });
 
 Route::group(['prefix' => 'update'], function(){
-    Route::post('/customer', 'customercontroller@update');
-    Route::post('/supplier', 'suppliercontroller@update');
-    Route::post('/income', 'incomecontroller@update');
-    Route::post('/item', 'itemcontroller@update');
+    Route::post('/customer', 'CustomerController@update');
+    Route::post('/supplier', 'SupplierController@update');
+    Route::post('/income', 'IncomeController@update');
+    Route::post('/item', 'ItemController@update');
 });
 
 Route::group(['prefix' => 'delete'], function(){
-    Route::get('/sale/{id}', 'salecontroller@destroy');
-    Route::get('/income/{id}', 'incomecontroller@destroy');
-    Route::get('/expanse/{id}', 'expansecontroller@destroy');
-    Route::get('/customer/{id}', 'customercontroller@destroy');
-    Route::get('/supplier/{id}', 'suppliercontroller@destroy');
-    Route::get('/item/{id}', 'itemcontroller@destroy');
-    Route::get('/user/{id}', 'usercontroller@destroy');
+    Route::get('/sale/{id}', 'SaleController@destroy');
+    Route::get('/income/{id}', 'IncomeController@destroy');
+    Route::get('/expanse/{id}', 'ExpanseController@destroy');
+    Route::get('/customer/{id}', 'CustomerController@destroy');
+    Route::get('/supplier/{id}', 'SupplierController@destroy');
+    Route::get('/item/{id}', 'ItemController@destroy');
+    Route::get('/user/{id}', 'UserController@destroy');
 });
