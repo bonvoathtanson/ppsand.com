@@ -12,3 +12,5 @@ ADD `SaleId` INT DEFAULT NULL
 
 ALTER TABLE `Expanses`
 ADD `ImportId` INT DEFAULT NULL
+
+-- Change `Expanses`.`ExpansesDate` => `Expanses`.`ExpanseDate`

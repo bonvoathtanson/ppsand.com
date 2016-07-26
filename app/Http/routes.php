@@ -57,6 +57,7 @@ Route::group(['prefix' => 'create'], function(){
 Route::group(['prefix' => 'insert'], function(){
     Route::post('/sale', 'salecontroller@store');
     Route::post('/income', 'incomecontroller@store');
+    Route::post('/expanse', 'expansecontroller@store');
     Route::post('/customer', 'customercontroller@store');
     Route::post('/supplier', 'suppliercontroller@store');
     Route::post('/user', 'usercontroller@store');
@@ -80,6 +81,7 @@ Route::group(['prefix' => 'update'], function(){
 Route::group(['prefix' => 'delete'], function(){
     Route::get('/sale/{id}', 'salecontroller@destroy');
     Route::get('/income/{id}', 'incomecontroller@destroy');
+    Route::get('/expanse/{id}', 'expansecontroller@destroy');
     Route::get('/customer/{id}', 'customercontroller@destroy');
     Route::get('/supplier/{id}', 'suppliercontroller@destroy');
     Route::get('/item/{id}', 'itemcontroller@destroy');

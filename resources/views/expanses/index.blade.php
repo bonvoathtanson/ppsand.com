@@ -6,7 +6,7 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <a href="{{url('/create/expanse')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
+      <a href="{{url('/view/selsupplier')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអ្នកផ្គត់ផ្គង់</a>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
           <th>ប្រភេទចំណាយ</th>
           <th class="center">បរិយាយ</th>
           <th class="center">ចំនួនសរុប</th>
-          <th style="width:80px;"></th>
+          <th style="width:40px;"></th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -29,5 +29,6 @@
 </div>
 @endsection
 @section('script')
+<script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/expanses/expanse.index.js')}}" charset="utf-8"></script>
 @endsection

@@ -118,7 +118,7 @@ CREATE TABLE `Expanses`(
 	`Id` INT NOT NULL AUTO_INCREMENT,
 	`ImportId` INT DEFAULT NULL
 	`ExpanseType` INT DEFAULT 0 NOT NULL,
-	`ExpansesDate` DATETIME NOT NULL,
+	`ExpanseDate` DATETIME NOT NULL,
 	`SupplierId` INT DEFAULT NULL,
 	`TotalAmount` DECIMAL(18,2) DEFAULT 0 NOT NULL,
 	`Description` TEXT,
