@@ -21,16 +21,19 @@ Route::group(['prefix' => 'view'], function(){
     Route::get('/transfer', 'salecontroller@transfer');
     Route::get('/timetransfer', 'salecontroller@timetransfer');
     Route::get('/selectcustomer', 'salecontroller@filter_customer');
+    Route::get('/selsupplier', 'suppliercontroller@filter_supplier');
     Route::get('/import', 'importcontroller@index');
 });
 
 Route::group(['prefix' => 'filter'], function(){
     Route::get('/customer/{value}', 'customercontroller@filter');
+    Route::get('/supplier/{value}', 'suppliercontroller@filter');
 });
 
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'customercontroller@search');
     Route::get('/sale', 'salecontroller@search');
+    Route::get('/import', 'importcontroller@search');
     Route::get('/supplier', 'suppliercontroller@search');
     Route::get('/income', 'incomecontroller@search');
     Route::get('/expanse', 'expansecontroller@search');
@@ -46,9 +49,9 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/supplier', 'suppliercontroller@create');
     Route::get('/income/{id}', 'incomecontroller@create');
     Route::get('/otherincome', 'incomecontroller@otherincome');
-    Route::get('/expanse', 'expansecontroller@create');
+    Route::get('/expanse/{id}', 'expansecontroller@create');
     Route::get('/sale/{id}', 'salecontroller@create');
-    Route::get('/import', 'importcontroller@create');
+    Route::get('/import/{id}', 'importcontroller@create');
 });
 
 Route::group(['prefix' => 'insert'], function(){

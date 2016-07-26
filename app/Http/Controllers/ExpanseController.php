@@ -13,7 +13,7 @@ class ExpanseController extends Controller
       return view('expanses.index');
     }
 
-    public function create()
+    public function create($id)
     {
       return view('expanses/create');
     }
