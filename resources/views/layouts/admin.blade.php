@@ -27,15 +27,15 @@
       <div class="col-sm-2">
         <div class="list-group">
           <a href="javascript:void(0);" class="list-group-item active font-M1 center">មាតិកា</a>
-          <a href="{{url('/view/transfer')}}" class="list-group-item"><i class="fa fa-cart-plus" aria-hidden="true"></i> ទំនិញត្រូវដឹកចេញ <span class="badge">2</span></a>
-          <a href="{{url('/view/sale')}}" class="list-group-item"><i class="fa fa-cart-plus" aria-hidden="true"></i> ការលក់ចេញ</a>
-          <a href="{{url('/view/import')}}" class="list-group-item"><i class="fa fa-download" aria-hidden="true"></i> ការទិញចូល</a>
-          <a href="{{url('/view/customer')}}" class="list-group-item"><i class="fa fa-user-secret" aria-hidden="true"></i> អតិថិជន</a>
-          <a href="{{url('/view/supplier')}}" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i> អ្នកផ្គត់ផ្គង់</a>
-          <a href="{{url('/view/income')}}" class="list-group-item"><i class="fa fa-money" aria-hidden="true"></i> ចំណូល</a>
-          <a href="{{url('/view/expanse')}}" class="list-group-item"><i class="fa fa-share-alt-square" aria-hidden="true"></i> ចំណាយ</a>
-          <a href="{{url('/view/item')}}" class="list-group-item"><i class="fa fa-shopping-bag" aria-hidden="true"></i> មុខទំនិញ</a>
-          <a href="{{url('/view/user')}}" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> គណនីអ្នកប្រើប្រាស់</a>
+          <a href="{{url('/view/transfer')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ទំនិញត្រូវដឹកចេញ <span class="badge">2</span></a>
+          <a href="{{url('/view/sale')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ការលក់ចេញ</a>
+          <a href="{{url('/view/import')}}" class="list-group-item bar"><i class="fa fa-download" aria-hidden="true"></i> ការទិញចូល</a>
+          <a href="{{url('/view/customer')}}" class="list-group-item bar"><i class="fa fa-user-secret" aria-hidden="true"></i> អតិថិជន</a>
+          <a href="{{url('/view/supplier')}}" class="list-group-item bar"><i class="fa fa-user-plus" aria-hidden="true"></i> អ្នកផ្គត់ផ្គង់</a>
+          <a href="{{url('/view/income')}}" class="list-group-item bar"><i class="fa fa-money" aria-hidden="true"></i> ចំណូល</a>
+          <a href="{{url('/view/expanse')}}" class="list-group-item bar"><i class="fa fa-share-alt-square" aria-hidden="true"></i> ចំណាយ</a>
+          <a href="{{url('/view/item')}}" class="list-group-item bar"><i class="fa fa-shopping-bag" aria-hidden="true"></i> មុខទំនិញ</a>
+          <a href="{{url('/view/user')}}" class="list-group-item bar"><i class="fa fa-users" aria-hidden="true"></i> គណនីអ្នកប្រើប្រាស់</a>
         </div>
       </div>
       <div class="col-sm-10">

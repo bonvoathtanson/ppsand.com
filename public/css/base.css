@@ -142,3 +142,12 @@ body{
     padding: 6px;
     border:1px solid #f2f2f2;
 }
+
+.list-group .bar{
+    background-image: url('../img/back.gif');
+    background-size: 1px 100%;
+    background-repeat: repeat-x;
+    background-color: orange;
+    margin-top: 3px;
+    color:#0856ab;
+}
