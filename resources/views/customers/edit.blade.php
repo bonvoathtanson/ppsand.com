@@ -60,9 +60,10 @@
                 <label class="col-sm-1 control-label" style="width:150px;">កំណត់ចំណាំ</label>
                 <div class="col-sm-2">
                     <select class="form-control" name="TypeId" style="font-size:10pt;">
-                        <option value="1" {{sel($customer->TypeId, 1)}}>ទិញជាប្រចាំ</option>
-                        <option value="2" {{sel($customer->TypeId, 2)}}>ទិញមិនប្រចាំ</option>
-                        <option value="3" {{sel($customer->TypeId, 3)}}>ផ្សេងៗ</option>
+                        <option value="0" {{sel($customer->TypeId, 0)}}></option>
+                        <option value="1" {{sel($customer->TypeId, 1)}}>សួរពត៍មាន</option>
+                        <option value="2" {{sel($customer->TypeId, 2)}}>បញ្ជាទិញ</option>
+                        <option value="3" {{sel($customer->TypeId, 3)}}>បោះបង់</option>
                     </select>
                 </div>
             </div>

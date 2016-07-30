@@ -38,4 +38,14 @@ class User extends Authenticatable
     {
         return 'trash_attribute';
     }
+
+    public static function rules(){
+        $rules = array(
+            'Name'      => 'required|unique:Users',
+            'Email'     => 'required|email|unique:Users',
+            'Password'  => 'required|max:6'
+        );
+
+        return $rules;
+    }
 }

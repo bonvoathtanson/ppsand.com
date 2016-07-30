@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">គោលដៅអតិថិជន</label>
                 <div class="col-sm-2">
-                    <select class="form-control" id="typeid" style="font-size:10pt;">
+                    <select class="form-control" id="typeid" style="font-size:10pt;" name="TypeId">
                         <option value="0"></option>
                         <option value="1">សួរពត៍មាន</option>
                         <option value="2">បញ្ជាទិញ</option>

@@ -30,7 +30,7 @@ class CustomerController extends Controller
 
     public function search()
     {
-        $customers = Customer::all();
+        $customers = Customer::where('TypeId', '<>', Customer::CLOSE)->get();
         $this->SetData($customers);
 
         return response()->json($this->Results);
@@ -62,7 +62,7 @@ class CustomerController extends Controller
             $customer->Sex = $request->Sex;
             $customer->PhoneNumber = $request->PhoneNumber;
             $customer->Address = $request->Address;
-            $customer->TypeId = 1;
+            $customer->TypeId = $request->TypeId;
             $customer->DateCreated = date('Y-m-d H:i:s');
             $customer->save();
         }

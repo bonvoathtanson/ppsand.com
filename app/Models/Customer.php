@@ -16,7 +16,15 @@ class Customer extends Model
             'CustomerCode'  => 'required|unique:Customers',
             'CustomerName'  => 'required'
         );
-        
+
         return $rules;
     }
+
+    const NORMAL = 0;
+
+    const ASKINFO = 1;
+
+    const SELLER = 2;
+
+    const CLOSE = 3;
 }

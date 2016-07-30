@@ -30,12 +30,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $rules = array(
-            'Name'      => 'required|unique:Users',
-            'Email'     => 'required|email|unique:Users',
-            'Password'  => 'required|max:6'
-        );
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), User::rules());
         if ($validator->fails())
         {
             $this->Fail();

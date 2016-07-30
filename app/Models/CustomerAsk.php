@@ -24,9 +24,9 @@ class CustomerAsk extends Model
         return $rules;
     }
 
-    public static $CANCEL = 0;
+    const $CANCEL = 0;
 
-    public static $WAITING = 1;
+    const $WAITING = 1;
 
-    public static $SUCCESS = 2;
+    const $SUCCESS = 2;
 }

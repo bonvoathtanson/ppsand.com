@@ -15,7 +15,7 @@ Route::group(['prefix' => 'view'], function(){
     Route::get('/item', 'ItemController@index');
     Route::get('/customer', 'CustomerController@index');
     Route::get('/askinfo', 'CustomerController@askinfo');
-    Route::get('/supplier', 'SupplierController@askinfo');
+    Route::get('/supplier', 'SupplierController@index');
     Route::get('/income', 'IncomeController@index');
     Route::get('/expanse', 'ExpanseController@index');
     Route::get('/sale', 'SaleController@index');
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/user', 'UserController@create');
     Route::get('/item', 'ItemController@create');
     Route::get('/customer', 'CustomerController@create');
-    Route::get('/askinfo', 'CustomerController@addinfo');
+    Route::get('/askinfo/{id}', 'CustomerController@addinfo');
     Route::get('/supplier', 'SupplierController@create');
     Route::get('/income/{id}', 'IncomeController@create');
     Route::get('/otherincome', 'IncomeController@otherincome');
