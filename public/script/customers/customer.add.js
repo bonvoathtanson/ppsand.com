@@ -54,5 +54,9 @@
         }).on('success.form.bv', function (e) {
             SaveOrUpdate();
         });
+
+        $('body').on('click', '#save', function (e) {
+            form.bootstrapValidator('validate');
+        });
     }
 })();

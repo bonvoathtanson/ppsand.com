@@ -9,4 +9,14 @@ class Customer extends Model
     protected $table = 'Customers';
     protected $primaryKey = 'Id';
     public $timestamps = false;
+
+    public static function rules()
+    {
+        $rules = array(
+            'CustomerCode'  => 'required|unique:Customers',
+            'CustomerName'  => 'required'
+        );
+        
+        return $rules;
+    }
 }
