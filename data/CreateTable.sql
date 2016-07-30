@@ -123,3 +123,9 @@ CREATE TABLE `Expanses`(
 	CONSTRAINT PRIMARY KEY (`Id`),
 	CONSTRAINT FOREIGN KEY (`SupplierId`) REFERENCES `Suppliers`(`Id`)
 )ENGINE = InnoDB;
+
+CREATE TABLE `SystemConfigs`(
+	`Id` INT NOT NULL,
+	`Name` NVARCHAR(255) NOT NULL,
+	`Value` VARCHAR(255)
+)ENGINE = InnoDB;

@@ -6,8 +6,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    protected $table = 'users';
+    protected $table = 'Users';
+
     protected $primaryKey = 'Id';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -19,12 +21,12 @@ class User extends Authenticatable
     ];
 
     public function getAuthPassword() {
-      return $this->Password;
+        return $this->Password;
     }
 
     public function getRememberToken()
     {
-      return '';
+        return '';
     }
 
     public function setRememberToken($value)
@@ -34,6 +36,6 @@ class User extends Authenticatable
 
     public function getRememberTokenName()
     {
-      return 'trash_attribute';
+        return 'trash_attribute';
     }
 }

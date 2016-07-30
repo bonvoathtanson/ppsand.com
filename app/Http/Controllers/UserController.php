@@ -30,13 +30,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $test = $request->all();
         $user = new User();
         $user->Name = $request->Name;
         $user->Email = $request->Email;
         $user->Password = bcrypt($request->Password);
         $user->DateCreated = date('Y-m-d H:i:s');
         $user->save();
+
         return response()->json($this->Results);
     }
 

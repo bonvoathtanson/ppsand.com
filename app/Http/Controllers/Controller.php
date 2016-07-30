@@ -35,10 +35,16 @@ class Controller extends BaseController
     }
 
     protected function Success(){
-        $this->Results['IsError'] = true;
+        $this->Results['IsError'] = false;
     }
 
     protected function Fail(){
-        $this->Results['IsError'] = false;
+        $this->Results['IsError'] = true;
+    }
+
+    protected function Invalid($validation)
+    {
+        $message = $validation->messages()->first();
+        $this->Results['Message'] = $message;
     }
 }

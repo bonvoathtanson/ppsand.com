@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class SystemConfig extends Model
 {
-    protected $table = 'Suppliers';
+    protected $table = 'SystemConfigs';
+
     protected $primaryKey = 'Id';
+
     public $timestamps = false;
 }
