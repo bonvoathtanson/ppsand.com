@@ -15,18 +15,23 @@ class CustomerAsk extends Model
     public static function rules()
     {
         $rules = array(
-            'CustomerId'    => 'require',
-            'AskDate'       => 'require',
-            'Description'   => 'require',
-            'ConfirmDate'   => 'require'
+            'CustomerId'    => 'required',
+            'AskDate'       => 'required',
+            'Description'   => 'required',
+            'ConfirmDate'   => 'required'
         );
 
         return $rules;
     }
 
-    const $CANCEL = 0;
+    public function Customer()
+    {
+        return $this->belongsTo('App\Models\Customer', 'CustomerId');
+    }
 
-    const $WAITING = 1;
+    const CANCEL = 0;
 
-    const $SUCCESS = 2;
+    const WAITING = 1;
+
+    const SUCCESS = 2;
 }

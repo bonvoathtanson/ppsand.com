@@ -26,7 +26,7 @@
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
                     <th class="center">លេខទូរសព្ទ</th>
-                    <th style="width:170px;"></th>
+                    <th style="width:250px;"></th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -113,6 +113,7 @@
                                 '<td>' + item.CustomerName + '</td>' +
                                 '<td class="center">' + item.PhoneNumber + '</td>' +
                                 '<td class="center">' +
+                                    '<a href="' + burl + '/create/askinfo/' + item.Id + '" class="btn btn-info btn-e">សួរព័ត៍មាន</a> ' +
                                     '<a href="' + burl + '/create/sale/' + item.Id + '" class="btn btn-success btn-e">លក់ចេញ</a> ' +
                                     '<a href="' + burl + '/create/income/' + item.Id + '" class="btn btn-danger btn-e">សងលុយ</a>' +
                                 '</td>'

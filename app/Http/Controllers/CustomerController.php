@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Validator;
 use App\Models\Customer;
+use App\Models\CustomerAsk;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -23,9 +24,39 @@ class CustomerController extends Controller
         return view('customers.info');
     }
 
+    public function indexinfo()
+    {
+        $customers = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)->get();
+        $customers->load('Customer');
+        $this->SetData($customers);
+
+        return response()->json($this->Results);
+    }
+
     public function addinfo($id)
     {
-        return view('customers.addinfo');
+        $customer = Customer::find($id);
+
+        return view('customers.addinfo', ['customer' => $customer]);
+    }
+
+    public function insertinfo(Request $request)
+    {
+        $validator = Validator::make($request->all(), CustomerAsk::rules());
+        if($validator->fails())
+        {
+            $this->Fail();
+            $this->SetMessage($validator->messages()->first());
+        }else{
+            $customerask = new CustomerAsk();
+            $customerask->CustomerId = $request->CustomerId;
+            $customerask->AskDate = $request->AskDate;
+            $customerask->ConfirmDate = $request->ConfirmDate;
+            $customerask->Description = $request->Description;
+            $customerask->save();
+        }
+
+        return response()->json($this->Results);
     }
 
     public function search()
@@ -66,6 +97,7 @@ class CustomerController extends Controller
             $customer->DateCreated = date('Y-m-d H:i:s');
             $customer->save();
         }
+
         return response()->json($this->Results);
     }
 

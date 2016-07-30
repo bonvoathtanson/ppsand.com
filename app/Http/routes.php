@@ -33,6 +33,7 @@ Route::group(['prefix' => 'filter'], function(){
 
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'CustomerController@search');
+    Route::get('/customerask', 'CustomerController@indexinfo');
     Route::get('/sale', 'SaleController@search');
     Route::get('/import', 'ImportController@search');
     Route::get('/supplier', 'SupplierController@search');
@@ -61,6 +62,7 @@ Route::group(['prefix' => 'insert'], function(){
     Route::post('/income', 'IncomeController@store');
     Route::post('/expanse', 'ExpanseController@store');
     Route::post('/customer', 'CustomerController@store');
+    Route::post('/customerask', 'CustomerController@insertinfo');
     Route::post('/supplier', 'SupplierController@store');
     Route::post('/user', 'UserController@store');
     Route::post('/item', 'ItemController@store');
