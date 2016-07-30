@@ -39,6 +39,6 @@ class Controller extends BaseController
     }
 
     protected function Fail(){
-        $this->Results['IsError'] = false;
+        $this->Results['IsError'] = true;
     }
 }

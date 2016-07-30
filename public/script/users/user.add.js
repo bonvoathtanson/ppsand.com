@@ -8,11 +8,10 @@
             url: burl + '/insert/user',
             data: item
         }).done(function (data) {
-            console.log(data);
             if (data.IsError == false) {
                 window.location.href = burl + '/view/user';
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();
@@ -83,6 +82,10 @@
             }
         }).on('success.form.bv', function (e) {
             SaveOrUpdate();
+        });
+
+        $('body').on('click', '#submit', function (e) {
+            form.bootstrapValidator('validate');
         });
     }
 })();

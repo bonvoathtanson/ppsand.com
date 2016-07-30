@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
@@ -30,13 +30,25 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $test = $request->all();
-        $user = new User();
-        $user->Name = $request->Name;
-        $user->Email = $request->Email;
-        $user->Password = bcrypt($request->Password);
-        $user->DateCreated = date('Y-m-d H:i:s');
-        $user->save();
+        $rules = array(
+            'Name'      => 'required|unique:Users',
+            'Email'     => 'required|email|unique:Users',
+            'Password'  => 'required|max:6'
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails())
+        {
+            $this->Fail();
+            $this->SetMessage($validator->messages()->first());
+        }else{
+            $user = new User();
+            $user->Name = $request->Name;
+            $user->Email = $request->Email;
+            $user->Password = bcrypt($request->Password);
+            $user->DateCreated = date('Y-m-d H:i:s');
+            $user->save();
+        }
+
         return response()->json($this->Results);
     }
 
