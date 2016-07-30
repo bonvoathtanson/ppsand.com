@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-5">
-                    <button type="submit" name="button" class="btn btn-success">បង្កើត</button>
+                    <button id="submit" type="submit" name="button" class="btn btn-success">បង្កើត</button>
                     <a href="{{url('/view/user')}}" class="btn btn-danger">បោះបង់</a>
                 </div>
             </div>

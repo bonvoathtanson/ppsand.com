@@ -65,7 +65,6 @@ class SaleController extends Controller
     public function create($id)
     {
         $customer = Customer::find($id);
-        $sales = Sale::where('CustomerId', '=', $id)->orderBy('SaleDate', 'DESC')->get();
         $transfers = Sale::where('CustomerId', '=', $id)
                         ->where('IsOrder', '=', 1)
                         ->orderBy('SaleDate', 'DESC')->get();
@@ -84,6 +83,7 @@ class SaleController extends Controller
             'oncredits' => $oncredits,
             'onpayoffs' => $onpayoffs
         );
+
         return view('sales.create', $results);
     }
 
@@ -116,40 +116,6 @@ class SaleController extends Controller
         }
 
         return response()->json($this->Results);
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function destroy($id)

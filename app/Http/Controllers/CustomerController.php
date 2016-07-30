@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -16,6 +16,16 @@ class CustomerController extends Controller
     public function create()
     {
         return view('customers/create');
+    }
+
+    public function askinfo()
+    {
+        return view('customers.info');
+    }
+
+    public function addinfo($id)
+    {
+        return view('customers.addinfo');
     }
 
     public function search()
@@ -40,16 +50,22 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $customer = new Customer();
-        $customer->CustomerCode = $request->CustomerCode;
-        $customer->CustomerName = $request->CustomerName;
-        $customer->Sex = $request->Sex;
-        $customer->PhoneNumber = $request->PhoneNumber;
-        $customer->Address = $request->Address;
-        $customer->TypeId = 1;
-        $customer->DateCreated = date('Y-m-d H:i:s');
-        $customer->save();
-
+        $validator = Validator::make($request->all(), Customer::rules());
+        if($validator->fails())
+        {
+            $this->Fail();
+            $this->SetMessage($validator->messages()->first());
+        }else{
+            $customer = new Customer();
+            $customer->CustomerCode = $request->CustomerCode;
+            $customer->CustomerName = $request->CustomerName;
+            $customer->Sex = $request->Sex;
+            $customer->PhoneNumber = $request->PhoneNumber;
+            $customer->Address = $request->Address;
+            $customer->TypeId = 1;
+            $customer->DateCreated = date('Y-m-d H:i:s');
+            $customer->save();
+        }
         return response()->json($this->Results);
     }
 
@@ -64,7 +80,6 @@ class CustomerController extends Controller
     {
         $id = $request->Id;
         $customer = Customer::find($id);
-        $customer->CustomerCode = $request->CustomerCode;
         $customer->CustomerName = $request->CustomerName;
         $customer->Sex = $request->Sex;
         $customer->PhoneNumber = $request->PhoneNumber;

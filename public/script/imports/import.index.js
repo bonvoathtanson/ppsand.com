@@ -2,9 +2,9 @@
     ViewItem();
 
     function ViewItem(){
-        GetItems(function(suppliers){
-            RenderTable(suppliers, function(element){
-                $('#supplierTable tbody').html(element);
+        GetItems(function(customers){
+            RenderTable(customers, function(element){
+                $('#importTable tbody').html(element);
             });
         });
     }
@@ -12,11 +12,12 @@
     function GetItems(callback) {
         $('body').append(Loading());
         $.ajax({
-            url: burl + '/find/supplier',
+            url: burl + '/find/import',
             type: 'GET',
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
+            console.log(data);
             if(data.IsError == false){
                 if(typeof callback == 'function'){
                     callback(data.Data);
@@ -27,23 +28,36 @@
         });
     }
 
-    function RenderTable(suppliers, callback){
+    function RenderTable(customers, callback){
         var element = '';
-        if((suppliers != null) && (suppliers.length > 0)){
-            $.each(suppliers, function(index, item){
-                var sex = 'ប្រុស';
-                if(item.Sex == 2){
-                    sex = 'ស្រី';
+        if((customers != null) && (customers.length > 0)){
+            $.each(customers, function(index, item){
+                var disedit = 'disabled';
+                var disdel = 'disabled="disabled"';
+                var rowcolor = '';
+                var remain = (item.SubTotal-item.PayAmount);
+                if(item.IsOrder == 1)
+                {
+                    rowcolor = 'info';
+                    if(item.PayAmount == 0)
+                    {
+                        disedit = '';
+                        disdel = '';
+                    }
+                }else if(remain == 0){
+                    rowcolor = 'success';
                 }
-                element += '<tr data-id="' + item.Id + '">' +
-                                '<td>' + item.SupplierCode + '</td>' +
-                                '<td><a href="' + burl + '/create/import/' + item.Id + '">' + item.SupplierName + '</a></td>' +
-                                '<td class="center">' + sex + '</td>' +
-                                '<td class="center">' + item.PhoneNumber + '</td>' +
-                                '<td class="center">' + item.Address + '</td>' +
+                element += '<tr class="' + rowcolor + '" data-id="' + item.Id + '">' +
+                                '<td><a href="'+ burl +'/create/import/'+ item.SupplierId +'">' + item.supplier.SupplierName + '</a></td>' +
+                                '<td>' + item.item.ItemName + '</td>' +
+                                '<td class="center">' + CDate(item.ImportDate) + '</td>' +
+                                '<td class="center">' + item.Quantity + '</td>' +
+                                '<td class="center">' + item.SalePrice + '</td>' +
+                                '<td class="center" style="text-align:right;">' + item.SubTotal + '</td>' +
+                                '<td class="center" style="text-align:right;">' + item.PayAmount + '</td>' +
+                                '<td class="center" style="text-align:right;">' + remain + '</td>' +
                                 '<td class="center">' +
-                                    '<a href="' + burl + '/edit/supplier/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
-                                    '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
+                                    '<button type="button" class="btn btn-danger btn-e delete" ' + disdel + '><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
             });
@@ -68,7 +82,7 @@
             $('body').append(Loading());
             $.ajax({
                 type: 'GET',
-                url: burl + '/delete/supplier/' + id,
+                url: burl + '/delete/sale/' + id,
                 dataType: "JSON",
                 contentType: 'application/json; charset=utf-8',
             }).done(function (data) {

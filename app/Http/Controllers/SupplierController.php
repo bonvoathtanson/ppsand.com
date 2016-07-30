@@ -13,6 +13,23 @@ class SupplierController extends Controller
         return view('suppliers/index');
     }
 
+    public function filter_supplier()
+    {
+        return view('suppliers.filter_supplier');
+    }
+
+    public function filter($keyword='')
+    {
+        $key = "%$keyword%";
+        $supplers = Supplier::where('SupplierCode', 'Like', $key)
+                            ->orwhere('SupplierName', 'Like', $key)
+                            ->orwhere('PhoneNumber', 'Like', $key)
+                            ->get();
+        $this->SetData($supplers);
+
+        return response()->json($this->Results);
+    }
+
     public function create()
     {
         return view('suppliers/create');

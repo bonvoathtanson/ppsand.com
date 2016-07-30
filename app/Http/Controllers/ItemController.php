@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Http\Requests;
@@ -27,14 +27,20 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $item = new Item();
-        $item['ItemCode'] = $request['itemcode'];
-        $item->ItemName = $request->itemname;
-        $item->SalePrice = $request->price;
-        $item->UnitInStock = $request->quantity;
-        $item->DateCreated = date('Y-m-d H:i:s');
-        $item->save();
-
+        $validator = Validator::make($request->all(), Item::rules());
+        if($validator->fails())
+        {
+            $this->Fail();
+            $this->SetMessage($validator->messages()->first());
+        }else{
+            $item = new Item();
+            $item['ItemCode'] = $request['itemcode'];
+            $item->ItemName = $request->itemname;
+            $item->SalePrice = $request->price;
+            $item->UnitInStock = $request->quantity;
+            $item->DateCreated = date('Y-m-d H:i:s');
+            $item->save();
+        }
         return response()->json($this->Results);
     }
 
@@ -57,7 +63,6 @@ class ItemController extends Controller
     {
         $id = $request->id;
         $item = Item::find($id);
-        $item->ItemCode = $request->itemcode;
         $item->ItemName = $request->itemname;
         $item->SalePrice = $request->price;
         $item->UnitInStock = $request->quantity;

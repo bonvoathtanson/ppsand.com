@@ -42,12 +42,12 @@
                 console.log(item);
                 element += '<tr data-id="' + item.Id + '">' +
                                 '<td>' + name + '</td>' +
-                                '<td>' + item.ExpansesDate + '</td>' +
+                                '<td>' + moment(item.ExpanseDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td class="center">' + type + '</td>' +
-                                '<td class="center">' + item.Description + '</td>' +
-                                '<td class="center">' + item.TotalAmount + '</td>' +
+                                '<td>' + item.Description + '</td>' +
+                                '<td style="text-align:right;">' + item.TotalAmount + '</td>' +
                                 '<td class="center">' +
-                                    '<a href="' + burl + '/edit/expanse/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
+                                    //'<a href="' + burl + '/edit/expanse/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
@@ -73,7 +73,7 @@
             $('body').append(Loading());
             $.ajax({
                 type: 'GET',
-                url: burl + '/delete/income/' + id,
+                url: burl + '/delete/expanse/' + id,
                 dataType: "JSON",
                 contentType: 'application/json; charset=utf-8',
             }).done(function (data) {

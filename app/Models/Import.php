@@ -24,4 +24,14 @@ class Import extends Model
 
         return $rules;
     }
+
+    public function Supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier', 'SupplierId');
+    }
+
+    public function Item()
+    {
+        return $this->belongsTo('App\Models\Item', 'ItemId');
+    }
 }

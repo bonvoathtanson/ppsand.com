@@ -21,7 +21,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">តំលៃលក់ចេញ</label>
             <div class="col-sm-2">
-                <input type="number" class="form-control" name="price" id="txtprice">
+                <input type="number" class="form-control" name="price" id="txtprice" step="any">
             </div>
         </div>
         <div class="form-group">

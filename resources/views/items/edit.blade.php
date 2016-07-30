@@ -16,13 +16,13 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">លេខកូដទំនិញ</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="itemcode" value="{{$item->ItemCode}}">
+                <input type="text" class="form-control" name="itemcode" value="{{$item->ItemCode}}" disabled="disabled">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">តំលៃលក់ចេញ</label>
             <div class="col-sm-2">
-                <input type="number" class="form-control" name="price" value="{{$item->SalePrice}}">
+                <input type="number" class="form-control" name="price" value="{{$item->SalePrice}}" step="any">
             </div>
         </div>
         <div class="form-group">
