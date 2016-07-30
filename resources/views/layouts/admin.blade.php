@@ -28,6 +28,7 @@
         <div class="list-group">
           <a href="javascript:void(0);" class="list-group-item active font-M1 center">មាតិកា</a>
           <a href="{{url('/view/transfer')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ទំនិញត្រូវដឹកចេញ <span class="badge">2</span></a>
+          <a href="{{url('/view/askinfo')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> អ្នកសួរព័តមាន <span class="badge">2</span></a>
           <a href="{{url('/view/sale')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ការលក់ចេញ</a>
           <a href="{{url('/view/import')}}" class="list-group-item bar"><i class="fa fa-download" aria-hidden="true"></i> ការទិញចូល</a>
           <a href="{{url('/view/customer')}}" class="list-group-item bar"><i class="fa fa-user-secret" aria-hidden="true"></i> អតិថិជន</a>

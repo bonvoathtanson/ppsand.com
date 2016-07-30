@@ -18,6 +18,16 @@ class CustomerController extends Controller
         return view('customers/create');
     }
 
+    public function askinfo()
+    {
+        return view('customers.info');
+    }
+
+    public function addinfo($id)
+    {
+        return view('customers.addinfo');
+    }
+
     public function search()
     {
         $customers = Customer::all();
