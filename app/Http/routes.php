@@ -65,6 +65,7 @@ Route::group(['prefix' => 'insert'], function(){
     Route::post('/customer', 'CustomerController@store');
     Route::post('/customerask', 'CustomerController@insertinfo');
     Route::post('/supplier', 'SupplierController@store');
+    Route::post('/import', 'ImportController@store');
     Route::post('/user', 'UserController@store');
     Route::post('/item', 'ItemController@store');
 });
@@ -91,4 +92,9 @@ Route::group(['prefix' => 'delete'], function(){
     Route::get('/supplier/{id}', 'SupplierController@destroy');
     Route::get('/item/{id}', 'ItemController@destroy');
     Route::get('/user/{id}', 'UserController@destroy');
+});
+
+Route::group(['prefix' => 'detail'], function(){
+    Route::get('/customer/{id}', 'CustomerController@detail');
+    Route::get('/supplier/{id}', 'SupplierController@detail');
 });

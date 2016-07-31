@@ -110,7 +110,7 @@
                 }
                 element += '<tr data-id="' + item.Id + '">' +
                                 '<td>' + item.SupplierCode + '</td>' +
-                                '<td>' + item.SupplierName + '</td>' +
+                                '<td><a href="' + burl + '/detail/supplier/' + item.Id + '">' + item.SupplierName + '</a></td>' +
                                 '<td class="center">' + item.PhoneNumber + '</td>' +
                                 '<td class="center">' +
                                     '<a href="' + burl + '/create/import/' + item.Id + '" class="btn btn-success btn-e">ទិញចូល</a> ' +

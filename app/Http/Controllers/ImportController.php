@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Supplier;
 use App\Models\Import;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -25,56 +26,33 @@ class ImportController extends Controller
     public function create($id)
     {
         $supplier = Supplier::find($id);
-        $transfers = Import::where('SupplierId', '=', $id)
-                        ->where('IsOrder', '=', 1)
-                        ->orderBy('ImportDate', 'DESC')->get();
 
-        $oncredits = Import::where('SupplierId', '=', $id)
-                        ->where('SubTotal', '>', DB::raw('PayAmount'))
-                        ->orderBy('ImportDate', 'DESC')->get();
-
-        $onpayoffs = Import::where('SupplierId', '=', $id)
-                        ->where('SubTotal', '<=', DB::raw('PayAmount'))
-                        ->orderBy('ImportDate', 'DESC')->get();
-
+        $items = Item::all();
         $results = array(
-            'supplier' => $supplier,
-            'transfers' => $transfers,
-            'oncredits' => $oncredits,
-            'onpayoffs' => $onpayoffs
+            'items'     => $items,
+            'supplier'  => $supplier
         );
 
         return view('imports/create', $results);
     }
 
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::commit();
+        } catch (Exception $e) {
+            $this->Fail();
+            $this->SetMessage($e);
+            DB::rollBack();
+        }
     }
 
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
     public function show($id)
     {
         //
     }
 
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
     public function edit($id)
     {
         //
@@ -101,5 +79,12 @@ class ImportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function UpdateStock($itemId, $quantity)
+    {
+        $item = Item::find($itemId);
+        $item->UnitInStock = ($item->UnitInStock + $quantity);
+        $item->save();
     }
 }

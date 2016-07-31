@@ -47,7 +47,7 @@
                 AskDate: {
                     validators: {
                         notEmpty: {
-                            message: 'លេខកូដ​ តំរូវអោយបញ្ចូល'
+                            message: 'សូមធ្វើការបញ្ចូលថ្ងៃសួរព័ត៍មាន'
                         }
                     }
                 },
