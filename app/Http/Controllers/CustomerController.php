@@ -53,6 +53,7 @@ class CustomerController extends Controller
             $customerask->AskDate = $request->AskDate;
             $customerask->ConfirmDate = $request->ConfirmDate;
             $customerask->Description = $request->Description;
+            $customerask->StatusId = CustomerAsk::WAITING;
             $customerask->save();
         }
 
@@ -96,6 +97,7 @@ class CustomerController extends Controller
             $customer->TypeId = $request->TypeId;
             $customer->DateCreated = date('Y-m-d H:i:s');
             $customer->save();
+            $this->SetData($customer);
         }
 
         return response()->json($this->Results);

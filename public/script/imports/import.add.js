@@ -87,6 +87,7 @@
             url: burl + '/insert/import',
             data: item
         }).done(function (data) {
+            console.log(data);
             if (data.IsError == false) {
                 window.location.href = burl + '/view/import';
             } else {

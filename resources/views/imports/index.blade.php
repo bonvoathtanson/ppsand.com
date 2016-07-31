@@ -23,7 +23,7 @@
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
           <th style="text-align:right;">បង់ចំនួន</th>
           <th style="text-align:right;">នៅសល់</th>
-          <th class="center" style="width:40px;">សកម្មភាព</th>
+          <th class="center" style="width:30px;"></th>
         </tr>
       </thead>
       <tbody></tbody>

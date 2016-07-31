@@ -11,8 +11,17 @@
             url: burl + '/insert/customer',
             data: item
         }).done(function (data) {
+            console.log(data);
             if (data.IsError == false) {
-                window.location.href = burl + '/view/customer';
+                var typeid = $('#typeid').val();
+                if(typeid == 1)
+                {
+                    window.location.href = burl + '/create/askinfo/' + data.Data.Id;
+                }else if(typeid == 2){
+                    window.location.href = burl + '/create/sale/' + data.Data.Id;
+                }else{
+                    window.location.href = burl + '/view/customer';
+                }
             } else {
                 swal(data.Message, '', 'success');
             }

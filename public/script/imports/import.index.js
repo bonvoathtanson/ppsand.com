@@ -32,32 +32,22 @@
         var element = '';
         if((customers != null) && (customers.length > 0)){
             $.each(customers, function(index, item){
-                var disedit = 'disabled';
-                var disdel = 'disabled="disabled"';
                 var rowcolor = '';
                 var remain = (item.SubTotal-item.PayAmount);
-                if(item.IsOrder == 1)
-                {
-                    rowcolor = 'info';
-                    if(item.PayAmount == 0)
-                    {
-                        disedit = '';
-                        disdel = '';
-                    }
-                }else if(remain == 0){
+                if(remain == 0){
                     rowcolor = 'success';
                 }
                 element += '<tr class="' + rowcolor + '" data-id="' + item.Id + '">' +
-                                '<td><a href="'+ burl +'/create/import/'+ item.SupplierId +'">' + item.supplier.SupplierName + '</a></td>' +
+                                '<td><a href="'+ burl +'/detail/supplier/'+ item.SupplierId +'">' + item.supplier.SupplierName + '</a></td>' +
                                 '<td>' + item.item.ItemName + '</td>' +
-                                '<td class="center">' + CDate(item.ImportDate) + '</td>' +
+                                '<td class="center">' + moment(item.ImportDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td class="center">' + item.Quantity + '</td>' +
                                 '<td class="center">' + item.SalePrice + '</td>' +
                                 '<td class="center" style="text-align:right;">' + item.SubTotal + '</td>' +
                                 '<td class="center" style="text-align:right;">' + item.PayAmount + '</td>' +
                                 '<td class="center" style="text-align:right;">' + remain + '</td>' +
                                 '<td class="center">' +
-                                    '<button type="button" class="btn btn-danger btn-e delete" ' + disdel + '><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
+                                    '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
             });
