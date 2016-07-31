@@ -17,7 +17,6 @@
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
-            console.log(data);
             if(data.IsError == false){
                 if(typeof callback == 'function'){
                     callback(data.Data);

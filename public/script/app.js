@@ -14,3 +14,31 @@ function CDate(datetime){
     }
     return ret;
 }
+Notification();
+function Notification()
+{
+    $.ajax({
+        url: burl + '/notification',
+        type: 'GET',
+        dataType: 'JSON',
+        contentType: 'application/json; charset=utf-8',
+    }).done(function (data) {
+        if(data.IsError == false){
+            var a = data.Data.timetransfer;
+            var b = data.Data.transfer;
+            var c = data.Data.customerask;
+            if(a >= 0)
+            {
+                $('body').find('.badge1').text(a).show();
+            }
+            if(b >= 0)
+            {
+                $('body').find('.badge2').text(b).show();
+            }
+            if(c >= 0)
+            {
+                $('body').find('.badge3').text(c).show();
+            }
+        }
+    });
+}
