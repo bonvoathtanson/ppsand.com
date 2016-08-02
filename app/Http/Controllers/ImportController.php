@@ -18,7 +18,7 @@ class ImportController extends Controller
     }
 
     public function search(){
-        $imports = Import::all();
+        $imports = Import::where('SubTotal', '>', DB::raw('PayAmount'))->get();
         $imports->load(['Supplier', 'Item']);
         $this->Results['Data'] = $imports;
 
