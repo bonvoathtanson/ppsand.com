@@ -6,6 +6,7 @@ use Validator;
 use App\Models\Supplier;
 use App\Models\Import;
 use App\Models\Item;
+use App\Models\Expanse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -74,38 +75,24 @@ class ImportController extends Controller
 
         return response()->json($this->Results);
     }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+    // <des>delete import by id</des>
+    // <param name="$id">Imports.Id</param>
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            Expanse::where('ImportId', '=', $id)->delete();
+            $import = Import::find($id);
+            $import->delete();
+            $this->ResetStock($import->ItemId, $import->Quantity);
+            DB::commit();
+        } catch (Exception $e) {
+            $this->Fail();
+            $this->SetMessage($e);
+            DB::rollBack();
+        }
+
+        return response()->json($this->Results);
     }
 
     private function CalTotal($quantity, $saleprice)
@@ -128,6 +115,13 @@ class ImportController extends Controller
     {
         $item = Item::find($itemId);
         $item->UnitInStock = ($item->UnitInStock + $quantity);
+        $item->save();
+    }
+
+    private function ResetStock($itemId, $quantity)
+    {
+        $item = Item::find($itemId);
+        $item->UnitInStock = ($item->UnitInStock - $quantity);
         $item->save();
     }
 }

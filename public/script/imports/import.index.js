@@ -72,7 +72,7 @@
             $('body').append(Loading());
             $.ajax({
                 type: 'GET',
-                url: burl + '/delete/sale/' + id,
+                url: burl + '/delete/import/' + id,
                 dataType: "JSON",
                 contentType: 'application/json; charset=utf-8',
             }).done(function (data) {

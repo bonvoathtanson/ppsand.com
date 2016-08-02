@@ -32,7 +32,7 @@ class SaleController extends Controller
     }
 
     public function search(){
-        $sales = Sale::all();
+        $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->get();
         $sales->load(['Customer', 'Item']);
         $this->Results['Data'] = $sales;
 
