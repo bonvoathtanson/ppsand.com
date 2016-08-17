@@ -32,7 +32,7 @@
     <div class="row" style="margin-bottom:5px;">
         <div class="col-sm-12" style="padding-left:0;">
             <div class="col-sm-1" style="width:200px;">
-                <input type="text" id="itemcode" class="form-control" placeholder="លេខកូដ">
+                <input type="text" id="itemcode" class="form-control" placeholder="វាយ លេខកូដទំនិញ">
             </div>
             <div class="pull-right">
                 <a href="{{url('/create/income').'/'.$customer->Id}}" class="btn btn-danger">បង់លុយ</a>
@@ -50,6 +50,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="warning">
+                            <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
                             <th class="center">លេខឡាន</th>
@@ -61,6 +62,7 @@
                     <tbody>
                         <?php foreach ($transfers as $key => $value): ?>
                             <tr data-id="{{$value->Id}}">
+                                <td class="center">{{$customer->CustomerCode}}-{{$value->SaleCode}}</td>
                                 <td>{{$value->Item->ItemName}}</td>
                                 <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
                                 <td class="center">{{$value->CarNumber}}</td>
@@ -78,6 +80,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="warning">
+                            <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
                             <th class="center">លេខឡាន</th>
@@ -91,6 +94,7 @@
                     <tbody>
                         <?php foreach ($oncredits as $key => $value): ?>
                             <tr>
+                                <td class="center">{{$customer->CustomerCode}}-{{$value->SaleCode}}</td>
                                 <td>{{$value->Item->ItemName}}</td>
                                 <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
                                 <td class="center">{{$value->CarNumber}}</td>
@@ -108,6 +112,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="warning">
+                            <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th>ថ្ងៃខែឆ្នាំលក់</th>
                             <th class="center">លេខឡាន</th>
@@ -119,6 +124,7 @@
                     <tbody>
                         <?php foreach ($onpayoffs as $key => $value): ?>
                             <tr>
+                                <td class="center">{{$customer->CustomerCode}}-{{$value->SaleCode}}</td>
                                 <td>{{$value->Item->ItemName}}</td>
                                 <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d H:i')}}</td>
                                 <td class="center">{{$value->CarNumber}}</td>

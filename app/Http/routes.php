@@ -93,6 +93,7 @@ Route::group(['prefix' => 'delete'], function(){
     Route::get('/supplier/{id}', 'SupplierController@destroy');
     Route::get('/item/{id}', 'ItemController@destroy');
     Route::get('/user/{id}', 'UserController@destroy');
+    Route::get('/import/{id}', 'ImportController@destroy');
 });
 
 Route::group(['prefix' => 'detail'], function(){

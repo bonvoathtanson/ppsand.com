@@ -32,7 +32,7 @@ class SaleController extends Controller
     }
 
     public function search(){
-        $sales = Sale::all();
+        $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->get();
         $sales->load(['Customer', 'Item']);
         $this->Results['Data'] = $sales;
 
@@ -92,6 +92,7 @@ class SaleController extends Controller
         try {
             DB::beginTransaction();
             $sale = new Sale();
+            $sale->SaleCode = $this->GetSaleCode($request->CustomerId);
             $sale->SaleDate = date_create($request->SaleDate);
             $sale->TransferDate = date_create($request->TransferDate);
             $sale->CustomerId = $request->CustomerId;
@@ -151,5 +152,13 @@ class SaleController extends Controller
         $item = Item::find($itemId);
         $item->UnitInStock = ($item->UnitInStock - $quantity);
         $item->save();
+    }
+
+    private function GetSaleCode($customerId)
+    {
+        $number = Sale::where('CustomerId', '=', $customerId)->max('SaleCode');
+        $number++;
+
+        return $number;
     }
 }
