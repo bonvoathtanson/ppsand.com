@@ -1,4 +1,5 @@
 <?php
+
 Route::group(['prefix' => '/'], function(){
     Route::get('', 'HomeController@index');
     Route::get('login', 'UserController@login');
