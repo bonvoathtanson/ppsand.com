@@ -9,7 +9,7 @@ Route::group(['prefix' => '/'], function(){
 });
 
 Route::group(['prefix' => 'transfer'], function(){
-    Route::get('/sale/{id}', 'SaleController@updatetransfer');
+    Route::post('/sale', 'SaleController@updatetransfer');
 });
 
 Route::group(['prefix' => 'view'], function(){

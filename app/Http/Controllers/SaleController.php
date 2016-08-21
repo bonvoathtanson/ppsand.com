@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Sale;
 use App\Models\Item;
+use App\Models\CarNumber;
 use App\Http\Requests;
 
 class SaleController extends Controller
@@ -18,8 +19,8 @@ class SaleController extends Controller
     public function transfer()
     {
         $sales = Sale::where('IsOrder', '=', 1)->get();
-
-        return view('sales.transfer', ['sales' => $sales]);
+        $cars = CarNumber::all();
+        return view('sales.transfer', ['sales' => $sales, 'cars' => $cars]);
     }
 
     public function timetransfer()
@@ -27,8 +28,9 @@ class SaleController extends Controller
         $sales = Sale::where('IsOrder', '=', 1)
                     ->where('TransferDate', '<=', date('Y-m-d H:i:s'))
                     ->get();
+        $cars = CarNumber::all();
 
-        return view('sales.transfer', ['sales' => $sales]);
+        return view('sales.transfer', ['sales' => $sales, 'cars' => $cars]);
     }
 
     public function search(){
@@ -44,11 +46,13 @@ class SaleController extends Controller
         return view('sales.filter_customer');
     }
 
-    public function updatetransfer($id)
+    public function updatetransfer(Request $request)
     {
         try {
             DB::beginTransaction();
+            $id = $request->Id;
             $sale = Sale::find($id);
+            $sale->CarNumber = $request->CarNumber;
             $sale->IsOrder = 0;
             $sale->save();
             $this->UpdateStock($sale->ItemId, $sale->Quantity);
