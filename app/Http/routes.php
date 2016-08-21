@@ -83,6 +83,7 @@ Route::group(['prefix' => 'update'], function(){
     Route::post('/supplier', 'SupplierController@update');
     Route::post('/income', 'IncomeController@update');
     Route::post('/item', 'ItemController@update');
+    Route::post('/stock', 'ItemController@stock');
 });
 
 Route::group(['prefix' => 'delete'], function(){
