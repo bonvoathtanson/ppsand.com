@@ -69,6 +69,7 @@ Route::group(['prefix' => 'insert'], function(){
     Route::post('/import', 'ImportController@store');
     Route::post('/user', 'UserController@store');
     Route::post('/item', 'ItemController@store');
+    Route::post('/car', 'HomeController@car');
 });
 
 Route::group(['prefix' => 'edit'], function(){

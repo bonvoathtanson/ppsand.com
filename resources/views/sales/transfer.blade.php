@@ -8,8 +8,8 @@
 </div>
 <div class="row memu-bar">
     <div class="col-sm-12">
-        <div class="pull-right">
-
+        <div class="pull-left">
+            <button type="button" class="btn btn-primary" id="btncar">លេខឡាន</button>
         </div>
     </div>
 </div>
@@ -63,7 +63,7 @@
                                         <select class="form-control" name="CarNumber">
                                             <option value="">ជ្រើសលេខឡាន</option>
                                             <?php foreach ($cars as $key => $value): ?>
-                                                <option value="{{$value->CarNo}}">{{$value->CarNo}}</option>
+                                                <option value="{{$value->CarNo}}">{{$value->CarNo}} ({{$value->Description}})</option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -88,6 +88,68 @@
         </div>
     </form>
 </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="carmodal">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="Id">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title font-M1">តារាងលេខឡាន</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box1">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="warning">
+                                <th style="width:150px;">លេខឡាន</th>
+                                <th>បរិយាយ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($cars as $key => $value): ?>
+                                <tr>
+                                    <td>{{$value->CarNo}}</td>
+                                    <td>{{$value->Description}}</td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box2" style="display:none;">
+                    <form id="formCar">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th style="width:150px; background:#f2f2f2; vertical-align:middle;">លេខឡាន</th>
+                                    <td>
+                                        <div class="form-group" style="margin-bottom:0;">
+                                            <input type="text" class="form-control" name="CarNo">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="width:150px; background:#f2f2f2; vertical-align:middle;">បរិយាយ</th>
+                                    <td>
+                                        <div class="form-group" style="margin-bottom:0;">
+                                            <textarea name="Description" class="form-control"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" id="btnadd">បន្ថែម</button>
+                <button type="button" class="btn btn-danger" style="display:none;" id="btncancel">បោះបង់</button>
+                <button type="submit" class="btn btn-primary" style="display:none;" id="btnsave">រក្សាទុក</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('script')
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
@@ -95,11 +157,58 @@
 <script type="text/javascript">
 (function(){
     SetValidation();
-
     var select;
+    $('body').on('click', '#btnsave', function(){
+        var car = $('[name="CarNo"]').val();
+        var des = $('[name="Description"]').val();
+        if(car.length == 0){
+            swal('សូមបញ្ចូលលេខឡាន', '' , 'warning');
+        }else{
+            var item = $('#formCar').serialize();
+            $.ajax({
+                type: 'POST',
+                url: burl + '/insert/car',
+                data: item
+            }).done(function (data) {
+                if (data.IsError == false) {
+                    var car = $('[name="CarNo"]').val();
+                    var des = $('[name="Description"]').val();
+                    var tr = '<tr><td>' + car + '</td><td>' + des + '</td></tr>';
+                    var option = '<option value="' + car + '">' + car + ' (' + des + ')</option>';
+                    $('.box1 table>tbody').append(tr);
+                    $('[name="CarNumber"]').append(option);
+                    Reset();
+                } else {
+                    swal(data.Message, '', 'success');
+                }
+            });
+        }
+    });
+
+    $('body').on('click', '#btnadd', function(){
+        $('.box1').hide();
+        $('.box2').show();
+        $('#btnadd').hide();
+        $('#btncancel').show();
+        $('#btnsave').show();
+    });
 
     $('#transferdate').datetimepicker({
         defaultDate: moment()
+    });
+
+    $('body').on('click', '#btncar', function(){
+        $('#carmodal').modal({
+            backdrop: 'static'
+        });
+    });
+
+    $('body').on('click', '#btncancel', function(){
+        Reset();
+    });
+
+    $('#carmodal').on('hidden.bs.modal', function (e) {
+        Reset();
     });
 
     $('body').on('click', '.transfer', function () {
@@ -117,6 +226,14 @@
         $('[name="CarNumber"][value=""]').prop('selected', true);
         $('#transferdate').data("DateTimePicker").date(moment());
     });
+
+    function Reset(){
+        $('.box1').show();
+        $('.box2').hide();
+        $('#btnadd').show();
+        $('#btncancel').hide();
+        $('#btnsave').hide();
+    }
 
     function SaveOrUpdate() {
         $('body').append(Loading());
