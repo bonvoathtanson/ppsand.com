@@ -85,30 +85,8 @@
         }
     });
 
-    $('body').on('keypress', '#saleprice', function(event){
-        if(event.which == 13){
-            CalTotal();
-            $('#carnumber').focus();
-        }
-    });
-
-    $('body').on('keypress', '#carnumber', function(event){
-        if(event.which == 13){
-            $('#payamount').focus();
-        }
-    });
-
     $('body').on('focus blur', '#saleprice, #quantity', function(){
         CalTotal();
-    });
-
-    $('body').on('change', '#typeid', function(){
-        var value = $(this).val();
-        if(value == 0){
-            $('#group-date').hide();
-        }else{
-            $('#group-date').show();
-        }
     });
 
     function SaveOrUpdate() {

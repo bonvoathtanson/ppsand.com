@@ -101,18 +101,13 @@ class SaleController extends Controller
             $sale->TransferDate = date_create($request->TransferDate);
             $sale->CustomerId = $request->CustomerId;
             $sale->ItemId = $request->ItemId;
-            $sale->CarNumber = $request->CarNumber;
             $sale->Quantity = $request->Quantity;
             $sale->SalePrice = $request->SalePrice;
             $sale->DateCreated = date('Y-m-d H:i:s');
             $sale->SubTotal = $this->CalTotal($request->Quantity, $request->SalePrice);
             $sale->PayAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
-            $sale->IsOrder = $request->IsOrder;
+            $sale->IsOrder = 1;
             $sale->save();
-            if($request->IsOrder == "0")
-            {
-                $this->UpdateStock($request->ItemId, $request->Quantity);
-            }
             DB::commit();
         } catch (Illuminate\Database\QueryException $e) {
             $this->SetError(true);

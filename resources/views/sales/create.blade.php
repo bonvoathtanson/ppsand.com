@@ -168,22 +168,7 @@
                             <input type="text" id="saleprice" name="SalePrice" class="form-control">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" style="width:150px;">លេខឡាន</label>
-                        <div class="col-sm-1" style="width:200px;">
-                            <input type="text" id="carnumber" name="CarNumber" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" style="width:150px;">ដឹកចេញ</label>
-                        <div class="col-sm-1" style="width:200px;">
-                            <select class="form-control" id="typeid" name="IsOrder">
-                                <option value="0">ដឹកចេញភ្លាម</option>
-                                <option value="1">ដឹកចេញពេលក្រោយ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="group-date" class="form-group" style="display:none;">
+                    <div id="group-date" class="form-group">
                         <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំដឹកអោយ</label>
                         <div class="col-sm-1" style="width:350px;">
                             <input type="text" id="transferdate" name="TransferDate" class="form-control">
