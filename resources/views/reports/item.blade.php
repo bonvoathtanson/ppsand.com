@@ -10,6 +10,10 @@
 <body>
   <div class="container-A4">
     <div class="print-header">
+        <div class="font-M1 center" style="font-size:14pt;">ភ្នំពេញខ្សាច់</div>
+        <div class="font-M1 center" style="font-size:12pt;">
+            តារាងប្រភេទខ្សាច់
+        </div>
     </div>
     <div class="print-body">
       <table class="table table-bordered" style="width:100%;">
