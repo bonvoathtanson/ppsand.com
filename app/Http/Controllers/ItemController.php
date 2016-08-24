@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\SystemConfig;
+use PDF;
 
 class ItemController extends Controller
 {
@@ -31,6 +32,12 @@ class ItemController extends Controller
         return view('items.create');
     }
 
+    public function report()
+    {
+        $items = Item::all();
+        return view('reports.item', ['items' => $items]);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), Item::rules());
@@ -47,6 +54,7 @@ class ItemController extends Controller
             $item->DateCreated = date('Y-m-d H:i:s');
             $item->save();
         }
+
         return response()->json($this->Results);
     }
 

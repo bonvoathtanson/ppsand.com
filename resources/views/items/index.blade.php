@@ -11,7 +11,7 @@
             <div class="pull-right">
                 <a href="{{url('/create/item')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បន្ថែម</a>
                 <button class="btn btn-primary" id="btnsetstock"><i class="fa fa-plus" aria-hidden="true"></i> កំណត់ស្តុក</button>
-                <a href="{{url('/report/item')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> បោះពុម្ភ</a>
+                <a href="{{url('/report/item')}}" class="btn btn-primary" target="_blank"><i class="fa fa-plus" aria-hidden="true"></i> បោះពុម្ភ</a>
             </div>
         </div>
     </div>

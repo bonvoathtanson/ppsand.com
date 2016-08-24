@@ -102,3 +102,7 @@ Route::group(['prefix' => 'detail'], function(){
     Route::get('/customer/{id}', 'CustomerController@detail');
     Route::get('/supplier/{id}', 'SupplierController@detail');
 });
+
+Route::group(['prefix' => 'report'], function(){
+    Route::get('/item', 'ItemController@report');
+});
