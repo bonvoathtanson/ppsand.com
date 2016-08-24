@@ -14,6 +14,12 @@
         <div class="font-M1 center" style="font-size:12pt;">
             តារាងប្រភេទខ្សាច់
         </div>
+        <div class="font-HA center" style="font-size:11pt;">
+            អាស័យដ្ឋានៈ វិថីស៊ីសុវិត្ថិ សង្កាត់ស្រះចក ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ
+        </div>
+        <div class="font-HA center" style="font-size:11pt;">
+            លេខទូរស័ព្ទៈ ០១៧​ ៨៦ ៨៨ ៦៧
+        </div>
     </div>
     <div class="print-body">
       <table class="table table-bordered" style="width:100%;">
