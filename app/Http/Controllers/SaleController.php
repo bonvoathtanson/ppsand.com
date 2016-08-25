@@ -13,7 +13,8 @@ class SaleController extends Controller
 {
     public function index()
     {
-        return view('sales.index');
+        $cars = CarNumber::all();
+        return view('sales.index',['cars' => $cars]);
     }
 
     public function transfer()
@@ -40,7 +41,16 @@ class SaleController extends Controller
 
         return response()->json($this->Results);
     }
+    public function filter($customerId ='' , $saleFromDate ='' , $saleToDate ='' , $carNumber =''){
+        $sales = Sale::where('CustomerId', '=', $customerId)
+        ->orwhere('SaleDate', '>=', $saleFromDate)
+        ->orwhere('SaleDate', '<=', $saleToDate)
+        ->orwhere('CarNumber', '=', $carNumber)
+        ->get();
+        $this->SetData($sales);
 
+        return response()->json($this->Results);
+    }
     public function filter_customer()
     {
         return view('sales.filter_customer');

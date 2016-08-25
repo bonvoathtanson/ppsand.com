@@ -1,4 +1,14 @@
 (function(){
+    $('#saleFromDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $('#saleToDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
     ViewItem();
 
     function ViewItem(){
@@ -9,6 +19,73 @@
         });
     }
 
+    $('body').on('click','.selected',function(){
+        var customerName = $(this).attr('data-name');
+        var customerId   = $(this).attr('data-id');
+        var carNumber   = $('#hdfcarNumber').val();
+        $('#customerName').val(customerName);
+        $('#hdfcustomerId').val(customerId);
+        SearchSale();
+        $('#myModal').modal('hide');
+
+    });
+
+    $('body').on('change','#carNumber',function(){
+        var carNumber = $(this).find(':selected').attr('name')
+        var customerId = $('#hdfcustomerId').val();
+        $('#hdfcarNumber').val(carNumber);
+        SearchSale();
+        $('#myModal').modal('hide');
+
+    });
+
+    function SearchSale(){
+        GetItemsSearch(function(customers){
+            RenderTable(customers, function(element){
+                $('#saleTable tbody').html(element);
+            });
+        });
+    }
+
+    $('body').on('click', '#btnsearch', function () {
+        var customerId   = $('#hdfcustomerId').val();
+        var saleFormDate = $('#saleFromDate').val();
+        var saleToDate   = $('#saleToDate').val();
+        var CarNumber    = $('#CarNumber').val();
+        if( customerId !='' || saleFormDate != '' || saleToDate != '' || CarNumber !='' ){
+            SearchSale();
+        }else{
+            $('.box-null').show();
+            $('#saleTable tbody tr').remove();
+        }
+     });
+
+     //+ $('#saleFormDate').val() + $('#saleToDate').val() + $('#CarNumber').val()
+     function GetItemsSearch(callback) {
+         $('body').append(Loading());
+         var dataSearch = {
+             customerId :  $('#hdfcustomerId').val(),
+             saleFromDate: $('#saleFromDate').val(),
+             saleToDate : $('#saleToDate').val(),
+             CarNumber  : $('#CarNumber').val()
+         }
+         $.ajax({
+             url: burl + '/filter/sale/',
+             type: 'GET',
+             dataType: 'JSON',
+             contentType: 'application/json; charset=utf-8',
+         }).done(function (data) {
+             if(data.IsError == false){
+                 if(typeof callback == 'function'){
+                     callback(data.Data);
+                 }
+             }
+         }).complete(function (data) {
+             $('body').find('.loading').remove();
+         });
+     }
+
+    //+ $('#saleFormDate').val() + $('#saleToDate').val() + $('#CarNumber').val()
     function GetItems(callback) {
         $('body').append(Loading());
         $.ajax({

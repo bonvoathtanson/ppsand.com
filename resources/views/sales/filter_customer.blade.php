@@ -33,7 +33,7 @@
         </table>
     </div>
     <div class="box-null" style="font-size:14pt; color:red; display:none;">
-        ទិន្នន័យស្វែកមិនមាន
+        ទិន្នន័យស្វែ​ងរកមិនមាន
     </div>
 </form>
 @endsection
@@ -99,7 +99,7 @@
             $('body').find('.loading').remove();
         });
     }
-
+    
     function RenderTable(customers, callback){
         var element = '';
         if((customers != null) && (customers.length > 0)){
