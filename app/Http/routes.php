@@ -8,7 +8,7 @@ Route::group(['prefix' => '/'], function(){
 });
 
 Route::group(['prefix' => 'transfer'], function(){
-    Route::get('/sale/{id}', 'SaleController@updatetransfer');
+    Route::post('/sale', 'SaleController@updatetransfer');
 });
 
 Route::group(['prefix' => 'view'], function(){
@@ -68,6 +68,7 @@ Route::group(['prefix' => 'insert'], function(){
     Route::post('/import', 'ImportController@store');
     Route::post('/user', 'UserController@store');
     Route::post('/item', 'ItemController@store');
+    Route::post('/car', 'HomeController@car');
 });
 
 Route::group(['prefix' => 'edit'], function(){
@@ -82,6 +83,7 @@ Route::group(['prefix' => 'update'], function(){
     Route::post('/supplier', 'SupplierController@update');
     Route::post('/income', 'IncomeController@update');
     Route::post('/item', 'ItemController@update');
+    Route::post('/stock', 'ItemController@stock');
 });
 
 Route::group(['prefix' => 'delete'], function(){
@@ -98,4 +100,8 @@ Route::group(['prefix' => 'delete'], function(){
 Route::group(['prefix' => 'detail'], function(){
     Route::get('/customer/{id}', 'CustomerController@detail');
     Route::get('/supplier/{id}', 'SupplierController@detail');
+});
+
+Route::group(['prefix' => 'report'], function(){
+    Route::get('/item', 'ItemController@report');
 });

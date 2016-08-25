@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\CustomerAsk;
+use App\Models\CarNumber;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,16 @@ class HomeController extends Controller
             'transfer'      => $transfer
         );
         $this->SetData($response);
+
+        return response()->json($this->Results);
+    }
+
+    public function car(Request $request)
+    {
+        $car = new CarNumber();
+        $car->CarNo = $request->CarNo;
+        $car->Description = $request->Description;
+        $car->save();
 
         return response()->json($this->Results);
     }

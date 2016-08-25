@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use Validator;
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Http\Requests;
+use App\Models\SystemConfig;
+use PDF;
 
 class ItemController extends Controller
 {
@@ -15,7 +17,12 @@ class ItemController extends Controller
 
     public function search(){
         $items = Item::all();
-        $this->Results['Data'] = $items;
+        $alertstock = SystemConfig::where('Id', '=', 1)->first();
+        $data = array(
+            'items' => $items,
+            'stock' => $alertstock
+        );
+        $this->SetData($data);
 
         return response()->json($this->Results);
     }
@@ -23,6 +30,12 @@ class ItemController extends Controller
     public function create()
     {
         return view('items.create');
+    }
+
+    public function report()
+    {
+        $items = Item::all();
+        return view('reports.item', ['items' => $items]);
     }
 
     public function store(Request $request)
@@ -41,6 +54,7 @@ class ItemController extends Controller
             $item->DateCreated = date('Y-m-d H:i:s');
             $item->save();
         }
+
         return response()->json($this->Results);
     }
 
@@ -48,6 +62,23 @@ class ItemController extends Controller
     {
         $item = Item::where('ItemCode', '=', $id)->first();
         $this->SetData($item);
+
+        return response()->json($this->Results);
+    }
+
+    public function stock(Request $request)
+    {
+        $systemconfig = SystemConfig::where('Id', '=', 1)->first();
+        if($systemconfig != null){
+            $systemconfig->Value = $request->stock;
+            $systemconfig->save();
+        }else{
+            $stock = new SystemConfig();
+            $stock->Id = 1;
+            $stock->Name = "Alert Stock Confirm";
+            $stock->Value = $request->stock;
+            $stock->save();
+        }
 
         return response()->json($this->Results);
     }
