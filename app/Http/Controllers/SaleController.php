@@ -34,8 +34,22 @@ class SaleController extends Controller
         return view('sales.transfer', ['sales' => $sales, 'cars' => $cars]);
     }
 
-    public function search(Request $request){
+    public function FindSaleByCustomerId(){
+        $id = 1;
+        $customer = Customer::find($id);
+        $sales = Sale::where('CustomerId', '=', $id)
+                    ->where('SubTotal', '>', DB::raw('PayAmount'))
+                    ->orderBy('SaleDate', 'ASC')->get();
+        $results = array(
+            'customer' => $customer,
+            'sales' => $sales
+        );
 
+        return response()->json($results);
+    }
+
+    public function search(Request $request)
+    {
         $customerId = $request->hdfcustomerId;
         $carNumber = $request->hdfcarNumber;
         $fromDate = $request->saleFromDate;

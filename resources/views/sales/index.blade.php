@@ -15,7 +15,7 @@
     </div>
   </div>
 </div>
-<form id="formSearchSale" class="form-horizontal" method="post" onsubmit="return false;">
+<form id="formSearchSale" method="post" onsubmit="return false;">
     {{ csrf_field() }}
     <div class="panel panel-default" style="width:100%;padding:5px">
         <div class="panel-body">
@@ -33,7 +33,7 @@
                     <input type="text" id="saleToDate" name="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:75px;margin-top:5px; padding-left:0;">លេខឡាន</div>
-                    <div class="col-sm-1" style="width:135px; padding-left:0px">
+                    <div class="col-sm-1" style="width:150px; padding-left:0px">
                         <select class="form-control" name="carNumber" id="carNumber">
                             <option value="">ជ្រើសលេខឡាន</option>
                             <?php foreach ($cars as $index => $value): ?>
@@ -54,7 +54,7 @@
   <div class="col-sm-12">
     <table id="saleTable" class="table table-bordered table-hover">
       <thead>
-        <tr class="warning">
+        <tr class="bg-whife">
           <th>ឈ្មោះអតិថិជន</th>
           <th>មុខទំនិញ</th>
           <th>ថ្ងៃខែឆ្នាំលក់</th>
@@ -83,27 +83,27 @@
                     <span id="itemname" style="color:#0856ab; font-weight:bold;">ស្វែងរកឈ្មោះអតិថិជន</span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
+                <div class="modal-body" style="min-height:350px;">
+                    <table style="width:250px; margin-bottom:5px;">
                         <tbody>
                             <tr>
                                 <td>
                                     <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control"​ placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                                 </td>
-                                <td class="center" style="width:20px;">
+                                <td class="center" style="width:20px; padding-left:10px;">
                                     <button type="button" id="btnSearchNameCustomer" class="btn btn-success">ស្វែងរក</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="box-table" style="display:none;">
+                    <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="warning">
+                                <tr class="bg-whife">
                                     <th>លេខកូដ</th>
                                     <th>ឈ្មោះ</th>
                                     <th class="center">លេខទូរស័ព្ទ</th>
-                                    <th style="width:120px;"></th>
+                                    <th style="width:90px;"></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

@@ -9,14 +9,14 @@
 </div>
 <form id="formIncome" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
-    <input type="hidden" name="CustomerId" value="{{$customer->Id}}">
+    <input type="hidden" name="CustomerId" value="">
     <input type="hidden" name="IncomeType" value="1">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$customer->CustomerName}}">
+                    <input type="text" class="form-control" disabled="disabled">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$customer->Address}}">
+                    <input type="text" class="form-control" disabled="disabled">
                 </div>
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
     <div class="">
         <table class="table table-bordered table-hover">
             <thead>
-                <tr class="warning">
+                <tr class="bg-whife">
                     <th class="center"></th>
                     <th>មុខទំនិញ</th>
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -52,17 +52,6 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($sales as $key => $value): ?>
-                    <tr data-id="{{$value->Id}}">
-                        <td class="center"><input type="checkbox" name="SaleIds[]" value="{{$value->Id}}"></td>
-                        <td>{{$value->Item->ItemName}}</td>
-                        <td class="center">{{date_format(date_create($value->SaleDate), 'Y-m-d')}}</td>
-                        <td class="center">{{$value->Quantity}}</td>
-                        <td style="text-align:right;">{{$value->SubTotal}}</td>
-                        <td style="text-align:right;">{{$value->PayAmount}}</td>
-                        <td style="text-align:right;">{{$value->SubTotal-$value->PayAmount}}</td>
-                    </tr>
-                <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
@@ -79,7 +68,6 @@
         <div class="col-sm-12">
             <div class="pull-right">
                 <button type="submit" id="save" class="btn btn-success">រក្សាទុក</button>
-                <a href="{{url('/')}}" class="btn btn-danger">បោះបង់</a>
             </div>
         </div>
     </div>

@@ -15,23 +15,21 @@ class IncomeController extends Controller
         return view('incomes.index');
     }
 
-    public function create($id)
-    {
-        $customer = Customer::find($id);
-        $sales = Sale::where('CustomerId', '=', $id)
-                    ->where('SubTotal', '>', DB::raw('PayAmount'))
-                    ->orderBy('SaleDate', 'ASC')->get();
-        $results = array(
-            'customer' => $customer,
-            'sales' => $sales
-        );
-
-        return view('incomes.create', $results);
-    }
-
     public function otherincome()
     {
         return view('incomes.other');
+    }
+
+    public function edit($id)
+    {
+        $income = Income::find($id);
+
+        return view('incomes.edit', ['income' => $income]);
+    }
+
+    public function create()
+    {
+        return view('incomes.create');
     }
 
     public function search()
@@ -55,13 +53,6 @@ class IncomeController extends Controller
         }
 
         return response()->json($this->Results);
-    }
-
-    public function edit($id)
-    {
-        $income = Income::find($id);
-
-        return view('incomes.edit', ['income' => $income]);
     }
 
     public function update(Request $request)
@@ -91,6 +82,17 @@ class IncomeController extends Controller
         return response()->json($this->Results);
     }
 
+    private function SaveOtherIncome($request)
+    {
+        $income = new Income();
+        $income->IncomeDate = date_create($request->IncomeDate);
+        $income->TotalAmount = $request->TotalAmount;
+        $income->IncomeType = $request->IncomeType;
+        $income->Description = $request->Description;
+        $income->DateCreated = date('Y-m-d H:i:s');
+        $income->save();
+    }
+
     public function destroy($id)
     {
         DB::beginTransaction();
@@ -115,17 +117,6 @@ class IncomeController extends Controller
         }
 
         return response()->json($this->Results);
-    }
-
-    private function SaveOtherIncome($request)
-    {
-        $income = new Income();
-        $income->IncomeDate = date_create($request->IncomeDate);
-        $income->TotalAmount = $request->TotalAmount;
-        $income->IncomeType = $request->IncomeType;
-        $income->Description = $request->Description;
-        $income->DateCreated = date('Y-m-d H:i:s');
-        $income->save();
     }
 
     private function SaveMoreIncome($request)

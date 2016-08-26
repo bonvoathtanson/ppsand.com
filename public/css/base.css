@@ -25,9 +25,10 @@ body{
 .box-title{
     color: #31708f;
     background-color: #d9edf7;
+    background: linear-gradient(to bottom,#d9edf7, #c0e1f2);
     border-color: #bce8f1;
     padding: 10px 15px;
-    border-bottom: 1px solid transparent;
+    border: 1px solid #95cde9;
     border-radius: 3px;
     margin-bottom: 5px;
     font-family: 'khmerM1';
@@ -144,10 +145,31 @@ body{
 }
 
 .list-group .bar{
-    background-image: url('../img/back.gif');
     background-size: 1px 100%;
     background-repeat: repeat-x;
     background-color: orange;
     margin-top: 3px;
-    color:#0856ab;
+    background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+    border-radius: 3px;
+}
+
+.modal-header{
+    background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-content{
+    border: 1px solid #ddd;
+    border-radius: 5px !important;
+    overflow: hidden;
+}
+
+.btn-whife{
+    background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.bg-whife{
+    background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
 }

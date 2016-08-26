@@ -52,7 +52,7 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/customer', 'CustomerController@create');
     Route::get('/askinfo/{id}', 'CustomerController@addinfo');
     Route::get('/supplier', 'SupplierController@create');
-    Route::get('/income/{id}', 'IncomeController@create');
+    Route::get('/income', 'IncomeController@create');
     Route::get('/otherincome', 'IncomeController@otherincome');
     Route::get('/expanse/{id}', 'ExpanseController@create');
     Route::get('/sale/{id}', 'SaleController@create');

@@ -22,7 +22,7 @@
     <div class="box-table" style="display:none;">
         <table id="customerTable" class="table table-bordered table-hovere">
             <thead>
-                <tr class="warning">
+                <tr class="bg-whife">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
                     <th class="center">លេខទូរសព្ទ</th>
@@ -99,7 +99,7 @@
             $('body').find('.loading').remove();
         });
     }
-    
+
     function RenderTable(customers, callback){
         var element = '';
         if((customers != null) && (customers.length > 0)){

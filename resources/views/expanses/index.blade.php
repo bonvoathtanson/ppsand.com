@@ -14,7 +14,7 @@
   <div class="col-sm-12">
     <table id="expanseTable" class="table table-bordered table-hover">
       <thead>
-        <tr class="warning">
+        <tr class="bg-whife">
           <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
           <th>ថ្ងៃខែចំណាយ</th>
           <th>ប្រភេទចំណាយ</th>
