@@ -9,6 +9,8 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
+        <a href="{{url('/create/sale')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> លក់ចេញ</a>
+        <a href="{{url('/create/income/2')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> សងលុយ</a>
       <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន</a>
     </div>
   </div>
