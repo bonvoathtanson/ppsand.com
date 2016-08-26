@@ -13,7 +13,9 @@
     </div>
   </div>
 </div>
-    <div class="panel panel-default" style="width:100%">
+<form id="formSearchSale" class="form-horizontal" method="post" onsubmit="return false;">
+    {{ csrf_field() }}
+    <div class="panel panel-default" style="width:100%;padding:5px">
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-xm-1" style="width:280px; padding-left:0px;">
@@ -22,16 +24,16 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleToDate" name="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:75px;margin-top:5px; padding-left:0;">លេខឡាន</div>
-                    <div class="col-sm-1" style="width:120px; padding-left:0px">
+                    <div class="col-sm-1" style="width:135px; padding-left:0px">
                         <select class="form-control" name="carNumber" id="carNumber">
-                            <option value=""></option>
+                            <option value="">ជ្រើសលេខឡាន</option>
                             <?php foreach ($cars as $index => $value): ?>
                                 <option value="{{$value->Id}}" name="{{$value->CarNo}}">{{$value->CarNo}}</option>
                             <?php endforeach; ?>
@@ -45,6 +47,7 @@
     </div>
     <input type="hidden" id="hdfcustomerId" name="hdfcustomerId" value="">
     <input type="hidden" id="hdfcarNumber" name="hdfcarNumber" value="">
+</form>
 <div class="row">
   <div class="col-sm-12">
     <table id="saleTable" class="table table-bordered table-hover">
@@ -70,6 +73,7 @@
   </div>
 </div>
 <form id="formCustomer" class="form-horizontal" onsubmit="return false;">
+    {{ csrf_field() }}
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -36,7 +36,7 @@ Route::group(['prefix' => 'filter'], function(){
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'CustomerController@search');
     Route::get('/customerask', 'CustomerController@indexinfo');
-    Route::get('/sale', 'SaleController@search');
+    Route::post('/sale', 'SaleController@search');
     Route::get('/import', 'ImportController@search');
     Route::get('/supplier', 'SupplierController@search');
     Route::get('/income', 'IncomeController@search');
