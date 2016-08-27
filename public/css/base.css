@@ -160,8 +160,7 @@ body{
 
 .modal-content{
     border: 1px solid #ddd;
-    border-radius: 5px !important;
-    overflow: hidden;
+    border-radius: 3px !important;
 }
 
 .btn-whife{
