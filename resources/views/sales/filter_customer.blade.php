@@ -115,7 +115,7 @@
                                 '<td class="center">' +
                                     '<a href="' + burl + '/create/askinfo/' + item.Id + '" class="btn btn-info btn-e">សួរព័ត៍មាន</a> ' +
                                     '<a href="' + burl + '/create/sale/' + item.Id + '" class="btn btn-success btn-e">លក់ចេញ</a> ' +
-                                    '<a href="' + burl + '/create/income/' + item.Id + '" class="btn btn-danger btn-e">សងលុយ</a>' +
+                                    '<a href="' + burl + '/create/income#' + item.Id + '" class="btn btn-danger btn-e">សងលុយ</a>' +
                                 '</td>'
                             '</tr>';
             });

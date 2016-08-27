@@ -49,7 +49,7 @@
             <div role="tabpanel" class="tab-pane fade in active" id="box-tap1">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-whife">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -79,7 +79,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap2">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-whife">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -111,7 +111,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap3">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-whife">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th>ថ្ងៃខែឆ្នាំលក់</th>
