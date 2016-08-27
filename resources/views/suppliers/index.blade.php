@@ -14,7 +14,7 @@
     <div class="col-sm-12">
         <table id="supplierTable" class="table table-bordered table-hover">
             <thead>
-                <tr class="warning">
+                <tr class="bg-whife">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
                     <th>ភេទ</th>

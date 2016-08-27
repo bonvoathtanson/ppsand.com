@@ -72,14 +72,15 @@ class CustomerController extends Controller
     {
         $key = "%$keyword%";
         $customers = Customer::where('CustomerCode', 'Like', $key)
-                            ->orwhere('CustomerName', 'Like', $key)
-                            ->orwhere('PhoneNumber', 'Like', $key)
-                            ->get();
+        ->orwhere('CustomerName', 'Like', $key)
+        ->orwhere('PhoneNumber', 'Like', $key)
+        ->get();
+
         $this->SetData($customers);
 
         return response()->json($this->Results);
     }
-
+    
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), Customer::rules());

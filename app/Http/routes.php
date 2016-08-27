@@ -1,4 +1,5 @@
 <?php
+
 Route::group(['prefix' => '/'], function(){
     Route::get('', 'HomeController@index');
     Route::get('login', 'UserController@login');
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'filter'], function(){
 Route::group(['prefix' => 'find'], function(){
     Route::get('/customer', 'CustomerController@search');
     Route::get('/customerask', 'CustomerController@indexinfo');
-    Route::get('/sale', 'SaleController@search');
+    Route::post('/sale', 'SaleController@search');
     Route::get('/import', 'ImportController@search');
     Route::get('/supplier', 'SupplierController@search');
     Route::get('/income', 'IncomeController@search');
@@ -51,7 +52,7 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/customer', 'CustomerController@create');
     Route::get('/askinfo/{id}', 'CustomerController@addinfo');
     Route::get('/supplier', 'SupplierController@create');
-    Route::get('/income/{id}', 'IncomeController@create');
+    Route::get('/income', 'IncomeController@create');
     Route::get('/otherincome', 'IncomeController@otherincome');
     Route::get('/expanse/{id}', 'ExpanseController@create');
     Route::get('/sale/{id}', 'SaleController@create');

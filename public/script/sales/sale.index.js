@@ -1,4 +1,14 @@
 (function(){
+    $('#saleFromDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $('#saleToDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
     ViewItem();
 
     function ViewItem(){
@@ -8,14 +18,45 @@
             });
         });
     }
-
+    //Function On selected customer name
+    $('body').on('click','.selected',function(){
+        var customerName = $(this).attr('data-name');
+        var customerId   = $(this).attr('data-id');
+        var carNumber   = $('#hdfcarNumber').val();
+        $('#customerName').val(customerName);
+        $('#hdfcustomerId').val(customerId);
+        ViewItem();
+        $('#myModal').modal('hide');
+    });
+    //Function on change car number
+    $('body').on('change','#carNumber',function(){
+        var carNumber = $(this).find(':selected').attr('name')
+        var customerId = $('#hdfcustomerId').val();
+        $('#hdfcarNumber').val(carNumber);
+        ViewItem();
+        $('#myModal').modal('hide');
+    });
+    //Function click on button search
+    $('body').on('click', '#btnsearch', function () {
+        var customerId   = $('#hdfcustomerId').val();
+        var saleFormDate = $('#saleFromDate').val();
+        var saleToDate   = $('#saleToDate').val();
+        var CarNumber    = $('#CarNumber').val();
+        if( customerId !='' || saleFormDate != '' || saleToDate != '' || CarNumber !='' ){
+            ViewItem();
+        }else{
+            $('.box-null').show();
+            $('#saleTable tbody tr').remove();
+        }
+     });
+    //+ $('#saleFormDate').val() + $('#saleToDate').val() + $('#CarNumber').val()
     function GetItems(callback) {
         $('body').append(Loading());
+        var formData = $('#formSearchSale').serialize();
         $.ajax({
             url: burl + '/find/sale',
-            type: 'GET',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: formData
         }).done(function (data) {
             if(data.IsError == false){
                 if(typeof callback == 'function'){

@@ -22,7 +22,7 @@
     <div class="box-table" style="display:none;">
         <table id="customerTable" class="table table-bordered table-hovere">
             <thead>
-                <tr class="warning">
+                <tr class="bg-whife">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
                     <th class="center">លេខទូរសព្ទ</th>
@@ -33,7 +33,7 @@
         </table>
     </div>
     <div class="box-null" style="font-size:14pt; color:red; display:none;">
-        ទិន្នន័យស្វែកមិនមាន
+        ទិន្នន័យស្វែ​ងរកមិនមាន
     </div>
 </form>
 @endsection

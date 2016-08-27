@@ -13,7 +13,8 @@ class SaleController extends Controller
 {
     public function index()
     {
-        return view('sales.index');
+        $cars = CarNumber::all();
+        return view('sales.index',['cars' => $cars]);
     }
 
     public function transfer()
@@ -33,8 +34,45 @@ class SaleController extends Controller
         return view('sales.transfer', ['sales' => $sales, 'cars' => $cars]);
     }
 
-    public function search(){
-        $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->get();
+    public function FindSaleByCustomerId(){
+        $id = 1;
+        $customer = Customer::find($id);
+        $sales = Sale::where('CustomerId', '=', $id)
+                    ->where('SubTotal', '>', DB::raw('PayAmount'))
+                    ->orderBy('SaleDate', 'ASC')->get();
+        $results = array(
+            'customer' => $customer,
+            'sales' => $sales
+        );
+
+        return response()->json($results);
+    }
+
+    public function search(Request $request)
+    {
+        $customerId = $request->hdfcustomerId;
+        $carNumber = $request->hdfcarNumber;
+        $fromDate = $request->saleFromDate;
+        $toDate = $request->saleToDate;
+
+        if( $customerId =='' && $carNumber =='' && $fromDate =='' && $toDate =='' ){
+            $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->get();
+        }else{
+            $query = Sale::query();
+            if(!Empty($customerId)){
+                $query->where('CustomerId', '=', $customerId);
+            }
+            if(!Empty($carNumber)){
+                $query->where('CarNumber', '=', $carNumber);
+            }
+            if(!Empty($fromDate)){
+                $query->whereDate('SaleDate', '>=', $fromDate);
+            }
+            if(!Empty($toDate)){
+                $query->whereDate('SaleDate', '<=', $toDate);
+            }
+           $sales = $query->where('SubTotal', '>', DB::raw('PayAmount'))->get();
+        }
         $sales->load(['Customer', 'Item']);
         $this->Results['Data'] = $sales;
 
