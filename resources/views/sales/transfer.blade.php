@@ -21,7 +21,7 @@
                     <th>ឈ្មោះអតិថិជន</th>
                     <th>មុខទំនិញ</th>
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
-                    <th class="center">ថ្ងៃខែឆ្មាំដឹកចេញ</th>
+                    <th class="center">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
                     <th class="center">ចំនួន</th>
                     <th style="width:80px;"></th>
                 </tr>
@@ -236,6 +236,7 @@
     }
 
     function SaveOrUpdate() {
+        var id = $('[name="Id"]').val();
         $('body').append(Loading());
         var item = $('#formTransfer').serialize();
         $.ajax({
@@ -247,8 +248,10 @@
                 $(select).remove();
                 $('#transfermodal').modal('hide');
                 $('#formTransfer').bootstrapValidator("resetForm", true);
+                //swal(data.Message, '', 'success');
+                window.open(burl + '/report/report/'+ id +'','_blank');
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();

@@ -10,8 +10,8 @@
   <div class="col-sm-12">
     <div class="pull-right">
         <a href="{{url('/create/sale')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> លក់ចេញ</a>
-        <a href="{{url('/create/income/2')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> សងលុយ</a>
-      <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន</a>
+        <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> សងលុយ</a>
+        <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន</a>
     </div>
   </div>
 </div>
@@ -109,7 +109,7 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div class="box-null center" style="font-size:11pt; color:red; display:none;">
+                    <div class="box-null-customer center" style="font-size:11pt; color:red; display:none;">
                         <div class="form-group">
                             <label class="col-sm-1 control-label" style="width:180px;​padding-left:0px">ទិន្នន័យស្វែ​ងរកមិនមាន</label>
                         </div>
@@ -143,7 +143,7 @@
         if(value != '' && value != null){
             Search();
         }else{
-            $('.box-null').show();
+            $('.box-null-customer').show();
             $('.box-table').hide();
             $('#customerTable tbody tr').remove();
         }
@@ -154,7 +154,7 @@
             if(value != '' && value != null){
                 Search();
             }else{
-                $('.box-null').show();
+                $('.box-null-customer').show();
                 $('.box-table').hide();
                 $('#customerTable tbody tr').remove();
             }
@@ -166,10 +166,10 @@
             RenderTable(customers, function(element){
                 if(element != '' && element != null)
                 {
-                    $('.box-null').hide();
+                    $('.box-null-customer').hide();
                     $('.box-table').show();
                 }else{
-                    $('.box-null').show();
+                    $('.box-null-customer').show();
                     $('.box-table').hide();
                 }
                 $('#customerTable tbody').html(element);

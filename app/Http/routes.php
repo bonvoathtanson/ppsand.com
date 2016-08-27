@@ -105,4 +105,5 @@ Route::group(['prefix' => 'detail'], function(){
 
 Route::group(['prefix' => 'report'], function(){
     Route::get('/item', 'ItemController@report');
+    Route::get('/report/{id}', 'SaleController@report');
 });

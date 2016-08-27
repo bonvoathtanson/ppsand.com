@@ -19,7 +19,7 @@
                     <input type="text" class="form-control" disabled="disabled">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
-                    <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a>
+                    <a href="javascript:void(0)" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
                     <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជនថ្មី</a>
                 </div>
             </div>
@@ -72,6 +72,51 @@
         </div>
     </div>
 </form>
+<form id="formCustomer" class="form-horizontal" onsubmit="return false;">
+    {{ csrf_field() }}
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="itemname" style="color:#0856ab; font-weight:bold;">ស្វែងរកឈ្មោះអតិថិជន</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" style="min-height:350px;">
+                    <table style="width:250px; margin-bottom:5px;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control"​ placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                                </td>
+                                <td class="center" style="width:20px; padding-left:10px;">
+                                    <button type="button" id="btnSearchNameCustomer" class="btn btn-success">ស្វែងរក</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="box-table">
+                        <table id="customerTable" class="table table-bordered table-hovered">
+                            <thead>
+                                <tr class="bg-whife">
+                                    <th>លេខកូដ</th>
+                                    <th>ឈ្មោះ</th>
+                                    <th class="center">លេខទូរស័ព្ទ</th>
+                                    <th style="width:90px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="box-null-customer center" style="font-size:11pt; color:red; display:none;">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label" style="width:180px;​padding-left:0px">ទិន្នន័យស្វែ​ងរកមិនមាន</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection
 @section('script')
 <script src="{{url('/script/plugin/icheck/icheck.js')}}" charset="utf-8"></script>
@@ -79,6 +124,7 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
     (function() {
+
         $('#incomedate').datetimepicker({
             format: 'YYYY-MM-DD',
             defaultDate: new Date()
@@ -148,6 +194,109 @@
             }).on('success.form.bv', function (e) {
                 SaveOrUpdate();
             });
+        }
+
+        //----------Select customer---------
+        $('body').on('click', '.customer', function(){
+            $('#myModal').modal({
+                backdrop: false
+            });
+        });
+        $('#myModal').on('shown.bs.modal', function (e) {
+            $('#customerNameSearch').focus();
+        });
+
+        $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#customerNameSearch').val('');
+        });
+
+        $('body').on('click','.selected',function(){
+            // var customerName = $(this).attr('data-name');
+            // var customerId   = $(this).attr('data-id');
+            // var carNumber   = $('#hdfcarNumber').val();
+            // $('#customerName').val(customerName);
+            // $('#hdfcustomerId').val(customerId);
+            $('#myModal').modal('hide');
+        });
+
+        $('body').on('click', '#btnSearchNameCustomer', function(){
+            var value = $('#customerNameSearch').val();
+            if(value != '' && value != null){
+                Search();
+            }else{
+                $('.box-null-customer').show();
+                $('.box-table').hide();
+                $('#customerTable tbody tr').remove();
+            }
+        });
+        $('body').on('keypress', '#customerNameSearch', function(event){
+            if(event.which == 13) {
+                var value = $('#customerNameSearch').val();
+                if(value != '' && value != null){
+                    Search();
+                }else{
+                    $('.box-null-customer').show();
+                    $('.box-table').hide();
+                    $('#customerTable tbody tr').remove();
+                }
+            }
+        });
+
+        function Search(){
+            GetItems(function(customers){
+                RenderTable(customers, function(element){
+                    if(element != '' && element != null)
+                    {
+                        $('.box-null-customer').hide();
+                        $('.box-table').show();
+                    }else{
+                        $('.box-null-customer').show();
+                        $('.box-table').hide();
+                    }
+                    $('#customerTable tbody').html(element);
+                });
+            });
+        }
+        function GetItems(callback) {
+            $('body').append(Loading());
+            var requestUrl = burl + '/filter/customer/' + $('#customerNameSearch').val();
+            $.ajax({
+                url: requestUrl,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (data) {
+                if(data.IsError == false){
+                    if(typeof callback == 'function'){
+                        callback(data.Data);
+                    }
+                }
+            }).complete(function (data) {
+                $('body').find('.loading').remove();
+            });
+        }
+
+        function RenderTable(customers, callback){
+            var element = '';
+            if((customers != null) && (customers.length > 0)){
+                $.each(customers, function(index, item){
+                    var sex = 'ប្រុស';
+                    if(item.Sex == 2){
+                        sex = 'ស្រី';
+                    }
+                    element += '<tr>' +
+                    '<td>' + item.CustomerCode + '</td>' +
+                    '<td>' + item.CustomerName + '</td>' +
+                    '<td class="center">' + item.PhoneNumber + '</td>' +
+                    '<td class="center">' +
+                    '<a data-id="' + item.Id + '" data-name="' + item.CustomerName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
+                    '</td>'
+                    '</tr>';
+                });
+            }
+            if(typeof callback == 'function'){
+                callback(element);
+            }
         }
     })();
 </script>

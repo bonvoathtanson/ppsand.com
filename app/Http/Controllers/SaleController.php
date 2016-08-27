@@ -23,7 +23,11 @@ class SaleController extends Controller
         $cars = CarNumber::all();
         return view('sales.transfer', ['sales' => $sales, 'cars' => $cars]);
     }
-
+    public function report($id)
+    {
+        $transfer = Sale::where('Id', '=', $id)->first();
+        return view('sales.report',['transfer' => $transfer]);
+    }
     public function timetransfer()
     {
         $sales = Sale::where('IsOrder', '=', 1)
@@ -100,7 +104,7 @@ class SaleController extends Controller
             $this->SetMessage($e);
             DB::rollBack();
         }
-
+        $this->SetMessage('ទំនិញត្រូវបានដឹកចេញ!');
         return response()->json($this->Results);
     }
 
