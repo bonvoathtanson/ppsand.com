@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled">
+                    <input id="customername" type="text" class="form-control" disabled="disabled">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0)" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -74,7 +74,7 @@
 </form>
 <form id="formCustomer" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div id="SearchModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -82,18 +82,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body" style="min-height:350px;">
-                    <table style="width:250px; margin-bottom:5px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control"​ placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
-                                </td>
-                                <td class="center" style="width:20px; padding-left:10px;">
-                                    <button type="button" id="btnSearchNameCustomer" class="btn btn-success">ស្វែងរក</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style="margin-bottom:3px;">
+                        <div class="input-group">
+                            <input type="text" name="FilterText" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" id="btnSearch" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
+                            </span>
+                        </div>
+                    </div>
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
@@ -107,11 +103,6 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div class="box-null-customer center" style="font-size:11pt; color:red; display:none;">
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label" style="width:180px;​padding-left:0px">ទិន្នន័យស្វែ​ងរកមិនមាន</label>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -122,18 +113,9 @@
 <script src="{{url('/script/plugin/icheck/icheck.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/incomes/income.add.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
     (function() {
-
-        $('#incomedate').datetimepicker({
-            format: 'YYYY-MM-DD',
-            defaultDate: new Date()
-        });
-
-        $(':checkbox').iCheck({
-            checkboxClass: 'icheckbox_minimal'
-        });
-
         $('input').on('ifChecked', function(event){
             var select = $(this).closest('tr');
             var total = parseInt($(select).find('td:eq(6)').text()) + parseInt($('#totalamount').text());
@@ -194,109 +176,6 @@
             }).on('success.form.bv', function (e) {
                 SaveOrUpdate();
             });
-        }
-
-        //----------Select customer---------
-        $('body').on('click', '.customer', function(){
-            $('#myModal').modal({
-                backdrop: false
-            });
-        });
-        $('#myModal').on('shown.bs.modal', function (e) {
-            $('#customerNameSearch').focus();
-        });
-
-        $('#myModal').on('hidden.bs.modal', function (e) {
-            $('#customerNameSearch').val('');
-        });
-
-        $('body').on('click','.selected',function(){
-            // var customerName = $(this).attr('data-name');
-            // var customerId   = $(this).attr('data-id');
-            // var carNumber   = $('#hdfcarNumber').val();
-            // $('#customerName').val(customerName);
-            // $('#hdfcustomerId').val(customerId);
-            $('#myModal').modal('hide');
-        });
-
-        $('body').on('click', '#btnSearchNameCustomer', function(){
-            var value = $('#customerNameSearch').val();
-            if(value != '' && value != null){
-                Search();
-            }else{
-                $('.box-null-customer').show();
-                $('.box-table').hide();
-                $('#customerTable tbody tr').remove();
-            }
-        });
-        $('body').on('keypress', '#customerNameSearch', function(event){
-            if(event.which == 13) {
-                var value = $('#customerNameSearch').val();
-                if(value != '' && value != null){
-                    Search();
-                }else{
-                    $('.box-null-customer').show();
-                    $('.box-table').hide();
-                    $('#customerTable tbody tr').remove();
-                }
-            }
-        });
-
-        function Search(){
-            GetItems(function(customers){
-                RenderTable(customers, function(element){
-                    if(element != '' && element != null)
-                    {
-                        $('.box-null-customer').hide();
-                        $('.box-table').show();
-                    }else{
-                        $('.box-null-customer').show();
-                        $('.box-table').hide();
-                    }
-                    $('#customerTable tbody').html(element);
-                });
-            });
-        }
-        function GetItems(callback) {
-            $('body').append(Loading());
-            var requestUrl = burl + '/filter/customer/' + $('#customerNameSearch').val();
-            $.ajax({
-                url: requestUrl,
-                type: 'GET',
-                dataType: 'JSON',
-                contentType: 'application/json; charset=utf-8',
-            }).done(function (data) {
-                if(data.IsError == false){
-                    if(typeof callback == 'function'){
-                        callback(data.Data);
-                    }
-                }
-            }).complete(function (data) {
-                $('body').find('.loading').remove();
-            });
-        }
-
-        function RenderTable(customers, callback){
-            var element = '';
-            if((customers != null) && (customers.length > 0)){
-                $.each(customers, function(index, item){
-                    var sex = 'ប្រុស';
-                    if(item.Sex == 2){
-                        sex = 'ស្រី';
-                    }
-                    element += '<tr>' +
-                    '<td>' + item.CustomerCode + '</td>' +
-                    '<td>' + item.CustomerName + '</td>' +
-                    '<td class="center">' + item.PhoneNumber + '</td>' +
-                    '<td class="center">' +
-                    '<a data-id="' + item.Id + '" data-name="' + item.CustomerName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
-                    '</td>'
-                    '</tr>';
-                });
-            }
-            if(typeof callback == 'function'){
-                callback(element);
-            }
         }
     })();
 </script>

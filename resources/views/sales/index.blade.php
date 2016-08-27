@@ -89,18 +89,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body" style="min-height:350px;">
-                    <table style="width:250px; margin-bottom:5px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control"​ placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
-                                </td>
-                                <td class="center" style="width:20px; padding-left:10px;">
-                                    <button type="button" id="btnSearchNameCustomer" class="btn btn-success">ស្វែងរក</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style="margin-bottom:3px;">
+                        <div class="input-group">
+                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" id="btnSearchNameCustomer" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
+                            </span>
+                        </div>
+                    </div>
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
