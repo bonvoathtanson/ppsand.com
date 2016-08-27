@@ -19,7 +19,11 @@
         <div class="col-sm-12">
             <table id="itemTable" class="table table-bordered table-hover">
                 <thead>
+<<<<<<< HEAD
+                    <tr class="warning">
+=======
                     <tr class="bg-whife">
+>>>>>>> baf7139e6c1c9039b7fedbb261e46e69bb45e708
                         <th>លេខកូដ</th>
                         <th>ឈ្មោះទំនិញ</th>
                         <th class="center">តំលៃលក់</th>
