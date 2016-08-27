@@ -21,7 +21,12 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-xm-1" style="width:280px; padding-left:0px;">
-                    <input type="text" id="customerName" name="customerName" class="form-control" placeholder="ឈ្មោះអតិថិជន">
+                    <div class="input-group">
+                        <input type="text" id="customerName" name="customerName" class="form-control btn-default" placeholder="ជ្រើសរើសអតិថិជន">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" style="border:1px solid #419641;" type="button">សំអាត</button>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
