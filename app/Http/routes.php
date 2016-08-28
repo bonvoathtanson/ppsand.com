@@ -43,7 +43,7 @@ Route::group(['prefix' => 'find'], function(){
     Route::post('/sale', 'SaleController@search');
     Route::get('/import', 'ImportController@search');
     Route::get('/supplier', 'SupplierController@search');
-    Route::get('/income', 'IncomeController@search');
+    Route::post('/income', 'IncomeController@search');
     Route::get('/expanse', 'ExpanseController@search');
     Route::get('/item', 'ItemController@search');
     Route::get('/itemdetail/{id}', 'ItemController@detail');

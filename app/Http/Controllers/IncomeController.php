@@ -32,9 +32,29 @@ class IncomeController extends Controller
         return view('incomes.create');
     }
 
-    public function search()
+    public function search(Request $request)
     {
+      
+      $customerId = $request->customerId;
+      $fromDate = $request->incomeFromDate;
+      $toDate = $request->incomeToDate;
+
+      if($customerId =='' && $fromDate =='' && $toDate =='' ){
         $incomes = Income::all();
+      }else{
+        $query = Income::query();
+        if(!Empty($customerId)){
+            $query->where('CustomerId', '=', $customerId);
+        }
+        if(!Empty($fromDate)){
+            $query->whereDate('IncomeDate', '>=', $fromDate);
+        }
+        if(!Empty($toDate)){
+            $query->whereDate('IncomeDate', '<=', $toDate);
+        }
+        $incomes = $query->get();
+      }
+
         $incomes->load('Customer');
         $this->SetData($incomes);
 
