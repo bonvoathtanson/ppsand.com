@@ -1,46 +1,37 @@
 (function() {
+    SetDeliveryValidation();
 
     $('body').on('click', '#save', function(){
         SaveOrUpdate();
     });
 
+    var select;
     $('body').on('click', '.transfer', function () {
-        var select = $(this).closest('tr');
+        select = $(this).closest('tr');
         var id = $(select).attr('data-id');
-        swal({
-            title: 'ដឹកទំនិញអោយគេ',
-            text: 'តើអ្នកពិតជាបានដឹកទំនិញចេញម៉ែនឬទេ?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'យល់ព្រម',
-            cancelButtonText: 'បោះបង់',
-            closeOnConfirm: false
-        }, function () {
-            $('body').append(Loading());
-            $.ajax({
-                type: 'GET',
-                url: burl + '/transfer/sale/' + id,
-                dataType: "JSON",
-                contentType: 'application/json; charset=utf-8',
-            }).done(function (data) {
-                if (data.IsError == false) {
-                    swal('ទំនិញត្រូវបានដឹកចេញបានជោកជ័យ', '', 'success');
-                    $(select).remove();
-                } else {
-                    swal(data.Message, '', 'success');
-                }
-            }).complete(function (data) {
-                $('body').find('.loading').remove();
-            });
+        $('[name="Id"]').val(id);
+        $('#transfermodal').modal({
+            backdrop:'static'
         });
     });
 
+    $('#transfermodal').on('hidden.bs.modal', function (e) {
+        select = '';
+        $('[name="Id"]').val('');
+        $('[name="CarNumber"][value=""]').prop('selected', true);
+        $('#datetransfer').data("DateTimePicker").date(moment());
+    });
+
     $('#saledate').datetimepicker({
-        defaultDate: new Date()
+        defaultDate: moment()
     });
 
     $('#transferdate').datetimepicker({
-        defaultDate: new Date()
+        defaultDate: moment()
+    });
+
+    $('#datetransfer').datetimepicker({
+        defaultDate: moment()
     });
 
     $('body').on('keypress', '#itemcode', function(event){
@@ -56,7 +47,7 @@
                         $('#itemname').text('ឈ្មោះមុខទំនិញ [ ' + item.ItemName + ' ]');
                         $('#saleprice').val(item.SalePrice);
                         $('#myModal').modal({
-                          backdrop: false
+                            backdrop: 'static'
                         });
                     }
                 });
@@ -110,31 +101,86 @@
 
     function GetItemDetail(id, callback) {
         $.ajax({
-          url: burl + '/find/itemdetail/' + id,
-          type: 'GET',
-          dataType: 'JSON',
-          contentType: 'application/json; charset=utf-8',
+            url: burl + '/find/itemdetail/' + id,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
-          if(data.IsError == false){
-            if(typeof callback == 'function'){
-              callback(data.Data);
+            if(data.IsError == false){
+                if(typeof callback == 'function'){
+                    callback(data.Data);
+                }
             }
-          }
         }).complete(function (data) {
-          $('body').find('.loading').remove();
+            $('body').find('.loading').remove();
         });
-      }
+    }
 
-      function CalTotal(){
-          var qty = $('#quantity').val();
-          if(qty == null || qty == ''){
-              qty = 0;
-          }
-          var price = $('#saleprice').val();
-          if(price == null || price == ''){
-              price = 0;
-          }
-          var total = qty * price;
-          $('#totalamount').val(total);
-      }
+    function CalTotal(){
+        var qty = $('#quantity').val();
+        if(qty == null || qty == ''){
+            qty = 0;
+        }
+        var price = $('#saleprice').val();
+        if(price == null || price == ''){
+            price = 0;
+        }
+        var total = qty * price;
+        $('#totalamount').val(total);
+    }
+
+    function SaveTransfer() {
+        var id = $('[name="Id"]').val();
+        $('body').append(Loading());
+        var item = $('#formTransfer').serialize();
+        $.ajax({
+            type: 'POST',
+            url: burl + '/transfer/sale',
+            data: item
+        }).done(function (data) {
+            if (data.IsError == false) {
+                $('#transfermodal').modal('hide');
+                $(select).remove();
+                $('#formTransfer').bootstrapValidator("resetForm", true);
+                window.open(burl + '/report/report/'+ id +'','_blank');
+            } else {
+                swal(data.Message, '', 'warning');
+            }
+        }).complete(function (data) {
+            $('body').find('.loading').remove();
+        });
+    }
+
+    function SetDeliveryValidation() {
+        var form = $('body').find('#formTransfer');
+        form.bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                CarNumber: {
+                    validators: {
+                        notEmpty: {
+                            message: 'សូមបញ្ចូលលេខឡាន'
+                        }
+                    }
+                },
+                TransferDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'សូមបញ្ចូលថ្ងៃខែឆ្នាំដឹកចេញ'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            SaveTransfer();
+        });
+        $('body').on('click', '#btnsave', function (e) {
+            form.bootstrapValidator('validate');
+        });
+    }
+
 })();

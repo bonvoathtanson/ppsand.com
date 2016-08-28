@@ -138,7 +138,7 @@
             </div>
         </div>
     </div>
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -195,6 +195,51 @@
         </div>
     </div>
 </form>
+<div class="modal fade" tabindex="-1" role="dialog" id="transfermodal">
+    <form id="formTransfer" onsubmit="return false;">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="Id">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title font-M1">កំណត់ត្រាដឹកជូនអតិថិជន</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">លេខឡាន</th>
+                                <td>
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <select class="form-control" name="CarNumber">
+                                            <option value="">ជ្រើសលេខឡាន</option>
+                                            <?php foreach ($cars as $key => $value): ?>
+                                                <option value="{{$value->CarNo}}">{{$value->CarNo}} ({{$value->Description}})</option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
+                                <td>
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <input type="text" class="form-control" name="TransferDate" id="datetransfer">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">បិទ</button>
+                    <button type="submit" class="btn btn-primary" id="btnsave">រក្សាទុក</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 @endsection
 @section('script')
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>

@@ -125,11 +125,14 @@ class SaleController extends Controller
                         ->where('SubTotal', '<=', DB::raw('PayAmount'))
                         ->orderBy('SaleDate', 'DESC')->get();
 
+        $cars = CarNumber::all();
+
         $results = array(
             'customer' => $customer,
             'transfers' => $transfers,
             'oncredits' => $oncredits,
-            'onpayoffs' => $onpayoffs
+            'onpayoffs' => $onpayoffs,
+            'cars' => $cars
         );
 
         return view('sales.create', $results);

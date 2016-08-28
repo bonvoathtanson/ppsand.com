@@ -248,7 +248,6 @@
                 $(select).remove();
                 $('#transfermodal').modal('hide');
                 $('#formTransfer').bootstrapValidator("resetForm", true);
-                //swal(data.Message, '', 'success');
                 window.open(burl + '/report/report/'+ id +'','_blank');
             } else {
                 swal(data.Message, '', 'warning');
