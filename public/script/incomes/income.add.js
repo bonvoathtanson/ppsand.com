@@ -47,7 +47,7 @@
 
     function GetCustomer(keyword, callback) {
         $('body').append(Loading());
-        var requestUrl = burl + '/filter/customer/'+keyword;
+        var requestUrl = burl + '/filter/customer/' + keyword;
         $.ajax({
             url: requestUrl,
             type: 'GET',
@@ -137,9 +137,9 @@
                 '<td style="text-align:right;">' + remain + '</td>' +
                 '</tr>';
             });
-            if(typeof callback == 'function'){
-                callback(element);
-            }
+        }
+        if(typeof callback == 'function'){
+            callback(element);
         }
     }
 })();

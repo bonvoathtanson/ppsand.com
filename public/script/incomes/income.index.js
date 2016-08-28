@@ -1,60 +1,40 @@
 (function(){
     $('body').on('focus', '#customerName', function(){
-        $('#myModal').modal({
+        $('#searchModal').modal({
             backdrop: 'static'
         });
     });
 
-    $('#myModal').on('shown.bs.modal', function (e) {
+    $('#searchModal').on('shown.bs.modal', function (e) {
         $('#customerNameSearch').focus();
     });
 
-    $('#myModal').on('hidden.bs.modal', function (e) {
+    $('#searchModal').on('hidden.bs.modal', function (e) {
         $('#customerNameSearch').val('');
     });
 
     $('body').on('click', '#btnSearchNameCustomer', function(){
-        var value = $('#customerNameSearch').val();
-        if(value != '' && value != null){
-            Search();
-        }else{
-            $('.box-null-customer').show();
-            $('.box-table').hide();
-            $('#customerTable tbody tr').remove();
-        }
+        Search();
     });
+
     $('body').on('keypress', '#customerNameSearch', function(event){
         if(event.which == 13) {
-            var value = $('#customerNameSearch').val();
-            if(value != '' && value != null){
-                Search();
-            }else{
-                $('.box-null-customer').show();
-                $('.box-table').hide();
-                $('#customerTable tbody tr').remove();
-            }
+            Search();
         }
     });
 
     function Search(){
-        GetItemsCustomer(function(customers){
+        var keyword = $('#customerNameSearch').val();
+        GetItemsCustomer(keyword, function(customers){
             RenderTableCustomer(customers, function(element){
-                if(element != '' && element != null)
-                {
-                    $('.box-null-customer').hide();
-                    $('.box-table').show();
-                }else{
-                    $('.box-null-customer').show();
-                    $('.box-table').hide();
-                }
                 $('#customerTable tbody').html(element);
             });
         });
     }
 
-    function GetItemsCustomer(callback) {
+    function GetItemsCustomer(keyword, callback) {
         $('body').append(Loading());
-        var requestUrl = burl + '/filter/customer/' + $('#customerNameSearch').val();
+        var requestUrl = burl + '/filter/customer/' + keyword;
         $.ajax({
             url: requestUrl,
             type: 'GET',
@@ -89,13 +69,14 @@
             callback(element);
         }
     }
+
     $('body').on('click','.selected',function(){
         var customerName = $(this).attr('data-name');
         var customerId   = $(this).attr('data-id');
         $('#customerName').val(customerName);
         $('#customerId').val(customerId);
-        ViewItem();
-        $('#myModal').modal('hide');
+        ViewIncome();
+        $('#searchModal').modal('hide');
     });
 
     $('#incomeFromDate').datetimepicker({
@@ -114,7 +95,7 @@
         var incomeFormDate = $('#incomeFromDate').val();
         var incomeToDate   = $('#incomeToDate').val();
         if( customerId !='' || incomeFormDate != '' || incomeToDate != ''){
-            ViewItem();
+            ViewIncome();
         }else{
             $('.box-null').show();
             $('#incomeTable tbody tr').remove();
@@ -125,14 +106,14 @@
     $('body').on('click', '#btnClear', function () {
         $('#customerId').val('');
         $('#customerName').val('');
-        ViewItem();
+        ViewIncome();
     });
 
-    ViewItem();
+    ViewIncome();
 
-    function ViewItem(){
-        GetItems(function(incomes){
-            RenderTable(incomes, function(element){
+    function ViewIncome(){
+        GetIncome(function(incomes){
+            RenderTableIncome(incomes, function(element){
                 if(element != '' && element != null)
                 {
                     $('.box-null').hide();
@@ -144,7 +125,7 @@
         });
     }
 
-    function GetItems(callback) {
+    function GetIncome(callback) {
         $('body').append(Loading());
         var formIncome = $('#formSearchIncome').serialize();
         $.ajax({
@@ -162,7 +143,7 @@
         });
     }
 
-    function RenderTable(incomes, callback){
+    function RenderTableIncome(incomes, callback){
         var element = '';
         if((incomes != null) && (incomes.length > 0)){
             $.each(incomes, function(index, item){

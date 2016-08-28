@@ -27,9 +27,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:150px;"><input type="text" id="incomeFromDate" name="incomeFromDate" class="form-control" placeholder="ចាប់ពីថ្ងៃ"></td>
+                    <td style="width:150px;">
+                        <div style="position: relative">
+                            <input type="text" id="incomeFromDate" name="incomeFromDate" class="form-control" placeholder="ចាប់ពីថ្ងៃ">
+                        </div>
+                    </td>
                     <td style="vertical-align:middle;"><span>ដល់</span></td>
-                    <td style="width:150px;"><input type="text" id="incomeToDate" name="incomeToDate" class="form-control" placeholder="ដល់ថ្ងៃ"></td>
+                    <td style="width:150px;">
+                        <div style="position: relative">
+                            <input type="text" id="incomeToDate" name="incomeToDate" class="form-control" placeholder="ដល់ថ្ងៃ">
+                        </div>
+                    </td>
                     <td>
                         <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>
                     </td>
@@ -57,7 +65,7 @@
 </div>
 <form id="formCustomer" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div id="searchModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,11 +93,6 @@
                             </thead>
                             <tbody></tbody>
                         </table>
-                    </div>
-                    <div class="box-null-customer center" style="font-size:11pt; color:red; display:none;">
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label" style="width:180px;​padding-left:0px">ទិន្នន័យស្វែ​ងរកមិនមាន</label>
-                        </div>
                     </div>
                 </div>
             </div>
