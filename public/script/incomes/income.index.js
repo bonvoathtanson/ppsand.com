@@ -161,7 +161,6 @@
                 '<td class="center">' + item.Description + '</td>' +
                 '<td style="text-align:right;">' + item.TotalAmount + '</td>' +
                 '<td class="center">' +
-                //'<a href="' + burl + '/edit/income/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                 '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                 '</td>'
                 '</tr>';

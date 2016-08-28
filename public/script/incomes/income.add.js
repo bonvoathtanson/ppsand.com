@@ -73,7 +73,7 @@
                 '<td>' + item.CustomerName + '</td>' +
                 '<td class="center">' + item.PhoneNumber + '</td>' +
                 '<td class="center">' +
-                '<button class="btn btn-info btn-e selected">ជ្រើសរើស</button> ' +
+                '<button type="button" class="btn btn-info btn-e selected">ជ្រើសរើស</button> ' +
                 '</td>'
                 '</tr>';
             });
