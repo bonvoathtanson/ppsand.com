@@ -5,6 +5,18 @@ function Loading() {
                 '</div>';
   return element;
 }
+var i = true;
+$('body').on('click', '.navbar-brand', function(){
+    if(i == true){
+        $('.box-left').css('left', '-250px');
+        $('.box-right').css('margin-left', '0');
+        i = false;
+    }else{
+        $('.box-left').css('left', '0');
+        $('.box-right').css('margin-left', '250px');
+        i = true;
+    }
+});
 
 function CDate(datetime){
     var ret = '';
@@ -27,15 +39,15 @@ function Notification()
             var a = data.Data.timetransfer;
             var b = data.Data.transfer;
             var c = data.Data.customerask;
-            if(a >= 0)
+            if(a > 0)
             {
                 $('body').find('.badge1').text(a).show();
             }
-            if(b >= 0)
+            if(b > 0)
             {
                 $('body').find('.badge2').text(b).show();
             }
-            if(c >= 0)
+            if(c > 0)
             {
                 $('body').find('.badge3').text(c).show();
             }

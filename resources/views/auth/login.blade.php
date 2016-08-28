@@ -6,19 +6,17 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url('/css/plugin/sweet/sweetalert.css')}}" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="{{url('/css/base.css')}}" media="screen" title="no title" charset="utf-8">
 </head>
-<body style="background:#f2f2f2;">
+<body style="background: #193048;">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-default" style="margin-top:25px;">
-                    <div class="panel-heading">ចូលប្រើប្រាស់ប្រព័ន្ធ</div>
+            <div class="col-md-5 col-md-offset-3">
+                <div class="panel panel-default" style="margin-top:50px;">
+                    <div class="panel-heading bg-whife">ចូលប្រើប្រាស់ប្រព័ន្ធ</div>
                     <div class="panel-body" style="padding-top:25px; padding-buttom:25px;">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/dologin') }}">
                             {{ csrf_field() }}
-
                             <div class="form-group">
                                 <label class="col-md-4 control-label">ឈ្មោះគណនេយ្យ</label>
                                 <div class="col-md-6">
