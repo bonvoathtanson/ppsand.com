@@ -211,6 +211,7 @@ input.form-control:focus{
 
 .bar.active, .bar:hover{
     border-left: 5px solid orange !important;
+    background: #2b669a;
 }
 
 .modal-header{
