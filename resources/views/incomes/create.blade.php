@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" class="form-control" disabled="disabled">
+                    <input type="text" id="address" class="form-control" disabled="disabled">
                 </div>
             </div>
             <div class="form-group">
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="">
+    <div class="tableSale">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr class="bg-whife">
@@ -47,6 +47,7 @@
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
                     <th class="center">ចំនួន</th>
                     <th class="center">ចំនួនទឹកប្រាក់</th>
+                    <th class="center">តំលៃលក់</th>
                     <th class="center">បង់ចំនួន</th>
                     <th class="center">ប្រាក់នៅសល់</th>
                 </tr>
@@ -55,7 +56,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
+                    <td colspan="7" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
                     <td style="text-align:right;">
                         <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
                     </td>
@@ -116,18 +117,6 @@
 <script src="{{url('/script/incomes/income.add.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
     (function() {
-        $('input').on('ifChecked', function(event){
-            var select = $(this).closest('tr');
-            var total = parseInt($(select).find('td:eq(6)').text()) + parseInt($('#totalamount').text());
-            $('#totalamount').text(total);
-        });
-
-        $('input').on('ifUnchecked', function(event){
-            var select = $(this).closest('tr');
-            var total = parseInt($('#totalamount').text()) - parseInt($(select).find('td:eq(6)').text());
-            $('#totalamount').text(total);
-        });
-
         SetValidation();
         function SaveOrUpdate() {
             var checkeds = $(':checkbox:checked');
@@ -140,8 +129,7 @@
                     data: item
                 }).done(function (data) {
                     if (data.IsError == false) {
-                        $('tr:has(:checkbox:checked)').remove();
-                        $('#formIncome').bootstrapValidator('resetForm', true);
+                        window.location.reload();
                     } else {
                         swal(data.Message, '', 'success');
                     }

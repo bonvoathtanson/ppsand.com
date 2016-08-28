@@ -35,7 +35,7 @@
                 <input type="text" id="itemcode" class="form-control" placeholder="វាយ លេខកូដទំនិញ">
             </div>
             <div class="pull-right">
-                <a href="{{url('/create/income').'/'.$customer->Id}}" class="btn btn-danger">បង់លុយ</a>
+                <a href="{{url('/create/income').'#'.$customer->Id}}" class="btn btn-danger">បង់លុយ</a>
             </div>
         </div>
     </div>

@@ -12,6 +12,10 @@ Route::group(['prefix' => 'transfer'], function(){
     Route::post('/sale', 'SaleController@updatetransfer');
 });
 
+Route::group(['prefix' => 'ajax'], function(){
+    Route::get('/sale/customer/{id}', 'SaleController@FindSaleByCustomerId');
+});
+
 Route::group(['prefix' => 'view'], function(){
     Route::get('/user', 'UserController@index');
     Route::get('/item', 'ItemController@index');

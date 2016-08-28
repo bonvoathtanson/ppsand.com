@@ -4,9 +4,8 @@
         defaultDate: new Date()
     });
 
-    $(':checkbox').iCheck({
-        checkboxClass: 'icheckbox_minimal'
-    });
+    var id = window.location.hash.replace('#', '');
+    GetSaleByCustomerId(id);
 
     $('body').on('click', '.customer', function(){
         $('#SearchModal').modal({
@@ -31,30 +30,29 @@
     });
 
     $('body').on('click','.selected',function(){
-        var tr = $(this).closest('tr');
-        $('#customername').val($(tr).find('td:eq(1)').text());
-        var customerId = $(tr).attr('data-id');
-        $('[name="CustomerId"]').val(customerId);
-        GetSaleByCustomerId(customerId)
+        var customerId = $(this).closest('tr').attr('data-id');
+        window.location.hash = '#' + customerId;
+        GetSaleByCustomerId(customerId);
         $('#SearchModal').modal('hide');
     });
 
     function Search(){
-        GetCustomer(function(customers){
+        var keyword = $('[name="FilterText"]').val();
+        GetCustomer(keyword, function(customers){
             CustomerTable(customers, function(element){
                 $('#customerTable tbody').html(element);
             });
         });
     }
 
-    function GetCustomer(callback) {
+    function GetCustomer(keyword, callback) {
         $('body').append(Loading());
-        var requestUrl = burl + '/filter/customer/' + $('[name="FilterText"]').val();
+        var requestUrl = burl + '/filter/customer/'+keyword;
         $.ajax({
             url: requestUrl,
             type: 'GET',
             dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8'
         }).done(function (data) {
             if(data.IsError == false){
                 if(typeof callback == 'function'){
@@ -70,7 +68,7 @@
         var element = '';
         if((customers != null) && (customers.length > 0)){
             $.each(customers, function(index, item){
-                element += '<tr data-id="' + item.Id + '" data-address="' + item.Address + '">' +
+                element += '<tr data-id="' + item.Id + '">' +
                 '<td>' + item.CustomerCode + '</td>' +
                 '<td>' + item.CustomerName + '</td>' +
                 '<td class="center">' + item.PhoneNumber + '</td>' +
@@ -87,38 +85,61 @@
 
     function GetSaleByCustomerId(customerId) {
         $('body').append(Loading());
-        var requestUrl = burl + '/sale/customer/' + $('[name="FilterText"]').val();
+        var requestUrl = burl + '/ajax/sale/customer/' + customerId;
         $.ajax({
             url: requestUrl,
             type: 'GET',
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
+            console.log(data);
             if(data.IsError == false){
-                if(typeof callback == 'function'){
-                    RenderSale(data.Data.Sales);
-                }
+                var customer = data.Data.customer;
+                $('#customername').val(customer.CustomerName);
+                $('[name="CustomerId"]').val(customerId);
+                $('#address').val(customer.Address);
+                RenderSale(data.Data.sales, function(element){
+                    $('.tableSale table>tbody').html(element);
+                    $(':checkbox').iCheck({
+                        checkboxClass: 'icheckbox_minimal'
+                    });
+                    $('input').on('ifChecked', function(event){
+                        var select = $(this).closest('tr');
+                        var total = parseInt($(select).find('td:eq(6)').text()) + parseInt($('#totalamount').text());
+                        $('#totalamount').text(total);
+                    });
+
+                    $('input').on('ifUnchecked', function(event){
+                        var select = $(this).closest('tr');
+                        var total = parseInt($('#totalamount').text()) - parseInt($(select).find('td:eq(6)').text());
+                        $('#totalamount').text(total);
+                    });
+                });
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();
         });
     }
 
-    function RenderSale(sales) {
+    function RenderSale(sales, callback) {
         var element = '';
-        if((sales != null) && (customers.length > 0)){
-            $.each(customers, function(index, item){
-                element += '<tr data-id="' + item.Id + '" data-address="' + item.Address + '">' +
-                '<td>' + item.CustomerCode + '</td>' +
-                '<td>' + item.CustomerName + '</td>' +
-                '<td class="center">' + item.PhoneNumber + '</td>' +
-                '<td class="center">' +
-                '<button class="btn btn-info btn-e selected">ជ្រើសរើស</button> ' +
-                '</td>'
+        if((sales != null) && (sales.length > 0)){
+            $.each(sales, function(index, item){
+                var remain = item.SubTotal - item.PayAmount;
+                element += '<tr data-id="' + item.Id + '">' +
+                '<td class="center"><input type="checkbox" name="SaleIds[]" value="' + item.Id + '"/></td>' +
+                '<td>' + item.item.ItemName + '</td>' +
+                '<td class="center">' + item.SaleDate + '</td>' +
+                '<td class="center">' + item.SalePrice + '</td>' +
+                '<td class="center">' + item.Quantity + '</td>' +
+                '<td class="center">' + item.SubTotal + '</td>' +
+                '<td class="center">' + item.PayAmount + '</td>' +
+                '<td style="text-align:right;">' + remain + '</td>' +
                 '</tr>';
             });
-
-            return element;
+            if(typeof callback == 'function'){
+                callback(element);
+            }
         }
     }
 })();
