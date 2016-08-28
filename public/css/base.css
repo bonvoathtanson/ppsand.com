@@ -195,10 +195,11 @@ input.form-control:focus{
 .list-group .list-group-item:first-child{
     border:none;
     border-radius: 0;
-    height: 50px;
+    height: 51px;
     font-size: 14pt;
     box-shadow: none;
     background: #2b669a;
+    color: #fff;
 }
 .list-group .bar{
     background: transparent;
@@ -206,7 +207,10 @@ input.form-control:focus{
     border: none;
     border-radius: 0;
     margin-bottom: 5px;
-    margin-top: 5px;
+}
+
+.bar.active, .bar:hover{
+    border-left: 5px solid orange !important;
 }
 
 .modal-header{
