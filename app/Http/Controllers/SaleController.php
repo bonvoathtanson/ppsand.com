@@ -177,6 +177,16 @@ class SaleController extends Controller
         return response()->json($this->Results);
     }
 
+    function newsale()
+    {
+        $items = Item::all();
+        $results = array(
+            'items'     => $items
+        );
+
+        return view('sales.newsale', $results);
+    }
+
     private function CalTotal($quantity, $saleprice)
     {
         $qty = 0;

@@ -33,7 +33,7 @@ body{
 .btn{
     border:none;
 }
-input.form-control{
+input.form-control, select.form-control{
     box-shadow: none;
     border-radius: 3px;
 }

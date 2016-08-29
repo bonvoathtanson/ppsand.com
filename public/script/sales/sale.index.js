@@ -1,4 +1,16 @@
 (function(){
+
+    $('#saleFromDate,#saleToDate').datetimepicker({
+        format: 'YYYY-MM-DD ',
+        useCurrent: false
+    });
+     $("#saleFromDate").on("dp.change", function (e) {
+         $('#saleToDate').data("DateTimePicker").minDate(e.date);
+     });
+     $("#saleToDate").on("dp.change", function (e) {
+         $('#saleFromDate').data("DateTimePicker").maxDate(e.date);
+     });
+
     $('#saleFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
@@ -14,6 +26,12 @@
     function ViewItem(){
         GetItems(function(customers){
             RenderTable(customers, function(element){
+                if(element != '' && element != null)
+                {
+                    $('.box-null').hide();
+                }else{
+                    $('.box-null').show();
+                }
                 $('#saleTable tbody').html(element);
             });
         });
@@ -49,6 +67,14 @@
             $('#saleTable tbody tr').remove();
         }
      });
+
+     //Function click on button reset
+     $('body').on('click', '#btnClear', function () {
+         $('#hdfcustomerId').val('');
+         $('#customerName').val('');
+         ViewItem();
+     });
+
     //+ $('#saleFormDate').val() + $('#saleToDate').val() + $('#CarNumber').val()
     function GetItems(callback) {
         $('body').append(Loading());

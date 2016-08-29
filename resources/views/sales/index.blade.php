@@ -24,18 +24,18 @@
                     <div class="input-group">
                         <input type="text" id="customerName" name="customerName" class="form-control btn-default" placeholder="ជ្រើសរើសអតិថិជន">
                         <span class="input-group-btn">
-                            <button class="btn btn-success" style="border:1px solid #419641;" type="button">សំអាត</button>
+                            <button id="btnClear" class="btn btn-success" style="border:1px solid #419641;" type="button">សំអាត</button>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleFromDate" name="saleFromDate" class="datepicker form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleToDate" name="saleToDate" class="datepicker form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:75px;margin-top:5px; padding-left:0;">លេខឡាន</div>
                     <div class="col-sm-1" style="width:150px; padding-left:0px">
@@ -75,7 +75,7 @@
       <tbody></tbody>
     </table>
   </div>
-  <div class="box-null" style="font-size:14pt; color:red; display:none;">
+  <div class="box-null" style="font-size:14pt; color:red; padding-left:15px; display:none;">
       ទិន្នន័យស្វែងរកមិនមាន
   </div>
 </div>

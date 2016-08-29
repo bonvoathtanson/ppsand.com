@@ -80,6 +80,19 @@
         $('#searchModal').modal('hide');
     });
 
+    $('#incomeFromDate,#incomeToDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+
+    $("#incomeFromDate").on("dp.change", function (e) {
+         $('#incomeToDate').data("DateTimePicker").minDate(e.date);
+    });
+
+    $("#incomeToDate").on("dp.change", function (e) {
+         $('#incomeFromDate').data("DateTimePicker").maxDate(e.date);
+    });
+
     $('#incomeFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()

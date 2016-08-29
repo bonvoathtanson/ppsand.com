@@ -12,7 +12,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
+                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអ្នកផ្គត់ផ្គង់​</label>
                 <div class="col-sm-1" style="width:300px;">
                     <input type="text" class="form-control" disabled="disabled" value="{{$supplier->SupplierName}}">
                 </div>

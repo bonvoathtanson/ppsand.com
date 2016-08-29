@@ -1,4 +1,5 @@
 (function() {
+
     SetDeliveryValidation();
 
     $('body').on('click', '#save', function(){
