@@ -4,17 +4,17 @@
 @endsection
 @section('content')
 <div class="box-title">
-  <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាការលក់របស់អតិថិជន []
+  <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាការលក់របស់អតិថិជន
 </div>
 <form id="formImport" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
-
+    <input type="hidden" id="CustomerId" name="CustomerId" value="">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="">
+                    <input type="text" id="customername" name="customername" class="form-control" disabled="disabled" value="">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" class="form-control" disabled="disabled" value="">
+                    <input type="text" id="address" name="address" class="form-control" disabled="disabled" value="">
                 </div>
             </div>
         </div>
@@ -162,10 +162,31 @@
         });
 
         $('body').on('click','.selected',function(){
-
+            var customerId = $(this).closest('tr').attr('data-id');
             GetSaleByCustomerId(customerId);
             $('#SearchModal').modal('hide');
         });
+
+            function GetSaleByCustomerId(customerId) {
+                $('body').append(Loading());
+                var requestUrl = burl + '/ajax/sale/customer/' + customerId;
+                $.ajax({
+                    url: requestUrl,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/json; charset=utf-8',
+                }).done(function (data) {
+                    if(data.IsError == false){
+                        var customer = data.Data.customer;
+                        $('#customername').val(customer.CustomerName);
+                        //$('[name="CustomerId"]').val(customerId);
+                          $('#CustomerId').val(customerId);
+                        $('#address').val(customer.Address);
+                    }
+                }).complete(function (data) {
+                    $('body').find('.loading').remove();
+                });
+            }
 
         function Search(){
             var keyword = $('[name="FilterText"]').val();
