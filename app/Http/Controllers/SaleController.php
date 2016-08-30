@@ -140,6 +140,7 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
+
         try {
             DB::beginTransaction();
             $sale = new Sale();

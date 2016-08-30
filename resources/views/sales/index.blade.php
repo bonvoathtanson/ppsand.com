@@ -67,12 +67,28 @@
           <th>ចំនួន</th>
           <th>តំលៃលក់</th>
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
-          <th style="text-align:right;">ប្រាកទទួល</th>
+          <th style="text-align:right;">ប្រាក់ទទួល</th>
           <th style="text-align:right;">ប្រាក់នៅសល់</th>
           <th class="center" style="width:40px;"></th>
         </tr>
       </thead>
       <tbody></tbody>
+      <tfoot>
+          <tr>
+              <td colspan="6" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
+              <td style="text-align:right;">
+                  <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+                  <span id="payamount" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+                  <span id="remain" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+              </td>
+          </tr>
+      </tfoot>
     </table>
   </div>
   <div class="box-null" style="font-size:14pt; color:red; padding-left:15px; display:none;">
@@ -122,12 +138,14 @@
 </form>
 @endsection
 @section('script')
+<script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 (function(){
 
     $('body').on('focus', '#customerName', function(){
         $('#myModal').modal({
-            backdrop: false
+            backdrop: 'static'
         });
     });
 
@@ -149,6 +167,7 @@
             $('#customerTable tbody tr').remove();
         }
     });
+
     $('body').on('keypress', '#customerNameSearch', function(event){
         if(event.which == 13) {
             var value = $('#customerNameSearch').val();
@@ -200,10 +219,6 @@
         var element = '';
         if((customers != null) && (customers.length > 0)){
             $.each(customers, function(index, item){
-                var sex = 'ប្រុស';
-                if(item.Sex == 2){
-                    sex = 'ស្រី';
-                }
                 element += '<tr>' +
                                 '<td>' + item.CustomerCode + '</td>' +
                                 '<td>' + item.CustomerName + '</td>' +
@@ -220,7 +235,5 @@
     }
 })();
 </script>
-<script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
-<script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/sales/sale.index.js')}}" charset="utf-8"></script>
 @endsection

@@ -4,9 +4,9 @@
 @endsection
 @section('content')
 <div class="box-title">
-  <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាការលក់របស់អតិថិជន
+  <i class="fa fa-plus-square" aria-hidden="true"></i> កំណត់ត្រាការលក់របស់អតិថិជន [ <span id="viewcustomer" style="color:blue;"></span> ]
 </div>
-<form id="formImport" class="form-horizontal" onsubmit="return false;">
+<form id="formNewSale" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
     <input type="hidden" id="CustomerId" name="CustomerId" value="">
     <div class="panel panel-default">
@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" id="customername" name="customername" class="form-control" disabled="disabled" value="">
+                    <input type="text" id="customerName" name="customerName" class="form-control" readonly value="">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -34,10 +34,10 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">មុខទំនិញ</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <select class="form-control" name="ItemId" id="itemid">
+                    <select class="form-control" name="ItemId" id="itemId">
                         <option value=""></option>
                         <?php foreach ($items as $index => $value): ?>
-                            <option value="{{$value->Id}}" price="{{$value->SalePrice}}">{{$value->ItemName}}</option>
+                            <option value="{{$value->Id}}" instock="{{$value->UnitInStock}}" price="{{$value->SalePrice}}">{{$value->ItemName}}</option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំបញ្ជាទិញ</label>
                 <div class="col-sm-1" style="width:220px;">
-                    <input type="text" id="saleDate" name="saleDate" class="form-control">
+                    <input type="text" id="saleDate" name="SaleDate" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -55,38 +55,38 @@
                 </div>
                 <div class="col-sm-1" style="width:150px; padding-left:0;">
                      <label class="control-label">ចំនួនក្នុងស្តុក <span id="viewqty" style="color:blue;">0</span></label>
+                     <input type="hidden" id="unitInStock" name="unitInStock" value="">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">តំលៃលក់ចេញ</label>
                 <div class="col-sm-1" style="width:150px;">
-                    <input type="text" id="saleprice" name="SalePrice" class="form-control">
+                    <input type="text" id="salePrice" name="SalePrice" class="form-control">
                 </div>
             </div>
-
-            <div id="group-date" class="form-group" style="display:none;">
+            <!-- <div id="group-date" class="form-group" style="display:none;">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំដឹកចូល</label>
                 <div class="col-sm-1" style="width:350px;">
                     <input type="text" id="transferdate" name="TransferDate" class="form-control">
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ទឹកប្រាក់សរុប</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="totalamount" name="TotalAmount" class="form-control" disabled="disabled" value="0">
+                    <input type="text" id="totalAmount" name="TotalAmount" class="form-control" disabled="disabled" value="0">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">បង់ប្រាក់ចំនួន</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="payamount" name="PayAmount" class="form-control" value="0">
+                    <input type="text" id="payAmount" name="PayAmount" class="form-control" value="0">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;"></label>
                 <div class="col-sm-1" style="width:350px;">
                     <button type="submit" class="btn btn-success" id="save">រក្សាទុក</button>
-                    <a href="{{url('/view/import')}}" class="btn btn-danger">បោះបង់</a>
+                    <a href="{{url('/view/sale')}}" class="btn btn-danger">បោះបង់</a>
                 </div>
             </div>
         </div>
@@ -133,7 +133,6 @@
 @section('script')
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
-<script src="{{url('/script/sales/sale.add.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 
         ////////// Start section search customer//////////////
@@ -155,6 +154,7 @@
         $('body').on('click', '#btnSearch', function(){
             Search();
         });
+
         $('body').on('keypress', '[name="FilterText"]', function(event){
             if(event.which == 13) {
                 Search();
@@ -167,26 +167,27 @@
             $('#SearchModal').modal('hide');
         });
 
-            function GetSaleByCustomerId(customerId) {
-                $('body').append(Loading());
-                var requestUrl = burl + '/ajax/sale/customer/' + customerId;
-                $.ajax({
-                    url: requestUrl,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    contentType: 'application/json; charset=utf-8',
-                }).done(function (data) {
-                    if(data.IsError == false){
-                        var customer = data.Data.customer;
-                        $('#customername').val(customer.CustomerName);
-                        //$('[name="CustomerId"]').val(customerId);
-                          $('#CustomerId').val(customerId);
-                        $('#address').val(customer.Address);
-                    }
-                }).complete(function (data) {
-                    $('body').find('.loading').remove();
-                });
-            }
+        function GetSaleByCustomerId(customerId) {
+            $('body').append(Loading());
+            var requestUrl = burl + '/ajax/sale/customer/' + customerId;
+            $.ajax({
+                url: requestUrl,
+                type: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (data) {
+                if(data.IsError == false){
+                    var customer = data.Data.customer;
+                    $('#customerName').val(customer.CustomerName);
+                    $('#viewcustomer').text(customer.CustomerName);
+                    //$('[name="CustomerId"]').val(customerId);
+                    $('#CustomerId').val(customerId);
+                    $('#address').val(customer.Address);
+                }
+            }).complete(function (data) {
+                $('body').find('.loading').remove();
+            });
+        }
 
         function Search(){
             var keyword = $('[name="FilterText"]').val();
@@ -236,6 +237,120 @@
         }
 
 ////////////////////End section customer search////////////////////////
+
+        $('#saleDate').datetimepicker({
+            defaultDate: moment()
+        });
+
+        $('body').on('change', '#itemId', function(event){
+
+            var id = $(this).val();
+            var price = $('option:selected', this).attr('price');
+            var stock = $('option:selected', this).attr('instock');
+            $('#itemId').val(id);
+            $('#salePrice').val(price);
+            $('#viewqty').text(stock);
+            $('#unitInStock').val(stock);
+        });
+
+        $('body').on('keypress', '#quantity', function(event){
+
+            if(event.which == 13){
+                CalTotal();
+                $('#salePrice').focus();
+            }
+        });
+
+        $('body').on('focus blur', '#salePrice, #quantity', function(){
+            CalTotal();
+        });
+
+        function CalTotal(){
+
+            var qty = $('#quantity').val();
+            if(qty == null || qty == ''){
+                qty = 0;
+            }
+            var price = $('#salePrice').val();
+            if(price == null || price == ''){
+                price = 0;
+            }
+            var total = qty * price;
+            $('#totalAmount').val(total);
+        }
+
+        SetSaleValidation();
+
+        function SaveOrUpdate() {
+            $('body').append(Loading());
+            var item = $('#formNewSale').serialize();
+            //Check Stock
+                if( ($('#quantity').val() > $('#unitInStock').val()) ){
+                    swal('សូមពិនិត្យចំនួនក្នុងស្តុក', '', 'warning');
+                    $('body').find('.loading').remove();
+                }else{
+                $.ajax({
+                    type: 'POST',
+                    url: burl + '/insert/sale',
+                    data: item
+                }).done(function (data) {
+                    if (data.IsError == false) {
+                        window.location = burl + '/create/sale/'+ $('#CustomerId').val();
+                    } else {
+                        swal(data.Message, '', 'warning');
+                    }
+                }).complete(function (data) {
+                    $('body').find('.loading').remove();
+                });
+            }
+        }
+
+        function SetSaleValidation() {
+            var form = $('body').find('#formNewSale');
+            form.bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    customerName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'សូមធ្វើការជ្រើសរើសអតិថិជន'
+                            }
+                        }
+                    },
+                    itemId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'សូមធ្វើការជ្រើសរើសមុខទំនិញ'
+                            }
+                        }
+                    },
+                    saleDate: {
+                        validators: {
+                            notEmpty: {
+                                message: 'សូមបញ្ចូលថ្ងៃខែឆ្នាំបញ្ជាទិញ'
+                            }
+                        }
+                    },
+                    Quantity:{
+                        validators:{
+                            notEmpty:{
+                                message: 'សូមបញ្ចូលចំនួន'
+                            }
+                        }
+                    },
+                }
+            }).on('success.form.bv', function (e) {
+                SaveOrUpdate();
+            });
+
+            $('body').on('click', '#save', function (e) {
+                form.bootstrapValidator('validate');
+            });
+        }
 
 </script>
 @endsection

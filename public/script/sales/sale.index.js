@@ -1,16 +1,4 @@
 (function(){
-
-    $('#saleFromDate,#saleToDate').datetimepicker({
-        format: 'YYYY-MM-DD ',
-        useCurrent: false
-    });
-     $("#saleFromDate").on("dp.change", function (e) {
-         $('#saleToDate').data("DateTimePicker").minDate(e.date);
-     });
-     $("#saleToDate").on("dp.change", function (e) {
-         $('#saleFromDate').data("DateTimePicker").maxDate(e.date);
-     });
-
     $('#saleFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
@@ -20,6 +8,13 @@
         format: 'YYYY-MM-DD',
         defaultDate: moment()
     });
+
+     $("#saleFromDate").on("dp.change", function (e) {
+        $('#saleToDate').data("DateTimePicker").minDate(e.date);
+     });
+     $("#saleToDate").on("dp.change", function (e) {
+        $('#saleFromDate').data("DateTimePicker").maxDate(e.date);
+     });
 
     ViewItem();
 
@@ -33,8 +28,29 @@
                     $('.box-null').show();
                 }
                 $('#saleTable tbody').html(element);
+
+                var total = 0;
+                var amount = 0;
+                var remain = 0;
+                $('#saleTable .subtotal').each(function() {
+                     subtotal  = $(this).closest('.subtotal').text();
+                     total  += parseInt(subtotal);
+                });
+                $('#saleTable .payamount').each(function() {
+                     payamount = $(this).closest('.payamount').text();
+                     amount += parseInt(payamount);
+                });
+                $('#saleTable .remain').each(function() {
+                     payremain = $(this).closest('.remain').text();
+                     remain += parseInt(payremain);
+                });
+                $('#totalamount').text(total);
+                $('#payamount').text(amount);
+                $('#remain').text(remain);
+
             });
         });
+
     }
     //Function On selected customer name
     $('body').on('click','.selected',function(){
@@ -97,6 +113,7 @@
     function RenderTable(customers, callback){
         var element = '';
         if((customers != null) && (customers.length > 0)){
+
             $.each(customers, function(index, item){
                 var disedit = 'disabled';
                 var disdel = 'disabled="disabled"';
@@ -113,16 +130,16 @@
                 }else if(remain == 0){
                     rowcolor = 'success';
                 }
-                element += '<tr class="' + rowcolor + '" data-id="' + item.Id + '">' +
+                element += '<tr class="' + rowcolor +'" data-id="' + item.Id + '">' +
                                 '<td><a href="'+ burl +'/create/sale/'+ item.customer.Id +'">' + item.customer.CustomerName + '</a></td>' +
                                 '<td>' + item.item.ItemName + '</td>' +
                                 '<td class="center">' + CDate(item.SaleDate) + '</td>' +
                                 '<td class="center">' + item.CarNumber + '</td>' +
                                 '<td class="center">' + item.Quantity + '</td>' +
                                 '<td class="center">' + item.SalePrice + '</td>' +
-                                '<td class="center" style="text-align:right;">' + item.SubTotal + '</td>' +
-                                '<td class="center" style="text-align:right;">' + item.PayAmount + '</td>' +
-                                '<td class="center" style="text-align:right;">' + remain + '</td>' +
+                                '<td class="center subtotal" style="text-align:right;">' + item.SubTotal + '</td>' +
+                                '<td class="center payamount" style="text-align:right;">' + item.PayAmount + '</td>' +
+                                '<td class="center remain" style="text-align:right;">' + remain + '</td>' +
                                 '<td class="center">' +
                                     '<button type="button" class="btn btn-danger btn-e delete" ' + disdel + '><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'

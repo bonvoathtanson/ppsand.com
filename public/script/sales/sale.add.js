@@ -36,6 +36,7 @@
     });
 
     $('body').on('keypress', '#itemcode', function(event){
+
         if(event.which == 13){
             var value = $(this).val();
             if(value != null && value != '')
