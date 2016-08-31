@@ -1,4 +1,6 @@
 (function(){
+
+    $('.list-group-item:eq(3)').addClass('active');
     $('#saleFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
@@ -28,10 +30,9 @@
                     $('.box-null').show();
                 }
                 $('#saleTable tbody').html(element);
-
-                $('#totalamount').text(total);
-                $('#payamount').text(amount);
-                $('#remain').text(remain);
+                $('#totalamount').text(total.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                $('#payamount').text(amount.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                $('#remain').text(remain.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
             });
         });
 

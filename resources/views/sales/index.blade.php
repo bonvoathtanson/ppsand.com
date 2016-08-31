@@ -31,11 +31,11 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="datepicker form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="datepicker form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleToDate" name="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:75px;margin-top:5px; padding-left:0;">លេខឡាន</div>
                     <div class="col-sm-1" style="width:150px; padding-left:0px">

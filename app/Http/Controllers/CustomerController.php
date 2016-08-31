@@ -35,9 +35,19 @@ class CustomerController extends Controller
 
     public function addinfo($id)
     {
-        $customer = Customer::find($id);
+        //$customer = Customer::find($id);
+        $customerask = CustomerAsk::find($id);
 
-        return view('customers.addinfo', ['customer' => $customer]);
+        if($customerask == null){
+            $customer = Customer::find($id);
+
+            return view('customers.addinfo', ['customer' => $customer]);
+        }else{
+            $customer = Customer::where('Id', '=', $customerask->CustomerId)->first();
+
+            return view('customers.addinfo', ['customer' => $customer]);
+        }
+
     }
 
     public function insertinfo(Request $request)
@@ -72,15 +82,14 @@ class CustomerController extends Controller
     {
         $key = "%$keyword%";
         $customers = Customer::where('CustomerCode', 'Like', $key)
-        ->orwhere('CustomerName', 'Like', $key)
-        ->orwhere('PhoneNumber', 'Like', $key)
-        ->get();
-
+                            ->orwhere('CustomerName', 'Like', $key)
+                            ->orwhere('PhoneNumber', 'Like', $key)
+                            ->get();
         $this->SetData($customers);
 
         return response()->json($this->Results);
     }
-    
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), Customer::rules());

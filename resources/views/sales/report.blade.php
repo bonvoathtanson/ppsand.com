@@ -22,28 +22,34 @@
         </div>
     </div>
     <div class="print-body">
-      <table class="table table-bordered" style="width:100%;">
+    <table class="table table-bordered" style="width:100%;">
         <thead>
-          <tr class="warning font-M1">
-            <th>ឈ្មោះអតិថិជន</th>
-            <th>ឈ្មោះទំនិញ</th>
-            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
-            <th class="center">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
-            <th class="center">ចំនួន</th>
-            <th class="center">លេខឡាន</th>
-          </tr>
+            <tr class="warning font-M1">
+                <th>ល.រ</th>
+                <th>ឈ្មោះទំនិញ</th>
+                <th class="center">ចំនួន</th>
+                <th class="center">តំលៃរាយ</th>
+                <th class="center">តំលៃសរុប</th>
+            </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td>{{$transfer->Customer->CustomerName}}</td>
-                    <td>{{$transfer->Item->ItemName}}</td>
-                    <td class="center">{{$transfer->SaleDate}}</td>
-                    <td class="center">{{date_format(date_create($transfer->TransferDate),'Y-m-d ម៉ោង H:i')}}</td>
-                    <td class="center">{{$transfer->Quantity}}</td>
-                    <td class="center">{{$transfer->CarNumber}}</td>
-                </tr>
+            <tr>
+                <td class="center">1</td>
+                <td>{{$transfer->Item->ItemName}}</td>
+                <td class="center">{{$transfer->Quantity}}</td>
+                <td class="center">{{$transfer->SalePrice}}</td>
+                <td class="center">{{$transfer->Quantity * $transfer->SalePrice}}</td>
+            </tr>
         </tbody>
-      </table>
+        <tfoot>
+            <tr>
+                <td colspan="4" style="text-align:right;border-right:solid 1px;border-left:solid 1px white;border-bottom:solid 1px white;">សរុប </td>
+                <td class="center">
+                    <span id="remain" style=" font-weight:bold;">{{$transfer->Quantity * $transfer->SalePrice}}</span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
     </div>
     <div class="print-footer">
 

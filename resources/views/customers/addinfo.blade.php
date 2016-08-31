@@ -8,7 +8,8 @@
 </div>
 <form id="formInfo" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}
-    <input type="hidden" name="CustomerId" value="{{$customer->Id}}">
+    <input type="hidden" id="customerId" name="CustomerId" value="{{$customer->Id}}">
+    <input type="hidden" id="askId" name="askId" value="">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
@@ -46,14 +47,23 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">បរិយាយ</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" name="Description" class="form-control">
+                    <input type="text" name="Description" value="" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label" style="width:150px;">កំណត់ចំណាំ</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="StatusId" name="StatusId" style="font-size:10pt;">
+                        <option value="1">រង់ចាំ</option>
+                        <option value="0">ជោគជ័យ</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;"></label>
                 <div class="col-sm-1" style="width:300px;">
                     <button type="submit" id="save" class="btn btn-success">រក្សាទុក</button>
-                    <a href="{{url('/')}}" class="btn btn-danger">បោះបង់</a>
+                    <a href="{{url('/view/askinfo')}}" class="btn btn-danger">បោះបង់</a>
                 </div>
             </div>
         </div>

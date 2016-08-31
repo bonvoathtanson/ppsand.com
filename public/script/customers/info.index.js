@@ -1,4 +1,6 @@
 (function(){
+
+    $('.list-group-item:eq(2)').addClass('active');
     ViewItem();
 
     function ViewItem(){
@@ -37,8 +39,7 @@
                                 '<td class="center">' + moment(item.ConfirmDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td class="center">' + item.Description + '</td>' +
                                 '<td class="center">' +
-                                    '<a href="' + burl + '/create/askinfo/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
-                                    '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
+                                    '<a data-id="' + item.Id + '" href="' + burl + '/create/askinfo/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                 '</td>'
                             '</tr>';
             });

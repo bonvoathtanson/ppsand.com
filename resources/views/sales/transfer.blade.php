@@ -156,6 +156,7 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 (function(){
+    $('.list-group-item:eq(1)').addClass('active');
     SetValidation();
     var select;
     $('body').on('click', '#btnsave', function(){

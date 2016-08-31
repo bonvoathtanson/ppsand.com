@@ -44,7 +44,7 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('/import', 'ImportController@search');
     Route::get('/supplier', 'SupplierController@search');
     Route::post('/income', 'IncomeController@search');
-    Route::get('/expanse', 'ExpanseController@search');
+    Route::post('/expanse', 'ExpanseController@search');
     Route::get('/item', 'ItemController@search');
     Route::get('/itemdetail/{id}', 'ItemController@detail');
     Route::get('/user', 'UserController@search');

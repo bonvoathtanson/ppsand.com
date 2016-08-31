@@ -1,4 +1,5 @@
 (function(){
+    $('.list-group-item:eq(6)').addClass('active');
     ViewItem();
 
     function ViewItem(){

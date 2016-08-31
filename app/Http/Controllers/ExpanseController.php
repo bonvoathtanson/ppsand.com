@@ -30,8 +30,24 @@ class ExpanseController extends Controller
         return view('expanses/create', $results);
     }
 
-    public function search(){
-        $expanses = Expanse::all();
+    public function search(Request $request){
+
+        $fromDate = $request->expanseFromDate;
+        $toDate = $request->expanseToDate;
+
+        if( $fromDate =='' && $toDate =='' ){
+            $expanses = Expanse::all();
+        }else{
+            $query = Expanse::query();
+            if(!Empty($fromDate)){
+                $query->whereDate('ExpanseDate', '>=', $fromDate);
+            }
+            if(!Empty($toDate)){
+                $query->whereDate('ExpanseDate', '<=', $toDate);
+            }
+            $expanses = $query->get();
+        }
+
         $expanses->load('Supplier');
         $this->SetData($expanses);
 

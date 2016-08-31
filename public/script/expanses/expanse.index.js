@@ -1,5 +1,23 @@
 (function(){
     $('.list-group-item:eq(8)').addClass('active');
+
+    $('#expanseFromDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $('#expanseToDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $("#expanseFromDate").on("dp.change", function (e) {
+        $('#expanseToDate').data("DateTimePicker").minDate(e.date);
+    });
+    $("#expanseToDate").on("dp.change", function (e) {
+        $('#expanseFromDate').data("DateTimePicker").maxDate(e.date);
+    });
+
     ViewItem();
 
     function ViewItem(){
@@ -9,14 +27,25 @@
             });
         });
     }
+    //Function click on button search
+    $('body').on('click', '#btnsearch', function () {
+        var expansesFormDate = $('#expanseFormDate').val();
+        var expansesToDate   = $('#expanseToDate').val();
+        if( expansesFormDate != '' || expansesToDate != ''){
+            ViewItem();
+        }else{
+            $('.box-null').show();
+            $('#expanseTable tbody tr').remove();
+        }
+    });
 
     function GetItems(callback) {
         $('body').append(Loading());
+        var formData = $('#formSearchExpanse').serialize();
         $.ajax({
             url: burl + '/find/expanse',
-            type: 'GET',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: formData
         }).done(function (data) {
             if(data.IsError == false){
                 if(typeof callback == 'function'){
@@ -40,7 +69,6 @@
                 if(item.ExpanseType == 1){
                     type = 'ចំណាយការទិញ';
                 }
-                console.log(item);
                 element += '<tr data-id="' + item.Id + '">' +
                                 '<td>' + name + '</td>' +
                                 '<td>' + moment(item.ExpanseDate).format('DD-MM-YYYY') + '</td>' +

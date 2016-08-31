@@ -11,7 +11,6 @@
             url: burl + '/insert/customer',
             data: item
         }).done(function (data) {
-            console.log(data);
             if (data.IsError == false) {
                 var typeid = $('#typeid').val();
                 if(typeid == 1)

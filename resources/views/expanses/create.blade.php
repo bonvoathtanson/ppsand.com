@@ -79,7 +79,7 @@
         <div class="col-sm-12">
             <div class="pull-right">
                 <button type="submit" id="save" class="btn btn-success">រក្សាទុក</button>
-                <a href="{{url('/')}}" class="btn btn-danger">បោះបង់</a>
+                <a href="{{url('/view/expanse')}}" class="btn btn-danger">បោះបង់</a>
             </div>
         </div>
     </div>

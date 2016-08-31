@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('css')
+<link rel="stylesheet" href="{{url('/css/plugin/datetimepicker/bootstrap-datetimepicker.min.css')}}" media="screen" title="no title" charset="utf-8">
+@endsection
 @section('content')
 <div class="box-title">
   <i class="fa fa-list" aria-hidden="true"></i> តារាងចំណាយ
@@ -10,6 +13,25 @@
     </div>
   </div>
 </div>
+<form id="formSearchExpanse" method="post" onsubmit="return false;">
+    {{ csrf_field() }}
+    <div class="panel panel-default" style="width:100%;padding:5px">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-1" style="width:135px; padding-left:0px;">
+                    <input type="text" id="expanseFromDate" name="expanseFromDate" class="form-control" placeholder="ចាប់ពីថ្ងៃ">
+                </div>
+                <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
+                <div class="col-sm-1" style="width:135px;">
+                    <input type="text" id="expanseToDate" name="expanseToDate" class="form-control" placeholder="ដល់ថ្ងៃ">
+                </div>
+                <div class="col-sm-1" style="width:220px; padding-left:0;">
+                    <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <div class="row">
   <div class="col-sm-12">
     <table id="expanseTable" class="table table-bordered table-hover">
@@ -26,9 +48,13 @@
       <tbody></tbody>
     </table>
   </div>
+  <div class="box-null" style="font-size:14pt; color:red; padding-left:15px; display:none;">
+      ទិន្នន័យស្វែងរកមិនមាន
+  </div>
 </div>
 @endsection
 @section('script')
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/expanses/expanse.index.js')}}" charset="utf-8"></script>
 @endsection
