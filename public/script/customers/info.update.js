@@ -7,15 +7,14 @@
 
     $('#confirmdate').datetimepicker({
         format: 'YYYY-MM-DD',
-        defaultDate: moment().add(1, 'days')
+        defaultDate: moment()
     });
 
-    $('#confirmdate').on('dp.change', function (e) {
-        $('#askdate').data('DateTimePicker').maxDate(e.date);
+    $("#askdate").on("dp.change", function (e) {
+        $('#confirmdate').data("DateTimePicker").minDate(e.date);
     });
-
-    $('#askdate').on('dp.change', function (e) {
-        $('#confirmdate').data('DateTimePicker').minDate(e.date);
+    $("#confirmdate").on("dp.change", function (e) {
+        $('#askdate').data("DateTimePicker").maxDate(e.date);
     });
 
     $('body').on('change', '#StatusId', function(){
@@ -26,14 +25,14 @@
             $('#info-reason').hide();
         }
     });
-    
+
     SetValidation();
     function SaveOrUpdate() {
         $('body').append(Loading());
-        var item = $('#formInfo').serialize();
+        var item = $('#formInfoEdit').serialize();
         $.ajax({
             type: 'POST',
-            url: burl + '/insert/customerask',
+            url: burl + '/update/customerask',
             data: item
         }).done(function (data) {
             if (data.IsError == false) {
@@ -46,7 +45,7 @@
         });
     }
     function SetValidation() {
-        var form = $('body').find('#formInfo');
+        var form = $('body').find('#formInfoEdit');
         form.bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -64,7 +63,7 @@
                 ConfirmDate: {
                     validators: {
                         notEmpty: {
-                            message: 'ឈ្មោះអតិថិជន តំរូវអោយបញ្ចូល'
+                            message: 'ឈ្មោះអតិថិជន់ តំរូវអោយបញ្ចូល'
                         }
                     }
                 },
@@ -81,7 +80,7 @@
                             message: 'ហេតុផល តំរូវអោយបញ្ចូល'
                         }
                     }
-                },
+                }
             }
         }).on('success.form.bv', function (e) {
             SaveOrUpdate();

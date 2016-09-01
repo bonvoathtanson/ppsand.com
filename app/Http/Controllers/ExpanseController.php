@@ -16,7 +16,10 @@ class ExpanseController extends Controller
     {
         return view('expanses.index');
     }
-
+    public function otherexpanse()
+    {
+        return view('expanses.other');
+    }
     public function create($id)
     {
         $supplier = Supplier::find($id);
@@ -107,7 +110,7 @@ class ExpanseController extends Controller
         $expanse->ExpanseType = $request->ExpanseType;
         $expanse->Description = $request->Description;
         $expanse->DateCreated = date('Y-m-d H:i:s');
-        $income->save();
+        $expanse->save();
     }
 
     private function SaveMoreExpanse($request)

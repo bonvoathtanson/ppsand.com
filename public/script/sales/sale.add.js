@@ -63,7 +63,7 @@
     });
 
     $('#myModal').on('hidden.bs.modal', function (e) {
-        $('#itemid, #saleprice, #quantity, #carnumber').val('');
+        $('#itemId, #saleprice, #quantity, #carnumber').val('');
         $('#itemname').text('');
         $('#typeid option[value="0"]').prop('selected', true).change();
         $('#totalamount, #payamount').val('0');

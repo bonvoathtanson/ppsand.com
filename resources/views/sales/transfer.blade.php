@@ -17,7 +17,7 @@
     <div class="col-sm-12">
         <table id="saleTable" class="table table-bordered table-hover">
             <thead>
-                <tr class="bg-whife">
+                <tr class="bg-white">
                     <th>ឈ្មោះអតិថិជន</th>
                     <th>មុខទំនិញ</th>
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -101,7 +101,7 @@
                 <div class="box1">
                     <table class="table table-bordered">
                         <thead>
-                            <tr class="bg-whife">
+                            <tr class="bg-white">
                                 <th style="width:150px;">លេខឡាន</th>
                                 <th>បរិយាយ</th>
                             </tr>

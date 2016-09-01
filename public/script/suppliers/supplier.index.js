@@ -1,19 +1,50 @@
 (function(){
     $('.list-group-item:eq(6)').addClass('active');
-    ViewItem();
 
-    function ViewItem(){
-        GetItems(function(suppliers){
-            RenderTable(suppliers, function(element){
-                $('#supplierTable tbody').html(element);
+    $('body').on('click', '#btnsearch', function(){
+        var value = $('#inputsearch').val();
+        if(value != '' && value != null){
+            Search();
+        }else{
+            $('.box-null').show();
+            $('.box-table').hide();
+            $('#supplerTable tbody tr').remove();
+        }
+    });
+
+    $('body').on('keypress', '#inputsearch', function(event){
+        if(event.which == 13) {
+            var value = $('#inputsearch').val();
+            if(value != '' && value != null){
+                Search();
+            }else{
+                $('.box-null').show();
+                $('.box-table').hide();
+                $('#supplerTable tbody tr').remove();
+            }
+        }
+    });
+    function Search(){
+        GetItems(function(customers){
+            RenderTable(customers, function(element){
+                if(element != '' && element != null)
+                {
+                    $('.box-null-customer').hide();
+                    $('.box-table').show();
+                }else{
+                    $('.box-null-customer').show();
+                    $('.box-table').hide();
+                }
+                $('#customerTable tbody').html(element);
             });
         });
     }
 
     function GetItems(callback) {
         $('body').append(Loading());
+        var requestUrl = burl + '/find/supplier/' + $('#inputsearch').val();
         $.ajax({
-            url: burl + '/find/supplier',
+            url: requestUrl,
             type: 'GET',
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',

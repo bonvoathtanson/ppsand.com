@@ -14,7 +14,7 @@
     <div class="col-sm-12">
         <table id="userTable" class="table table-bordered table-hover">
             <thead>
-                <tr class="bg-whife">
+                <tr class="bg-white">
                     <th>ឈ្មោះគណនី</th>
                     <th>អ៊ីម៉ែល</th>
                     <th class="center">ថ្ងៃបង្កើត</th>

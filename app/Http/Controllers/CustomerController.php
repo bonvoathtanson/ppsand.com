@@ -24,6 +24,34 @@ class CustomerController extends Controller
         return view('customers.info');
     }
 
+    public function editinfo($id)
+    {
+        $customerask = CustomerAsk::find($id);
+        $customer = Customer::where('Id', '=', $customerask->CustomerId)->first();
+        return view('customers.editinfo', ['customer' => $customer,'customerask' => $customerask]);
+    }
+    public function updateinfo(Request $request)
+    {
+        $validator = Validator::make($request->all(), CustomerAsk::rules());
+        if($validator->fails())
+        {
+            $this->Fail();
+            $this->SetMessage($validator->messages()->first());
+        }else{
+
+            $id = $request->customerAskId;
+            $customerask = CustomerAsk::find($id);
+            $customerask->AskDate = $request->AskDate;
+            $customerask->ConfirmDate = $request->ConfirmDate;
+            $customerask->Description = $request->Description;
+            $customerask->Reason = $request->Reason;
+            $customerask->StatusId = $request->StatusId;
+            $customerask->save();
+
+        }
+
+        return response()->json($this->Results);
+    }
     public function indexinfo()
     {
         $customers = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)->get();
@@ -35,18 +63,10 @@ class CustomerController extends Controller
 
     public function addinfo($id)
     {
-        //$customer = Customer::find($id);
-        $customerask = CustomerAsk::find($id);
 
-        if($customerask == null){
-            $customer = Customer::find($id);
+        $customer = Customer::find($id);
 
-            return view('customers.addinfo', ['customer' => $customer]);
-        }else{
-            $customer = Customer::where('Id', '=', $customerask->CustomerId)->first();
-
-            return view('customers.addinfo', ['customer' => $customer]);
-        }
+        return view('customers.addinfo', ['customer' => $customer]);
 
     }
 
@@ -63,7 +83,8 @@ class CustomerController extends Controller
             $customerask->AskDate = $request->AskDate;
             $customerask->ConfirmDate = $request->ConfirmDate;
             $customerask->Description = $request->Description;
-            $customerask->StatusId = CustomerAsk::WAITING;
+            $customerask->Reason = $request->Reason;
+            $customerask->StatusId = $request->StatusId;
             $customerask->save();
         }
 

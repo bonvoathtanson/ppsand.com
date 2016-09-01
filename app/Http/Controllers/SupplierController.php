@@ -80,9 +80,14 @@ class SupplierController extends Controller
     }
 
     // <des>ajax request supplier list (view/supplier)</des>
-    public function search()
+    public function search($keyword = '')
     {
-        $suppliers = Supplier::all();
+        $key = "%$keyword%";
+        $suppliers = Supplier::where('SupplierCode', 'Like', $key)
+                            ->orwhere('SupplierName', 'Like', $key)
+                            ->orwhere('PhoneNumber', 'Like', $key)
+                            ->get();
+
         $this->SetData($suppliers);
 
         return response()->json($this->Results);

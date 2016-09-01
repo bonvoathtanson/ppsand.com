@@ -19,7 +19,7 @@
         <div class="col-sm-12">
             <table id="itemTable" class="table table-bordered table-hover">
                 <thead>
-                    <tr class="bg-whife">
+                    <tr class="bg-white">
                         <th>លេខកូដ</th>
                         <th>ឈ្មោះទំនិញ</th>
                         <th class="center">តំលៃលក់</th>

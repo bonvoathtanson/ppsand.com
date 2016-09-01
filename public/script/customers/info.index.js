@@ -39,7 +39,7 @@
                                 '<td class="center">' + moment(item.ConfirmDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td class="center">' + item.Description + '</td>' +
                                 '<td class="center">' +
-                                    '<a data-id="' + item.Id + '" href="' + burl + '/create/askinfo/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
+                                    '<a data-id="' + item.Id + '" href="' + burl + '/edit/editinfo/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                 '</td>'
                             '</tr>';
             });

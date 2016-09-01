@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" id="customerName" name="customerName" class="form-control" readonly value="">
+                    <input type="text" id="customerName" name="customerName" class="form-control bg-white" value="">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -33,8 +33,8 @@
         <div class="panel-body">
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">មុខទំនិញ</label>
-                <div class="col-sm-1" style="width:350px;">
-                    <select class="form-control" name="ItemId" id="itemId">
+                <div class="col-sm-1" style="width:300px;">
+                    <select class="form-control bg-white" name="ItemId" id="itemId">
                         <option value=""></option>
                         <?php foreach ($items as $index => $value): ?>
                             <option value="{{$value->Id}}" instock="{{$value->UnitInStock}}" price="{{$value->SalePrice}}">{{$value->ItemName}}</option>
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ចំនួន</label>
-                <div class="col-sm-1" style="width:150px;">
+                <div class="col-sm-1" style="width:220px;">
                     <input type="text" id="quantity" name="Quantity" class="form-control">
                 </div>
                 <div class="col-sm-1" style="width:150px; padding-left:0;">
@@ -60,26 +60,20 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">តំលៃលក់ចេញ</label>
-                <div class="col-sm-1" style="width:150px;">
+                <div class="col-sm-1" style="width:220px;">
                     <input type="text" id="salePrice" name="SalePrice" class="form-control">
                 </div>
             </div>
-            <!-- <div id="group-date" class="form-group" style="display:none;">
-                <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំដឹកចូល</label>
-                <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="transferdate" name="TransferDate" class="form-control">
-                </div>
-            </div> -->
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ទឹកប្រាក់សរុប</label>
-                <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="totalAmount" name="TotalAmount" class="form-control" disabled="disabled" value="0">
+                <div class="col-sm-1" style="width:300px;">
+                    <input type="text" id="totalAmount" name="TotalAmount" class="form-control bg-white" disabled="disabled" value="0">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">បង់ប្រាក់ចំនួន</label>
-                <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="payAmount" name="PayAmount" class="form-control" value="0">
+                <div class="col-sm-1" style="width:300px;">
+                    <input type="text" id="payAmount" name="PayAmount" class="form-control bfh-number" value="">
                 </div>
             </div>
             <div class="form-group">
@@ -114,7 +108,7 @@
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="bg-whife">
+                                <tr class="bg-white">
                                     <th>លេខកូដ</th>
                                     <th>ឈ្មោះ</th>
                                     <th class="center">លេខទូរស័ព្ទ</th>
@@ -135,7 +129,13 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 
-        ////////// Start section search customer//////////////
+        ////////// Start section search customer/////////
+
+        $('body').on('focus', '#customerName', function(){
+            $('#SearchModal').modal({
+                backdrop: 'static'
+            });
+        });
 
         $('body').on('click', '.customer', function(){
             $('#SearchModal').modal({
@@ -162,32 +162,14 @@
         });
 
         $('body').on('click','.selected',function(){
-            var customerId = $(this).closest('tr').attr('data-id');
-            GetSaleByCustomerId(customerId);
+            var tr = $(this).closest('tr');
+            var customerId = $(tr).attr('data-id');
+            $('#customerName').val($(tr).find('td:eq(1)').text());
+            $('#CustomerId').val(customerId);
+            $('#address').val($(tr).attr('data-address'));
+            $('#formNewSale').bootstrapValidator('revalidateField', 'customerName');
             $('#SearchModal').modal('hide');
         });
-
-        function GetSaleByCustomerId(customerId) {
-            $('body').append(Loading());
-            var requestUrl = burl + '/ajax/sale/customer/' + customerId;
-            $.ajax({
-                url: requestUrl,
-                type: 'GET',
-                dataType: 'JSON',
-                contentType: 'application/json; charset=utf-8',
-            }).done(function (data) {
-                if(data.IsError == false){
-                    var customer = data.Data.customer;
-                    $('#customerName').val(customer.CustomerName);
-                    $('#viewcustomer').text(customer.CustomerName);
-                    //$('[name="CustomerId"]').val(customerId);
-                    $('#CustomerId').val(customerId);
-                    $('#address').val(customer.Address);
-                }
-            }).complete(function (data) {
-                $('body').find('.loading').remove();
-            });
-        }
 
         function Search(){
             var keyword = $('[name="FilterText"]').val();
@@ -221,7 +203,7 @@
             var element = '';
             if((customers != null) && (customers.length > 0)){
                 $.each(customers, function(index, item){
-                    element += '<tr data-id="' + item.Id + '">' +
+                    element += '<tr data-id="' + item.Id + '" data-address="' + item.Address + '">' +
                     '<td>' + item.CustomerCode + '</td>' +
                     '<td>' + item.CustomerName + '</td>' +
                     '<td class="center">' + item.PhoneNumber + '</td>' +
@@ -251,17 +233,24 @@
             $('#salePrice').val(price);
             $('#viewqty').text(stock);
             $('#unitInStock').val(stock);
+            $('#formNewSale').bootstrapValidator('revalidateField', 'SalePrice');
         });
+
+        $('#quantity, #salePrice, #payAmount').keypress(function (e) {
+               if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57 || e.val() ==0)) {
+                  return false;
+               }
+         });
 
         $('body').on('keypress', '#quantity', function(event){
 
             if(event.which == 13){
                 CalTotal();
-                $('#salePrice').focus();
             }
         });
 
         $('body').on('focus blur', '#salePrice, #quantity', function(){
+
             CalTotal();
         });
 
@@ -285,7 +274,7 @@
             $('body').append(Loading());
             var item = $('#formNewSale').serialize();
             //Check Stock
-                if( ($('#quantity').val() > $('#unitInStock').val()) ){
+                if( parseInt($('#quantity').val()) > parseInt($('#unitInStock').val()) ){
                     swal('សូមពិនិត្យចំនួនក្នុងស្តុក', '', 'warning');
                     $('body').find('.loading').remove();
                 }else{
@@ -295,7 +284,7 @@
                     data: item
                 }).done(function (data) {
                     if (data.IsError == false) {
-                        window.location = burl + '/create/sale/'+ $('#CustomerId').val();
+                        window.location = burl + '/view/sale';
                     } else {
                         swal(data.Message, '', 'warning');
                     }
@@ -321,7 +310,7 @@
                             }
                         }
                     },
-                    itemId: {
+                    ItemId: {
                         validators: {
                             notEmpty: {
                                 message: 'សូមធ្វើការជ្រើសរើសមុខទំនិញ'
@@ -342,6 +331,20 @@
                             }
                         }
                     },
+                    SalePrice:{
+                        validators:{
+                            notEmpty:{
+                                message: 'សូមបញ្ចូលតំលៃលក់'
+                            }
+                        }
+                    },
+                    PayAmount:{
+                        validators:{
+                            notEmpty:{
+                                message: 'សូមបញ្ចូលចំនួនបង់ប្រាក់'
+                            }
+                        }
+                    }
                 }
             }).on('success.form.bv', function (e) {
                 SaveOrUpdate();

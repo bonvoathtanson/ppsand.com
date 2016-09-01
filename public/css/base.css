@@ -224,12 +224,12 @@ input.form-control:focus{
     border-radius: 3px !important;
 }
 
-.btn-whife{
+.btn-white{
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
     border: 1px solid #ddd;
     border-radius: 3px;
 }
 
-.bg-whife{
+.bg-white{
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
 }

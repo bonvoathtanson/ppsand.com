@@ -10,6 +10,7 @@
   <div class="col-sm-12">
     <div class="pull-right">
       <a href="{{url('/view/selsupplier')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអ្នកផ្គត់ផ្គង់</a>
+          <a href="{{url('/create/otherexpanse')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណាយផ្សេងៗ</a>
     </div>
   </div>
 </div>
@@ -36,8 +37,8 @@
   <div class="col-sm-12">
     <table id="expanseTable" class="table table-bordered table-hover">
       <thead>
-        <tr class="bg-whife">
-          <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
+        <tr class="bg-white">
+          <!-- <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th> -->
           <th>ថ្ងៃខែចំណាយ</th>
           <th>ប្រភេទចំណាយ</th>
           <th class="center">បរិយាយ</th>

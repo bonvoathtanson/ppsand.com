@@ -42,7 +42,7 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('/customerask', 'CustomerController@indexinfo');
     Route::post('/sale', 'SaleController@search');
     Route::get('/import', 'ImportController@search');
-    Route::get('/supplier', 'SupplierController@search');
+    Route::get('/supplier/{value}', 'SupplierController@search');
     Route::post('/income', 'IncomeController@search');
     Route::post('/expanse', 'ExpanseController@search');
     Route::get('/item', 'ItemController@search');
@@ -59,6 +59,7 @@ Route::group(['prefix' => 'create'], function(){
     Route::get('/income', 'IncomeController@create');
     Route::get('/otherincome', 'IncomeController@otherincome');
     Route::get('/expanse/{id}', 'ExpanseController@create');
+    Route::get('/otherexpanse', 'ExpanseController@otherexpanse');
     Route::get('/sale/{id}', 'SaleController@create');
     Route::get('/sale', 'SaleController@newsale');
     Route::get('/import/{id}', 'ImportController@create');
@@ -79,6 +80,7 @@ Route::group(['prefix' => 'insert'], function(){
 
 Route::group(['prefix' => 'edit'], function(){
     Route::get('/customer/{id}', 'CustomerController@edit');
+    Route::get('/editinfo/{id}', 'CustomerController@editinfo');
     Route::get('/supplier/{id}', 'SupplierController@edit');
     Route::get('/income/{id}', 'IncomeController@edit');
     Route::get('/item/{id}', 'ItemController@edit');
@@ -86,6 +88,7 @@ Route::group(['prefix' => 'edit'], function(){
 
 Route::group(['prefix' => 'update'], function(){
     Route::post('/customer', 'CustomerController@update');
+    Route::post('/customerask', 'CustomerController@updateinfo');
     Route::post('/supplier', 'SupplierController@update');
     Route::post('/income', 'IncomeController@update');
     Route::post('/item', 'ItemController@update');

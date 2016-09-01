@@ -59,7 +59,7 @@
   <div class="col-sm-12">
     <table id="saleTable" class="table table-bordered table-hover">
       <thead>
-        <tr class="bg-whife">
+        <tr class="bg-white">
           <th>ឈ្មោះអតិថិជន</th>
           <th>មុខទំនិញ</th>
           <th>ថ្ងៃខែឆ្នាំលក់</th>
@@ -116,7 +116,7 @@
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="bg-whife">
+                                <tr class="bg-white">
                                     <th>លេខកូដ</th>
                                     <th>ឈ្មោះ</th>
                                     <th class="center">លេខទូរស័ព្ទ</th>

@@ -65,12 +65,12 @@
                 if(item.supplier != null){
                     name = item.supplier.SupplierName;
                 }
-                var type = 'ចំណូលផ្សេងៗ';
+                var type = 'ចំណាយផ្សេងៗ';
                 if(item.ExpanseType == 1){
                     type = 'ចំណាយការទិញ';
                 }
                 element += '<tr data-id="' + item.Id + '">' +
-                                '<td>' + name + '</td>' +
+                                // '<td>' + name + '</td>' +
                                 '<td>' + moment(item.ExpanseDate).format('DD-MM-YYYY') + '</td>' +
                                 '<td class="center">' + type + '</td>' +
                                 '<td>' + item.Description + '</td>' +
