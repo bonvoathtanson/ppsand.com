@@ -5,10 +5,6 @@
         var value = $('#inputsearch').val();
         if(value != '' && value != null){
             Search();
-        }else{
-            $('.box-null').show();
-            $('.box-table').hide();
-            $('#supplerTable tbody tr').remove();
         }
     });
 
@@ -17,32 +13,33 @@
             var value = $('#inputsearch').val();
             if(value != '' && value != null){
                 Search();
-            }else{
-                $('.box-null').show();
-                $('.box-table').hide();
-                $('#supplerTable tbody tr').remove();
             }
         }
     });
+    Search();
     function Search(){
         GetItems(function(customers){
             RenderTable(customers, function(element){
                 if(element != '' && element != null)
                 {
-                    $('.box-null-customer').hide();
+                    $('.box-null').hide();
                     $('.box-table').show();
                 }else{
                     $('.box-null-customer').show();
                     $('.box-table').hide();
                 }
-                $('#customerTable tbody').html(element);
+                $('#supplierTable tbody').html(element);
             });
         });
     }
 
     function GetItems(callback) {
         $('body').append(Loading());
-        var requestUrl = burl + '/find/supplier/' + $('#inputsearch').val();
+        var value = $('#inputsearch').val();
+        if(value ==''){
+            value ='empty';
+        }
+        var requestUrl = burl + '/filter/supplier/' + value;
         $.ajax({
             url: requestUrl,
             type: 'GET',

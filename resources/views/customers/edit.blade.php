@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">លេខកូដ</label>
                 <div class="col-sm-1" style="width:120px;">
-                    <input type="text" class="form-control" value="{{$customer->CustomerCode}}" disabled="disabled">
+                    <input type="text" class="form-control btn-default" value="{{$customer->CustomerCode}}" readonly="">
                 </div>
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">កំណត់ចំណាំ</label>
                 <div class="col-sm-2">
-                    <select class="form-control" name="TypeId" style="font-size:10pt;">
+                    <select class="form-control btn-default" style="padding:3px" name="TypeId" style="font-size:10pt;">
                         <option value="0" {{sel($customer->TypeId, 0)}}></option>
                         <option value="1" {{sel($customer->TypeId, 1)}}>សួរពត៍មាន</option>
                         <option value="2" {{sel($customer->TypeId, 2)}}>បញ្ជាទិញ</option>

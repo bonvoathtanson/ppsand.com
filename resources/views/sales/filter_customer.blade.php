@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ស្វែងរកអតិថិជន</label>
                 <div class="col-sm-1" style="width:320px;">
-                    <input type="text" id="inputsearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                    <input type="text" id="inputsearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
                     <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>
@@ -25,7 +25,7 @@
                 <tr class="bg-whife">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
-                    <th class="center">លេខទូរសព្ទ</th>
+                    <th class="center">លេខទូរស័ព្ទ</th>
                     <th style="width:250px;"></th>
                 </tr>
             </thead>

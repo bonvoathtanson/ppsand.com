@@ -7,6 +7,11 @@
     var id = window.location.hash.replace('#', '');
     GetSaleByCustomerId(id);
 
+    $('body').on('focus', '#customername', function(){
+        $('#SearchModal').modal({
+            backdrop: 'static'
+        });
+    });
     $('body').on('click', '.customer', function(){
         $('#SearchModal').modal({
             backdrop: 'static'
@@ -92,7 +97,6 @@
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
-            console.log(data);
             if(data.IsError == false){
                 var customer = data.Data.customer;
                 $('#customername').val(customer.CustomerName);
@@ -105,7 +109,7 @@
                     });
                     $('input').on('ifChecked', function(event){
                         var select = $(this).closest('tr');
-                        var total = parseInt($(select).find('td:eq(6)').text()) + parseInt($('#totalamount').text());
+                        var total = parseInt($(select).find('td:eq(7)').text()) + parseInt($('#totalamount').text());
                         $('#totalamount').text(total);
                     });
 

@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអ្នកផ្គត់ផ្គង់​</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->SupplierName}}">
+                    <input type="text" class="form-control btn-default" value="{{$supplier->SupplierName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអ្នកផ្គត់ផ្គង់​</a>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:580px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->Address}}">
+                    <input type="text" class="form-control btn-default" readonly value="{{$supplier->Address}}">
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">មុខទំនិញ</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <select class="form-control" name="ItemId" id="itemid">
+                    <select class="form-control btn-default" style="padding:3px" name="ItemId" id="itemid">
                         <option value=""></option>
                         <?php foreach ($items as $index => $value): ?>
                             <option value="{{$value->Id}}" price="{{$value->SalePrice}}">{{$value->ItemName}}</option>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំបញ្ជាទិញ</label>
                 <div class="col-sm-1" style="width:220px;">
-                    <input type="text" id="importdate" name="ImportDate" class="form-control">
+                    <input type="text" id="importdate" name="ImportDate" class="form-control btn-default">
                 </div>
             </div>
             <div class="form-group">
@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ដឹកចូល</label>
                 <div class="col-sm-1" style="width:200px;">
-                    <select class="form-control" id="typeid" name="IsOrder">
+                    <select class="form-control btn-default" style="padding:3px" id="typeid" name="IsOrder">
                         <option value="0">ដឹកចូលភ្លាម</option>
                         <option value="1">ដឹកចូលពេលក្រោយ</option>
                     </select>
@@ -78,13 +78,13 @@
             <div id="group-date" class="form-group" style="display:none;">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំដឹកចូល</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="transferdate" name="TransferDate" class="form-control">
+                    <input type="text" id="transferdate" name="TransferDate" class="form-control btn-default">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ទឹកប្រាក់សរុប</label>
                 <div class="col-sm-1" style="width:350px;">
-                    <input type="text" id="totalamount" name="TotalAmount" class="form-control" disabled="disabled" value="0">
+                    <input type="text" id="totalamount" name="TotalAmount" class="form-control btn-default" readonly value="0">
                 </div>
             </div>
             <div class="form-group">

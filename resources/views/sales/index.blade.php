@@ -31,15 +31,15 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="form-control" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="saleToDate" name="saleToDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:75px;margin-top:5px; padding-left:0;">លេខឡាន</div>
                     <div class="col-sm-1" style="width:150px; padding-left:0px">
-                        <select class="form-control" name="carNumber" id="carNumber">
+                        <select class="form-control btn-default" style="padding:3px" name="carNumber" id="carNumber">
                             <option value="">ជ្រើសលេខឡាន</option>
                             <?php foreach ($cars as $index => $value): ?>
                                 <option value="{{$value->Id}}" name="{{$value->CarNo}}">{{$value->CarNo}}</option>
@@ -107,7 +107,7 @@
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" id="btnSearchNameCustomer" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>
@@ -196,6 +196,7 @@
             });
         });
     }
+
     function GetItems(callback) {
         $('body').append(Loading());
         var requestUrl = burl + '/filter/customer/' + $('#customerNameSearch').val();

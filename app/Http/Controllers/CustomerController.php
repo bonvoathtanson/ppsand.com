@@ -52,11 +52,30 @@ class CustomerController extends Controller
 
         return response()->json($this->Results);
     }
-    public function indexinfo()
+    public function indexinfo(Request $request)
     {
-        $customers = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)->get();
-        $customers->load('Customer');
-        $this->SetData($customers);
+          $customerId = $request->customerId;
+          $statusType = $request->statusTypeId;
+        if( $customerId !='' || $statusType !='' ){
+
+            $query = CustomerAsk::query();
+
+            if(!empty($customerId)){
+                $query->where('CustomerId', '=', $customerId);
+            }
+            if(!empty($statusType)){
+                $query->where('StatusId', '=', $statusType);
+            }
+
+            $customers = $query->orderBy('AskDate','ASC')->get();
+
+        }else{
+            $customers = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)
+            ->orderBy('AskDate','ASC')
+            ->get();
+        }
+            $customers->load('Customer');
+            $this->SetData($customers);
 
         return response()->json($this->Results);
     }

@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input id="customername" type="text" class="form-control" disabled="disabled">
+                    <input id="customername" type="text" class="form-control btn-default" >
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0)" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -26,13 +26,13 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" id="address" class="form-control" disabled="disabled">
+                    <input type="text" id="address" class="form-control btn-default" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ចំណូលក្នុងថ្ងៃ</label>
                 <div class="col-sm-1" style="width:200px;">
-                    <input type="text" class="form-control" id="incomedate" name="IncomeDate">
+                    <input type="text" class="form-control btn-default" id="incomedate" name="IncomeDate">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
     <div class="tableSale">
         <table class="table table-bordered table-hover">
             <thead>
-                <tr class="bg-whife">
+                <tr class="bg-white">
                     <th class="center"></th>
                     <th>មុខទំនិញ</th>
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -85,7 +85,7 @@
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" name="FilterText" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" name="FilterText" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" id="btnSearch" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>
@@ -94,7 +94,7 @@
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="bg-whife">
+                                <tr class="bg-white">
                                     <th>លេខកូដ</th>
                                     <th>ឈ្មោះ</th>
                                     <th class="center">លេខទូរស័ព្ទ</th>

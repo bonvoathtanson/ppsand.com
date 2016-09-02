@@ -60,7 +60,7 @@
                                 <th style="width:150px; background:#f2f2f2; vertical-align:middle;">លេខឡាន</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
-                                        <select class="form-control" name="CarNumber">
+                                        <select class="form-control btn-default" style="padding:3px" name="CarNumber">
                                             <option value="">ជ្រើសលេខឡាន</option>
                                             <?php foreach ($cars as $key => $value): ?>
                                                 <option value="{{$value->CarNo}}">{{$value->CarNo}} ({{$value->Description}})</option>
@@ -73,7 +73,7 @@
                                 <th style="width:150px; background:#f2f2f2; vertical-align:middle;">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
-                                        <input type="text" class="form-control" name="TransferDate" id="transferdate">
+                                        <input type="text" class="form-control btn-default" name="TransferDate" id="transferdate">
                                     </div>
                                 </td>
                             </tr>

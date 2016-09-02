@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <!-- <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a> -->
-                    <a href="javascript:void(0);" class="btn btn-success">ជ្រើសរើសអតិថិជន</a>
+                    <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
                     <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជនថ្មី</a>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div role="tabpanel" class="tab-pane fade in active" id="box-tap1">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="bg-whife">
+                        <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -80,7 +80,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap2">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="bg-whife">
+                        <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
@@ -112,7 +112,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap3">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="bg-whife">
+                        <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
                             <th>ថ្ងៃខែឆ្នាំលក់</th>
@@ -241,6 +241,43 @@
         </div>
     </form>
 </div>
+
+<form id="formCustomer" class="form-horizontal" onsubmit="return false;">
+    {{ csrf_field() }}
+    <div id="SearchModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="itemname" style="color:#0856ab; font-weight:bold;">ស្វែងរកឈ្មោះអតិថិជន</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" style="min-height:350px;">
+                    <div style="margin-bottom:3px;">
+                        <div class="input-group">
+                            <input type="text" name="FilterText" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" id="btnSearch" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="box-table">
+                        <table id="customerTable" class="table table-bordered table-hovered">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th>លេខកូដ</th>
+                                    <th>ឈ្មោះ</th>
+                                    <th class="center">លេខទូរស័ព្ទ</th>
+                                    <th style="width:90px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection
 @section('script')
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>

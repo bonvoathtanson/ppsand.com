@@ -8,7 +8,7 @@
         var item = $('#formSupplier').serialize();
         $.ajax({
             type: 'POST',
-            url: burl + '/insert/supplier',
+            url: burl + '/update/supplier',
             data: item
         }).done(function (data) {
             if (data.IsError == false) {
@@ -55,4 +55,5 @@
             SaveOrUpdate();
         });
     }
+
 })();

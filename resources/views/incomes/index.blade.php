@@ -29,13 +29,13 @@
                 <tr>
                     <td style="width:150px;">
                         <div style="position: relative">
-                            <input type="text" id="incomeFromDate" name="incomeFromDate" class="form-control" placeholder="ចាប់ពីថ្ងៃ">
+                            <input type="text" id="incomeFromDate" name="incomeFromDate" class="form-control btn-default" placeholder="ចាប់ពីថ្ងៃ">
                         </div>
                     </td>
                     <td style="vertical-align:middle;"><span>ដល់</span></td>
                     <td style="width:150px;">
                         <div style="position: relative">
-                            <input type="text" id="incomeToDate" name="incomeToDate" class="form-control" placeholder="ដល់ថ្ងៃ">
+                            <input type="text" id="incomeToDate" name="incomeToDate" class="form-control btn-default" placeholder="ដល់ថ្ងៃ">
                         </div>
                     </td>
                     <td>
@@ -50,7 +50,7 @@
 </div>
 <table id="incomeTable" class="table table-bordered table-hover">
     <thead>
-        <tr class="bg-whife">
+        <tr class="bg-white">
             <th>ថ្ងៃខែឆ្នាំចំណូល</th>
             <th>អតិថិជន</th>
             <th class="center">បរិយាយ</th>
@@ -75,7 +75,7 @@
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" id="btnSearchNameCustomer" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>
@@ -84,7 +84,7 @@
                     <div class="box-table">
                         <table id="customerTable" class="table table-bordered table-hovered">
                             <thead>
-                                <tr class="bg-whife">
+                                <tr class="bg-white">
                                     <th>លេខកូដ</th>
                                     <th>ឈ្មោះ</th>
                                     <th class="center">លេខទូរស័ព្ទ</th>

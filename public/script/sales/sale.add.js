@@ -1,5 +1,80 @@
 (function() {
 
+    $('body').on('click', '.customer', function(){
+        $('#SearchModal').modal({
+            backdrop: 'static'
+        });
+    });
+    $('#SearchModal').on('shown.bs.modal', function (e) {
+        $('#customer').focus();
+    });
+
+    $('#SearchModal').on('hidden.bs.modal', function (e) {
+        $('#customer').val('');
+    });
+
+    $('body').on('click', '#btnSearch', function(){
+        Search();
+    });
+    $('body').on('keypress', '[name="FilterText"]', function(event){
+        if(event.which == 13) {
+            Search();
+        }
+    });
+
+    $('body').on('click','.selected',function(){
+        var customerId = $(this).closest('tr').attr('data-id');
+        window.location.href = burl +  '/create/sale/' + customerId;
+        $('#SearchModal').modal('hide');
+    });
+
+    function Search(){
+        var keyword = $('[name="FilterText"]').val();
+        GetCustomer(keyword, function(customers){
+            CustomerTable(customers, function(element){
+                $('#customerTable tbody').html(element);
+            });
+        });
+    }
+
+    function GetCustomer(keyword, callback) {
+        $('body').append(Loading());
+        var requestUrl = burl + '/filter/customer/' + keyword;
+        $.ajax({
+            url: requestUrl,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function (data) {
+            if(data.IsError == false){
+                if(typeof callback == 'function'){
+                    callback(data.Data);
+                }
+            }
+        }).complete(function (data) {
+            $('body').find('.loading').remove();
+        });
+    }
+
+    function CustomerTable(customers, callback){
+        var element = '';
+        if((customers != null) && (customers.length > 0)){
+            $.each(customers, function(index, item){
+                element += '<tr data-id="' + item.Id + '">' +
+                '<td>' + item.CustomerCode + '</td>' +
+                '<td>' + item.CustomerName + '</td>' +
+                '<td class="center">' + item.PhoneNumber + '</td>' +
+                '<td class="center">' +
+                '<button type="button" class="btn btn-info btn-e selected">ជ្រើសរើស</button> ' +
+                '</td>'
+                '</tr>';
+            });
+        }
+        if(typeof callback == 'function'){
+            callback(element);
+        }
+    }
+
     SetDeliveryValidation();
 
     $('body').on('click', '#save', function(){

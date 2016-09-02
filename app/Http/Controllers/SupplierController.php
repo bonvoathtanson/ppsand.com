@@ -70,10 +70,15 @@ class SupplierController extends Controller
     public function filter($keyword='')
     {
         $key = "%$keyword%";
-        $supplers = Supplier::where('SupplierCode', 'Like', $key)
-                            ->orwhere('SupplierName', 'Like', $key)
-                            ->orwhere('PhoneNumber', 'Like', $key)
-                            ->get();
+        if($keyword =='empty'){
+            $supplers = Supplier::limit(10)->get();
+        }else{
+            $supplers = Supplier::where('SupplierCode', 'Like', $key)
+                                ->orwhere('SupplierName', 'Like', $key)
+                                ->orwhere('PhoneNumber', 'Like', $key)
+                                ->get();
+        }
+
         $this->SetData($supplers);
 
         return response()->json($this->Results);
@@ -120,7 +125,6 @@ class SupplierController extends Controller
         $supplier->Address = $request->Address;
         $supplier->LastUpdated = date('Y-m-d H:i:s');
         $supplier->save();
-
         return response()->json($this->Results);
     }
 

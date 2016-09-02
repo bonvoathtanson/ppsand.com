@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" id="customerName" name="customerName" class="form-control bg-white" value="">
+                    <input type="text" id="customerName" name="customerName" class="form-control btn-default" value="">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" id="address" name="address" class="form-control" disabled="disabled" value="">
+                    <input type="text" id="address" name="address" class="form-control btn-default" readonly value="">
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" name="FilterText" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" name="FilterText" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" id="btnSearch" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>
@@ -225,22 +225,15 @@
         });
 
         $('body').on('change', '#itemId', function(event){
-
             var id = $(this).val();
             var price = $('option:selected', this).attr('price');
             var stock = $('option:selected', this).attr('instock');
             $('#itemId').val(id);
-            $('#salePrice').val(price);
+            $('#salePrice').val(parseInt(price));
             $('#viewqty').text(stock);
             $('#unitInStock').val(stock);
             $('#formNewSale').bootstrapValidator('revalidateField', 'SalePrice');
         });
-
-        $('#quantity, #salePrice, #payAmount').keypress(function (e) {
-               if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57 || e.val() ==0)) {
-                  return false;
-               }
-         });
 
         $('body').on('keypress', '#quantity', function(event){
 
@@ -250,7 +243,6 @@
         });
 
         $('body').on('focus blur', '#salePrice, #quantity', function(){
-
             CalTotal();
         });
 
@@ -328,6 +320,9 @@
                         validators:{
                             notEmpty:{
                                 message: 'សូមបញ្ចូលចំនួន'
+                            },
+                            integer: {
+                                message: 'សូមបញ្ចូលចំនួនជាលេខ'
                             }
                         }
                     },
@@ -335,6 +330,9 @@
                         validators:{
                             notEmpty:{
                                 message: 'សូមបញ្ចូលតំលៃលក់'
+                            },
+                            integer: {
+                                message: 'សូមបញ្ចូលតំលៃលក់ជាលេខ'
                             }
                         }
                     },
@@ -342,6 +340,9 @@
                         validators:{
                             notEmpty:{
                                 message: 'សូមបញ្ចូលចំនួនបង់ប្រាក់'
+                            },
+                            integer: {
+                                message: 'សូមបញ្ចូលជាលេខ'
                             }
                         }
                     }

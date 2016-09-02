@@ -12,9 +12,9 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
+                <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអ្នកផ្គត់ផ្គង់</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->SupplierName}}">
+                    <input type="text" class="form-control btn-default" value="{{$supplier->SupplierName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="{{url('/view/selsupplier')}}" class="btn btn-success">ជ្រើសរើសអ្នកផ្គត់ផ្គង់​</a>
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:580px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->Address}}">
+                    <input type="text" class="form-control btn-default" readonly value="{{$supplier->Address}}">
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div role="tabpanel" class="tab-pane fade in active" id="box-tap1">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-white">
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំបញ្ជាទិញ</th>
                             <th class="center">ចំនួន</th>
@@ -76,7 +76,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap2">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-white">
                             <th>មុខទំនិញ</th>
                             <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
                             <th class="center">ចំនួន</th>
@@ -104,7 +104,7 @@
             <div role="tabpanel" class="tab-pane fade" id="box-tap3">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr class="warning">
+                        <tr class="bg-white">
                             <th>មុខទំនិញ</th>
                             <th>ថ្ងៃខែឆ្នាំលក់</th>
                             <th class="center">លេខឡាន</th>

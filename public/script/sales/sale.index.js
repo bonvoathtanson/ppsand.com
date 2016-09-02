@@ -27,12 +27,15 @@
                 {
                     $('.box-null').hide();
                 }else{
+                    total ='0.00'
+                    amount='0.00'
+                    remain='0.00'
                     $('.box-null').show();
                 }
                 $('#saleTable tbody').html(element);
-                $('#totalamount').text(total.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-                $('#payamount').text(amount.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-                $('#remain').text(remain.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                $('#totalamount').text(total);
+                $('#payamount').text(amount);
+                $('#remain').text(remain);
             });
         });
 

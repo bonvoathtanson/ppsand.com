@@ -14,7 +14,7 @@
   <div class="col-sm-12">
     <table id="importTable" class="table table-bordered table-hover">
       <thead>
-        <tr class="bg-whife">
+        <tr class="bg-white">
           <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
           <th>មុខទំនិញ</th>
           <th class="center">ថ្ងៃខែឆ្នាំ</th>

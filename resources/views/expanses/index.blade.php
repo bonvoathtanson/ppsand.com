@@ -20,11 +20,11 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="expanseFromDate" name="expanseFromDate" class="form-control" placeholder="ចាប់ពីថ្ងៃ">
+                    <input type="text" id="expanseFromDate" name="expanseFromDate" class="form-control btn-default" placeholder="ចាប់ពីថ្ងៃ">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="expanseToDate" name="expanseToDate" class="form-control" placeholder="ដល់ថ្ងៃ">
+                    <input type="text" id="expanseToDate" name="expanseToDate" class="form-control btn-default" placeholder="ដល់ថ្ងៃ">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
                     <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>

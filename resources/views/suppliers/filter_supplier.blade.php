@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ស្វែងរកអ្នកផ្គត់ផ្គង់</label>
                 <div class="col-sm-1" style="width:320px;">
-                    <input type="text" id="inputsearch" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                    <input type="text" id="inputsearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
                     <button type="button" id="btnsearch" class="btn btn-success">ស្វែងរក</button>
@@ -22,7 +22,7 @@
     <div class="box-table" style="display:none;">
         <table id="supplerTable" class="table table-bordered table-hovere">
             <thead>
-                <tr class="warning">
+                <tr class="bg-white">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
                     <th class="center">លេខទូរសព្ទ</th>
