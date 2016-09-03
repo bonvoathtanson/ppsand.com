@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">លេខកូដទំនិញ</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="itemcode" value="{{$item->ItemCode}}" disabled="disabled">
+                <input type="text" class="form-control btn-default" name="itemcode" value="{{$item->ItemCode}}" readonly>
             </div>
         </div>
         <div class="form-group">

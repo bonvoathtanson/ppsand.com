@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">លេខកូដ</label>
                 <div class="col-sm-1" style="width:120px;">
-                    <input type="text" name="SupplierCode" class="form-control" value="{{$supplier->SupplierCode}}" readonly>
+                    <input type="text" name="SupplierCode" class="form-control btn-default" value="{{$supplier->SupplierCode}}" readonly>
                 </div>
             </div>
             <div class="form-group">

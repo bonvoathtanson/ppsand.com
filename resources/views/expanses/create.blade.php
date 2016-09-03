@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអ្នកផ្គត់ផ្គង់</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->SupplierName}}">
+                    <input type="text" class="form-control btn-default" value="{{$supplier->SupplierName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអ្នកផ្គត់ផ្គង់</a>
@@ -26,13 +26,13 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$supplier->Address}}">
+                    <input type="text" class="form-control btn-default" value="{{$supplier->Address}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ចំណូលក្នុងថ្ងៃ</label>
                 <div class="col-sm-1" style="width:200px;">
-                    <input type="text" class="form-control" id="incomedate" name="ExpanseDate">
+                    <input type="text" class="form-control btn-default" id="incomedate" name="ExpanseDate">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
     <div class="">
         <table class="table table-bordered table-hover">
             <thead>
-                <tr class="warning">
+                <tr class="bg-white">
                     <th class="center"></th>
                     <th>មុខទំនិញ</th>
                     <th class="center">ថ្ងៃខែឆ្នាំលក់</th>

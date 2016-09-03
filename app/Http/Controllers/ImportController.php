@@ -65,6 +65,21 @@ class ImportController extends Controller
                 {
                     $this->UpdateStock($request->ItemId, $request->Quantity);
                 }
+                //Insert to table expance to supplier
+                $expanse = new Expanse();
+                $supplier = Supplier::where('Id','=', $request->SupplierId)->get()->first();
+                $item = Item::where('Id','=', $request->ItemId)->get()->first();
+                $expanse->ImportId = $import->Id;
+                $expanse->ExpanseType = 1;
+                $expanse->ExpanseDate = $request->TransferDate;
+                if($request->TransferDate ==''){
+                    $expanse->ExpanseDate = date('Y-m-d H:i:s');
+                }
+                $expanse->SupplierId = $request->SupplierId;
+                $expanse->TotalAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
+                $expanse->Description = 'បងលុយអ្នកផ្គត់ផ្គង់ឈ្មោះ ['.$supplier->SupplierName.'] ទំទិញ '.$import->ItemName;
+                $expanse->DateCreated = date('Y-m-d H:i:s');
+                $expanse->save();
                 DB::commit();
             }
         } catch (Exception $e) {

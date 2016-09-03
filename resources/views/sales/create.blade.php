@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$customer->CustomerName}}">
+                    <input type="text" id="customerName" class="form-control btn-default" value="{{$customer->CustomerName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
                     <!-- <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a> -->
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អាស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$customer->Address}}">
+                    <input type="text" class="form-control btn-default" value="{{$customer->Address}}">
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
     <div class="row" style="margin-bottom:5px;">
         <div class="col-sm-12" style="padding-left:0;">
             <div class="col-sm-1" style="width:200px;">
-                <input type="text" id="itemcode" class="form-control" placeholder="វាយ លេខកូដទំនិញ">
+                <input type="text" id="itemcode" class="form-control btn-default" placeholder="វាយ លេខកូដទំនិញ">
             </div>
             <div class="pull-right">
                 <a href="{{url('/create/income').'#'.$customer->Id}}" class="btn btn-danger">បង់លុយ</a>
@@ -213,7 +213,7 @@
                                 <th style="width:150px; background:#f2f2f2; vertical-align:middle;">លេខឡាន</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
-                                        <select class="form-control" name="CarNumber">
+                                        <select class="form-control btn-default" style="padding:3px" name="CarNumber">
                                             <option value="">ជ្រើសលេខឡាន</option>
                                             <?php foreach ($cars as $key => $value): ?>
                                                 <option value="{{$value->CarNo}}">{{$value->CarNo}} ({{$value->Description}})</option>
@@ -226,7 +226,7 @@
                                 <th style="width:150px; background:#f2f2f2; vertical-align:middle;">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
-                                        <input type="text" class="form-control" name="TransferDate" id="datetransfer">
+                                        <input type="text" class="form-control btn-default" name="TransferDate" id="datetransfer">
                                     </div>
                                 </td>
                             </tr>
@@ -254,7 +254,7 @@
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" name="FilterText" class="form-control" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" name="FilterText" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" id="btnSearch" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>

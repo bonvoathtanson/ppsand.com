@@ -5,6 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Sale;
+use App\Models\Income;
 use App\Models\Item;
 use App\Models\CarNumber;
 use App\Http\Requests;
@@ -144,6 +145,7 @@ class SaleController extends Controller
         try {
             DB::beginTransaction();
             $sale = new Sale();
+            $item = Item::where('Id','=', $request->ItemId)->get()->first();
             $sale->SaleCode = $this->GetSaleCode($request->CustomerId);
             $sale->SaleDate = date_create($request->SaleDate);
             $sale->TransferDate = date_create($request->TransferDate);
@@ -156,6 +158,16 @@ class SaleController extends Controller
             $sale->PayAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);
             $sale->IsOrder = 1;
             $sale->save();
+            //Insert to table income from customer
+            $income = new Income();
+            $income->SaleId = $sale->Id;
+            $income->TotalAmount = ($request->PayAmount == ''? 0 : $request->PayAmount);;
+            $income->CustomerId = $request->CustomerId;
+            $income->IncomeDate = date_create($request->IncomeDate);
+            $income->IncomeType = 1;
+            $income->Description = 'លក់ '.$item->ItemName.' ​ទៅអោយអតិថិជនឈ្មោះ ['.$sale->customer->CustomerName.']';
+            $income->DateCreated = date('Y-m-d H:i:s');
+            $income->save();
             DB::commit();
         } catch (Illuminate\Database\QueryException $e) {
             $this->SetError(true);
@@ -178,7 +190,7 @@ class SaleController extends Controller
         return response()->json($this->Results);
     }
 
-    function newsale()
+    public function newsale()
     {
         $items = Item::all();
         $results = array(

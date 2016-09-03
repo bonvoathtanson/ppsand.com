@@ -1,5 +1,10 @@
 (function() {
 
+    $('body').on('focus', '#customerName', function(){
+        $('#SearchModal').modal({
+            backdrop: 'static'
+        });
+    });
     $('body').on('click', '.customer', function(){
         $('#SearchModal').modal({
             backdrop: 'static'

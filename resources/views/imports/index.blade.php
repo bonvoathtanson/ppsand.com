@@ -6,7 +6,7 @@
 <div class="row memu-bar">
   <div class="col-sm-12">
     <div class="pull-right">
-      <a href="{{url('/view/selsupplier')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើើសរើសអ្នកផ្គត់ផ្គង់</a>
+      <a href="{{url('/view/selsupplier')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអ្នកផ្គត់ផ្គង់</a>
     </div>
   </div>
 </div>
