@@ -27,6 +27,22 @@
         </tr>
       </thead>
       <tbody></tbody>
+      <tfoot>
+          <tr>
+              <td colspan="5" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
+              <td style="text-align:right;">
+                  <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+                  <span id="payamount" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+                  <span id="remain" style="color:blue; font-weight:bold;">0.00</span>
+              </td>
+              <td style="text-align:right;">
+              </td>
+          </tr>
+      </tfoot>
     </table>
   </div>
 </div>

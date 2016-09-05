@@ -27,7 +27,7 @@ class SaleController extends Controller
     public function report($id)
     {
         $transfer = Sale::where('Id', '=', $id)->first();
-        return view('sales.report',['transfer' => $transfer]);
+        return view('reports.transfer',['transfer' => $transfer]);
     }
     public function timetransfer()
     {

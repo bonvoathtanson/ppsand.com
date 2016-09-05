@@ -9,6 +9,7 @@
 <div style="padding:5px 0px; text-align:right;">
     <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> ចំណូលការលក់</a>
     <a href="{{url('/create/otherincome')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណូលផ្សេងៗ</a>
+     <a href="{{url('/report/income')}}" id="btnPrint" class="btn btn-primary" target="_blank"><i class="fa fa-print" aria-hidden="true"></i> បោះពុម្ភ</a>
 </div>
 <div class="panel panel-default">
   <form id="formSearchIncome" method="post" onsubmit="return false;">

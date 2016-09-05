@@ -20,6 +20,11 @@ class ExpanseController extends Controller
     {
         return view('expanses.other');
     }
+    public function report()
+    {
+        $expanse = Expanse::all();
+        return view('reports.expanse',['expanses' => $expanse]);
+    }
     public function create($id)
     {
         $supplier = Supplier::find($id);
@@ -37,16 +42,19 @@ class ExpanseController extends Controller
 
         $fromDate = $request->expanseFromDate;
         $toDate = $request->expanseToDate;
-
-        if( $fromDate =='' && $toDate =='' ){
+        $supplyId = $request->supplyId;
+        if( $fromDate =='' && $toDate =='' && $supplyId ==''){
             $expanses = Expanse::all();
         }else{
             $query = Expanse::query();
-            if(!Empty($fromDate)){
+            if(!empty($fromDate)){
                 $query->whereDate('ExpanseDate', '>=', $fromDate);
             }
-            if(!Empty($toDate)){
+            if(!empty($toDate)){
                 $query->whereDate('ExpanseDate', '<=', $toDate);
+            }
+            if(!empty($supplyId)){
+                $query->where('SupplierId', '=', $supplyId);
             }
             $expanses = $query->get();
         }

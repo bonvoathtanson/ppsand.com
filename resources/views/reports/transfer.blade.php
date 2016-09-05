@@ -12,7 +12,7 @@
     <div class="print-header">
         <div class="font-M1 center" style="font-size:14pt;">ភ្នំពេញខ្សាច់</div>
         <div class="font-M1 center" style="font-size:12pt;">
-            តារាងប្រភេទខ្សាច់
+            តារាងទំនិញដែលត្រូវដឹកចេញ
         </div>
         <div class="font-HA center" style="font-size:11pt;">
             អាស័យដ្ឋានៈ វិថីស៊ីសុវិត្ថិ សង្កាត់ស្រះចក ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ

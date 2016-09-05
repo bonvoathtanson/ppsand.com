@@ -5,8 +5,12 @@
 
     function ViewItem(){
         GetItems(function(customers){
-            RenderTable(customers, function(element){
+            RenderTable(customers, function(element, total, amount, remain){
+
                 $('#importTable tbody').html(element);
+                $('#totalamount').text(total);
+                $('#payamount').text(amount);
+                $('#remain').text(remain);
             });
         });
     }
@@ -33,6 +37,9 @@
     function RenderTable(customers, callback){
         var element = '';
         if((customers != null) && (customers.length > 0)){
+            var totalsale = 0;
+            var totalpayment = 0;
+            var totalremain = 0;
             $.each(customers, function(index, item){
                 var rowcolor = '';
                 var remain = (item.SubTotal-item.PayAmount);
@@ -52,10 +59,13 @@
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
+                            totalsale += parseInt(item.SubTotal);
+                            totalpayment += parseInt(item.PayAmount);
+                            totalremain += remain;
             });
         }
         if(typeof callback == 'function'){
-            callback(element);
+                callback(element,totalsale, totalpayment, totalremain);
         }
     }
 

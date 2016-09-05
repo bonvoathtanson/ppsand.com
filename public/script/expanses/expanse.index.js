@@ -18,15 +18,34 @@
         $('#expanseFromDate').data("DateTimePicker").maxDate(e.date);
     });
 
+    //Function On selected customer name
+    $('body').on('click','.selected',function(){
+        var supplyName = $(this).attr('data-name');
+        var supplyId   = $(this).attr('data-id');
+        $('#supplyName').val(supplyName);
+        $('#supplyId').val(supplyId);
+        ViewItem();
+        $('#myModal').modal('hide');
+    });
+
     ViewItem();
 
     function ViewItem(){
         GetItems(function(expanses){
-            RenderTable(expanses, function(element){
+            RenderTable(expanses, function(element, totalamount){
+                if(totalamount !=0)
+                {
+                    $('.box-null').hide();
+                }else{
+                    $('.box-null').show();
+                    totalamount ='0.00';
+                }
+                $('#totalamount').text(totalamount);
                 $('#expanseTable tbody').html(element);
             });
         });
     }
+
     //Function click on button search
     $('body').on('click', '#btnsearch', function () {
         var expansesFormDate = $('#expanseFormDate').val();
@@ -37,6 +56,12 @@
             $('.box-null').show();
             $('#expanseTable tbody tr').remove();
         }
+    });
+    //Function click on button reset
+    $('body').on('click', '#btnClear', function () {
+        $('#supplyId').val('');
+        $('#supplyName').val('');
+        ViewItem();
     });
 
     function GetItems(callback) {
@@ -59,7 +84,9 @@
 
     function RenderTable(expanses, callback){
         var element = '';
+        var totalamount = 0;
         if((expanses != null) && (expanses.length > 0)){
+
             $.each(expanses, function(index, item){
                 var name = '';
                 if(item.supplier != null){
@@ -80,12 +107,15 @@
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
+                totalamount += parseInt(item.TotalAmount);
             });
+
         }
         if(typeof callback == 'function'){
-            callback(element);
+            callback(element, totalamount);
         }
     }
+
 
     $('body').on('click', '.delete', function () {
         var select = $(this).closest('tr');
