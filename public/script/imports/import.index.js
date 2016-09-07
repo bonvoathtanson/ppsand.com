@@ -6,7 +6,6 @@
     function ViewItem(){
         GetItems(function(customers){
             RenderTable(customers, function(element, total, amount, remain){
-
                 $('#importTable tbody').html(element);
                 $('#totalamount').text(total);
                 $('#payamount').text(amount);

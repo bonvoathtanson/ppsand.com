@@ -127,7 +127,7 @@
 
     function ViewIncome(){
         GetIncome(function(incomes){
-            RenderTableIncome(incomes, function(element){
+            RenderTableIncome(incomes, function(element, totalamount){
                 if(element != '' && element != null)
                 {
                     $('.box-null').hide();
@@ -135,6 +135,7 @@
                     $('.box-null').show();
                 }
                 $('#incomeTable tbody').html(element);
+                $('#totalamount').text(totalamount + '.00');
             });
         });
     }
@@ -159,6 +160,7 @@
 
     function RenderTableIncome(incomes, callback){
         var element = '';
+        var totalamount =0;
         if((incomes != null) && (incomes.length > 0)){
             $.each(incomes, function(index, item){
                 var name = '';
@@ -178,10 +180,11 @@
                 '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                 '</td>'
                 '</tr>';
+                totalamount += parseInt(item.TotalAmount);
             });
         }
         if(typeof callback == 'function'){
-            callback(element);
+            callback(element, totalamount);
         }
     }
 

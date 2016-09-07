@@ -60,6 +60,16 @@
         </tr>
     </thead>
     <tbody></tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" style="text-align:right;">សរុប</td>
+            <td style="text-align:right;">
+                <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
+            </td>
+            <td style="text-align:right;">
+            </td>
+        </tr>
+    </tfoot>
 </table>
 <div class="box-null" style="font-size:14pt; color:red; display:none;">
     ទិន្នន័យស្វែងរកមិនមាន

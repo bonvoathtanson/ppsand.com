@@ -113,5 +113,4 @@ Route::group(['prefix' => 'detail'], function(){
 Route::group(['prefix' => 'report'], function(){
     Route::get('/item', 'ItemController@report');
     Route::get('/transfer/{id}', 'SaleController@report');
-    Route::get('/expanse', 'ExpanseController@report');
 });

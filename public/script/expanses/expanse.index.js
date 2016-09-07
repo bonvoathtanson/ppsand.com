@@ -40,7 +40,7 @@
                     $('.box-null').show();
                     totalamount ='0.00';
                 }
-                $('#totalamount').text(totalamount);
+                $('#totalamount').text(totalamount + '.00');
                 $('#expanseTable tbody').html(element);
             });
         });
@@ -102,7 +102,7 @@
                                 '<td class="center">' + type + '</td>' +
                                 '<td>' + item.Description + '</td>' +
                                 '<td style="text-align:right;">' + item.TotalAmount + '</td>' +
-                                '<td class="center">' +
+                                '<td class="center no-print">' +
                                     //'<a href="' + burl + '/edit/expanse/' + item.Id + '" class="btn btn-success btn-e"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> ' +
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
@@ -116,6 +116,12 @@
         }
     }
 
+    $('body').on('click','#btnPrint',function(){
+        var displayTitle = 'តារាងចំណាយ';
+        var elem = $('.container-A4').html();
+        var option = {};
+        Print(displayTitle,option, elem);
+    });
 
     $('body').on('click', '.delete', function () {
         var select = $(this).closest('tr');
