@@ -9,7 +9,7 @@
 <div style="padding:5px 0px; text-align:right;">
     <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> ចំណូលការលក់</a>
     <a href="{{url('/create/otherincome')}}" class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i> ចំណូលផ្សេងៗ</a>
-     <a href="{{url('/report/income')}}" id="btnPrint" class="btn btn-primary" target="_blank"><i class="fa fa-print" aria-hidden="true"></i> បោះពុម្ភ</a>
+     <a href="javascript:void(0)" id="btnPrint" class="btn btn-primary" ><i class="fa fa-print" aria-hidden="true"></i> បោះពុម្ភ</a>
 </div>
 <div class="panel panel-default">
   <form id="formSearchIncome" method="post" onsubmit="return false;">
@@ -49,30 +49,36 @@
     <input type="hidden" id="customerId" name="customerId">
   </form>
 </div>
-<table id="incomeTable" class="table table-bordered table-hover">
-    <thead>
-        <tr class="bg-white">
-            <th>ថ្ងៃខែឆ្នាំចំណូល</th>
-            <th>អតិថិជន</th>
-            <th class="center">បរិយាយ</th>
-            <th style="text-align:right;">ចំនួនសរុប</th>
-            <th class="center" style="width:40px;"></th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" style="text-align:right;">សរុប</td>
-            <td style="text-align:right;">
-                <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
-            </td>
-            <td style="text-align:right;">
-            </td>
-        </tr>
-    </tfoot>
-</table>
-<div class="box-null" style="font-size:14pt; color:red; display:none;">
-    ទិន្នន័យស្វែងរកមិនមាន
+<div class="row">
+    <div class="col-sm-12 container-A4">
+        <table id="incomeTable" class="table table-bordered table-hover">
+            <thead>
+                <tr class="bg-white">
+                    <th>ថ្ងៃខែឆ្នាំចំណូល</th>
+                    <th>អតិថិជន</th>
+                    <th class="center">បរិយាយ</th>
+                    <th style="text-align:right;">ចំនួនសរុប</th>
+                    <th class="center no-print" style="width:40px;"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align:right;">សរុប</td>
+                    <td style="text-align:right;">
+                        <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
+                    </td>
+                    <td class="no-print" style="text-align:right;">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="print-footer">
+        </div>
+        <div class="box-null" style="font-size:14pt; color:red; display:none;">
+            ទិន្នន័យស្វែងរកមិនមាន
+        </div>
+    </div>
 </div>
 <form id="formCustomer" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
@@ -115,4 +121,5 @@
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/incomes/income.index.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/print/print.js')}}" charset="utf-8"></script>
 @endsection

@@ -32,6 +32,12 @@
             });
         });
     }
+    $('body').on('click','#btnPrint',function(){
+        var displayTitle = 'តារាងចំណូល';
+        var elem = $('.container-A4').html();
+        var option = {};
+        Print(displayTitle,option, elem);
+    });
 
     function GetItemsCustomer(keyword, callback) {
         $('body').append(Loading());
@@ -112,6 +118,7 @@
             ViewIncome();
         }else{
             $('.box-null').show();
+            $('#totalamount').text('0.00');
             $('#incomeTable tbody tr').remove();
         }
     });
@@ -128,7 +135,7 @@
     function ViewIncome(){
         GetIncome(function(incomes){
             RenderTableIncome(incomes, function(element, totalamount){
-                if(element != '' && element != null)
+                if(element != '' || element != null)
                 {
                     $('.box-null').hide();
                 }else{
@@ -176,7 +183,7 @@
                 '<td>' + name + '</td>' +
                 '<td class="center">' + item.Description + '</td>' +
                 '<td style="text-align:right;">' + item.TotalAmount + '</td>' +
-                '<td class="center">' +
+                '<td class="center no-print">' +
                 '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                 '</td>'
                 '</tr>';

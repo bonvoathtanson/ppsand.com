@@ -53,8 +53,8 @@
         </div>
     </div>
 </form>
-<div class="row container-A4">
-  <div class="col-sm-12">
+<div class="row">
+  <div class="col-sm-12 container-A4">
     <table id="expanseTable" class="table table-bordered table-hover">
       <thead class="print-header">
         <tr class="bg-white">
@@ -68,11 +68,11 @@
       <tbody class="print-body"></tbody>
       <tfoot>
           <tr>
-              <td colspan="3" style="text-align:right;border-right:solid 1px white;border-left:solid 1px white;border-bottom:solid 1px white;">សរុប </td>
-              <td style="text-align:right;border-right:solid 1px white;border-left:solid 1px white;border-bottom:solid 1px white;">
+              <td colspan="3" style="text-align:right;">សរុប </td>
+              <td style="text-align:right;border-right::solid 1px white;">
                   <span id="totalamount" style="color:blue;font-weight:bold;">0.00</span>
               </td>
-              <td class="no-print" style="text-align:right;border-right:solid 1px white;border-left:solid 1px white;border-bottom:solid 1px white;">
+              <td class="no-print" style="text-align:right;">
               </td>
           </tr>
       </tfoot>

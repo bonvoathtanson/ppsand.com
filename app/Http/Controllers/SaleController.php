@@ -63,7 +63,7 @@ class SaleController extends Controller
         $toDate = $request->saleToDate;
 
         if( $customerId =='' && $carNumber =='' && $fromDate =='' && $toDate =='' ){
-            $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->get();
+            $sales = Sale::where('SubTotal', '>', DB::raw('PayAmount'))->orderBy('SaleDate','DESC')->get();
         }else{
             $query = Sale::query();
             if(!Empty($customerId)){
@@ -78,7 +78,7 @@ class SaleController extends Controller
             if(!Empty($toDate)){
                 $query->whereDate('SaleDate', '<=', $toDate);
             }
-           $sales = $query->where('SubTotal', '>', DB::raw('PayAmount'))->get();
+           $sales = $query->where('SubTotal', '>', DB::raw('PayAmount'))->orderBy('SaleDate','DESC')->get();
         }
         $sales->load(['Customer', 'Item']);
         $this->Results['Data'] = $sales;

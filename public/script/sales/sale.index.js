@@ -27,15 +27,15 @@
                 {
                     $('.box-null').hide();
                 }else{
-                    total ='0.00'
-                    amount='0.00'
-                    remain='0.00'
+                    total ='';
+                    amount='';
+                    remain='';
                     $('.box-null').show();
                 }
                 $('#saleTable tbody').html(element);
-                $('#totalamount').text(total);
-                $('#payamount').text(amount);
-                $('#remain').text(remain);
+                $('#totalamount').text(total + '0.00');
+                $('#payamount').text(amount + '0.00');
+                $('#remain').text(remain + '0.00');
             });
         });
 
