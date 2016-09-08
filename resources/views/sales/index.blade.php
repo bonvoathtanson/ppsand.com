@@ -12,6 +12,7 @@
         <a href="{{url('/create/sale')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> លក់ចេញ</a>
         <a href="{{url('/create/income')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> សងលុយ</a>
         <a href="{{url('/view/selectcustomer')}}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> ជ្រើសរើសអតិថិជន</a>
+        <a href="javascript:void(0)" id="btnPrint"  class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> បោះពុម្ភ</a>
     </div>
   </div>
 </div>
@@ -56,10 +57,10 @@
     <input type="hidden" id="hdfcarNumber" name="hdfcarNumber" value="">
 </form>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 container-A4">
     <table id="saleTable" class="table table-bordered table-hover">
-      <thead>
-        <tr class="bg-white">
+      <thead class="print-header">
+        <tr class="bg-white font-M1">
           <th>ឈ្មោះអតិថិជន</th>
           <th>មុខទំនិញ</th>
           <th>ថ្ងៃខែឆ្នាំលក់</th>
@@ -69,27 +70,30 @@
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
           <th style="text-align:right;">ប្រាក់ទទួល</th>
           <th style="text-align:right;">ប្រាក់នៅសល់</th>
-          <th class="center" style="width:40px;"></th>
+          <th class="center no-print" style="width:40px;"></th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody class="print-body"></tbody>
       <tfoot>
           <tr>
-              <td colspan="6" style="text-align:right;">ចំនួនទឹកប្រាក់សរុប</td>
+              <td colspan="6" style="text-align:right;">សរុប</td>
               <td style="text-align:right;">
                   <span id="totalamount" style="color:blue; font-weight:bold;">0.00</span>
               </td>
-              <td style="text-align:right;">
+              <td style="text-align:right;border:none;">
                   <span id="payamount" style="color:blue; font-weight:bold;">0.00</span>
               </td>
-              <td style="text-align:right;">
+              <td style="text-align:right;border-bottom:none;">
                   <span id="remain" style="color:blue; font-weight:bold;">0.00</span>
               </td>
-              <td style="text-align:right;">
+              <td style="text-align:right;" class="no-print">
               </td>
           </tr>
       </tfoot>
     </table>
+    <div class="print-footer">
+
+    </div>
   </div>
   <div class="box-null" style="font-size:14pt; color:red; padding-left:15px; display:none;">
       ទិន្នន័យស្វែងរកមិនមាន
@@ -237,4 +241,5 @@
 })();
 </script>
 <script src="{{url('/script/sales/sale.index.js')}}" charset="utf-8"></script>
+<script src="{{url('/script/print/print.js')}}" charset="utf-8"></script>
 @endsection

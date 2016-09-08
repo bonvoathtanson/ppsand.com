@@ -53,7 +53,7 @@
     <div class="col-sm-12 container-A4">
         <table id="incomeTable" class="table table-bordered table-hover">
             <thead>
-                <tr class="bg-white">
+                <tr class="bg-white font-M1">
                     <th>ថ្ងៃខែឆ្នាំចំណូល</th>
                     <th>អតិថិជន</th>
                     <th class="center">បរិយាយ</th>

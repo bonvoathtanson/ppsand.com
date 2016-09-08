@@ -22,7 +22,6 @@
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
         }).done(function (data) {
-            console.log(data);
             if(data.IsError == false){
                 if(typeof callback == 'function'){
                     callback(data.Data);
@@ -54,7 +53,7 @@
                                 '<td class="center" style="text-align:right;">' + item.SubTotal + '</td>' +
                                 '<td class="center" style="text-align:right;">' + item.PayAmount + '</td>' +
                                 '<td class="center" style="text-align:right;">' + remain + '</td>' +
-                                '<td class="center">' +
+                                '<td class="center no-print">' +
                                     '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                                 '</td>'
                             '</tr>';
@@ -67,7 +66,12 @@
                 callback(element,totalsale, totalpayment, totalremain);
         }
     }
-
+    $('body').on('click','#btnPrint',function(){
+        var displayTitle = 'តារាងការទិញចូល';
+        var elem = $('.container-A4').html();
+        var option = {};
+        Print(displayTitle,option, elem);
+    });
     $('body').on('click', '.delete', function () {
         var select = $(this).closest('tr');
         var id = $(select).attr('data-id');

@@ -15,13 +15,13 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ឈ្មោះអតិជិជន</label>
                 <div class="col-sm-1" style="width:300px;">
-                    <input type="text" class="form-control" disabled="disabled" value="{{$customer->CustomerName}}">
+                    <input type="text" class="form-control btn-default" readonly  value="{{$customer->CustomerName}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">អស័យដ្ឋាន</label>
                 <div class="col-sm-1" style="width:560px;">
-                <input type="text" class="form-control" disabled="disabled" value="{{$customer->Address}}">
+                <input type="text" class="form-control btn-default" readonly  value="{{$customer->Address}}">
                 </div>
             </div>
         </div>
@@ -31,13 +31,13 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃសួរ</label>
                 <div class="col-sm-1" style="width:220px;">
-                    <input type="text" id="askdate" name="AskDate" value="{{$customerask->AskDate}}" class="form-control">
+                    <input type="text" id="askdate" name="AskDate" value="{{$customerask->AskDate}}" class="form-control btn-default">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃបញ្ជាក់</label>
                 <div class="col-sm-1" style="width:220px;">
-                    <input type="text" id="confirmdate" name="ConfirmDate" value="{{$customerask->ConfirmDate}}" class="form-control">
+                    <input type="text" id="confirmdate" name="ConfirmDate" value="{{$customerask->ConfirmDate}}" class="form-control btn-default">
                 </div>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">កំណត់ចំណាំ</label>
                 <div class="col-sm-2">
-                    <select class="form-control" id="StatusId" name="StatusId" style="font-size:10pt;">
+                    <select class="form-control btn-default" id="StatusId" name="StatusId" style="font-size:10pt;padding:3px;">
                         <option value="1">រង់ចាំ</option>
                         <option value="2">បោះបង់</option>
                         <option value="3">ជោគជ័យ</option>

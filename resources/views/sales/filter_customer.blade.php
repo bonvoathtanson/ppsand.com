@@ -22,7 +22,7 @@
     <div class="box-table" style="display:none;">
         <table id="customerTable" class="table table-bordered table-hovere">
             <thead>
-                <tr class="bg-whife">
+                <tr class="bg-white">
                     <th>លេខកូដ</th>
                     <th>ឈ្មោះ</th>
                     <th class="center">លេខទូរស័ព្ទ</th>

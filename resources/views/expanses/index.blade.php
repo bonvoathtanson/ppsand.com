@@ -57,7 +57,7 @@
   <div class="col-sm-12 container-A4">
     <table id="expanseTable" class="table table-bordered table-hover">
       <thead class="print-header">
-        <tr class="bg-white">
+        <tr class="bg-white font-M1">
           <th>ថ្ងៃខែចំណាយ</th>
           <th>ប្រភេទចំណាយ</th>
           <th class="center">បរិយាយ</th>

@@ -44,7 +44,7 @@ class ExpanseController extends Controller
         $toDate = $request->expanseToDate;
         $supplyId = $request->supplyId;
         if( $fromDate =='' && $toDate =='' && $supplyId ==''){
-            $expanses = Expanse::all();
+            $expanses = Expanse::orderBy('ExpanseDate','DESC')->get();
         }else{
             $query = Expanse::query();
             if(!empty($fromDate)){
@@ -56,7 +56,7 @@ class ExpanseController extends Controller
             if(!empty($supplyId)){
                 $query->where('SupplierId', '=', $supplyId);
             }
-            $expanses = $query->get();
+            $expanses = $query->orderBy('ExpanseDate','DESC')->get();
         }
 
         $expanses->load('Supplier');
