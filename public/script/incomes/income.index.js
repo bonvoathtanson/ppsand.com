@@ -98,6 +98,11 @@
     $("#incomeToDate").on("dp.change", function (e) {
          $('#incomeFromDate').data("DateTimePicker").maxDate(e.date);
     });
+    var dateFrom = moment().format('YYYY-MM-1');
+    var dateTo   = moment().format('YYYY-MM-DD');
+
+    $('#incomeFromDate').val(dateFrom);
+    $('#incomeToDate').val(dateTo);
 
     $('#incomeFromDate').datetimepicker({
         format: 'YYYY-MM-DD',

@@ -1,6 +1,12 @@
 (function(){
     $('.list-group-item:eq(8)').addClass('active');
 
+    var dateFrom = moment().format('YYYY-MM-1');
+    var dateTo   = moment().format('YYYY-MM-DD');
+
+    $('#expanseFromDate').val(dateFrom);
+    $('#expanseToDate').val(dateTo);
+
     $('#expanseFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()

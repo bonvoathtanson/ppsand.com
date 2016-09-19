@@ -70,7 +70,7 @@
           <tr>
               <td colspan="3" style="text-align:right;">សរុប </td>
               <td style="text-align:right;border-right::solid 1px white;">
-                  <span id="totalamount" style="color:blue;font-weight:bold;">0.00</span>
+                  <span id="totalamount" style="font-weight:bold;">0.00</span>
               </td>
               <td class="no-print" style="text-align:right;">
               </td>

@@ -1,6 +1,13 @@
 (function(){
 
     $('.list-group-item:eq(3)').addClass('active');
+
+    var dateFrom = moment().format('YYYY-MM-1');
+    var dateTo   = moment().format('YYYY-MM-DD');
+
+    $('#saleFromDate').val(dateFrom);
+    $('#saleToDate').val(dateTo);
+
     $('#saleFromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
