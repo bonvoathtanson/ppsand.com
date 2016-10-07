@@ -40,6 +40,8 @@
 @section('script')
 <script type="text/javascript">
 (function(){
+
+    $('.list-group-item:eq(8)').addClass('active');
     $('body').on('click', '#btnsearch', function(){
         var value = $('#inputsearch').val();
         if(value != '' && value != null){

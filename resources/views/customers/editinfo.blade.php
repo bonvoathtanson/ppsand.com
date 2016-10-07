@@ -74,6 +74,9 @@
 </form>
 @endsection
 @section('script')
+<script type="text/javascript">
+    $('.list-group-item:eq(2)').addClass('active');
+</script>
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/customers/info.update.js')}}" charset="utf-8"></script>

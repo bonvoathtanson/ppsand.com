@@ -82,6 +82,11 @@
     {
         $('body').append(Loading());
         var item = $('#formImport').serialize();
+        if(parseInt($('#totalamount').val()) < parseInt($('#payamount').val())){
+            swal('សូមពិនិត្យចំនួនប្រាក់ត្រូវបង់', '', 'warning');
+            $('body').find('.loading').remove();
+            return false;
+        }
         $.ajax({
             type: 'POST',
             url: burl + '/insert/import',
@@ -133,6 +138,16 @@
                     }
                 },
                 SalePrice: {
+                    validators: {
+                        notEmpty: {
+                            message: 'សូមធ្វើកាបញ្ចូលតំលៃ'
+                        },
+                        numeric: {
+                            message: 'តំលៃបញ្ចូលបានតែលេខ'
+                        }
+                    }
+                },
+                PayAmount: {
                     validators: {
                         notEmpty: {
                             message: 'សូមធ្វើកាបញ្ចូលតំលៃ'

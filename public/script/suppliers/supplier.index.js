@@ -1,6 +1,6 @@
 (function(){
-    $('.list-group-item:eq(6)').addClass('active');
 
+    $('.list-group-item:eq(6)').addClass('active');
     $('body').on('click', '#btnsearch', function(){
         var value = $('#inputsearch').val();
         if(value != '' && value != null){

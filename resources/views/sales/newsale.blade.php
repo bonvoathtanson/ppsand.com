@@ -129,6 +129,7 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 
+        $('.list-group-item:eq(3)').addClass('active');
         ////////// Start section search customer/////////
 
         $('body').on('focus', '#customerName', function(){
@@ -165,6 +166,7 @@
             var tr = $(this).closest('tr');
             var customerId = $(tr).attr('data-id');
             $('#customerName').val($(tr).find('td:eq(1)').text());
+            $('#viewcustomer').text($('#customerName').val());
             $('#CustomerId').val(customerId);
             $('#address').val($(tr).attr('data-address'));
             $('#formNewSale').bootstrapValidator('revalidateField', 'customerName');
@@ -268,6 +270,11 @@
             //Check Stock
                 if( parseInt($('#quantity').val()) > parseInt($('#unitInStock').val()) ){
                     swal('សូមពិនិត្យចំនួនក្នុងស្តុក', '', 'warning');
+                    $('body').find('.loading').remove();
+                    return false;
+                }
+                if(parseInt($('#totalAmount').val()) < parseInt($('#payAmount').val())){
+                    swal('សូមពិនិត្យចំនួនប្រាក់ត្រូវបង់', '', 'warning');
                     $('body').find('.loading').remove();
                 }else{
                 $.ajax({

@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="box-title">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៍អ្នកសួរព័ត៍មាន
+    <i class="fa fa-plus-square" aria-hidden="true"></i> បញ្ចូលព័ត៏អ្នកសួរព័ត៍មាន
 </div>
 <form id="formInfo" class="form-horizontal" method="POST" onsubmit="return false;">
     {{ csrf_field() }}

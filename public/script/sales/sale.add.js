@@ -1,5 +1,5 @@
 (function() {
-
+$('.list-group-item:eq(5)').addClass('active');
     $('body').on('focus', '#customerName', function(){
         $('#SearchModal').modal({
             backdrop: 'static'

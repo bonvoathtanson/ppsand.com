@@ -174,7 +174,7 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-
+$('.list-group-item:eq(6)').addClass('active');
     $('body').on('focus', '#supplyName', function(){
         $('#myModal').modal({
             backdrop: 'static'

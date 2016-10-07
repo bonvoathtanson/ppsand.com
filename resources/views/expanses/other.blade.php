@@ -46,6 +46,7 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
     (function() {
+        $('.list-group-item:eq(8)').addClass('active');
         $('#expansedate').datetimepicker({
             format: 'YYYY-MM-DD',
             defaultDate: new Date()

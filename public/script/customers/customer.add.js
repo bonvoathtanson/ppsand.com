@@ -1,4 +1,5 @@
 (function(){
+    
     $(':radio').iCheck({
         radioClass: 'iradio_minimal'
     });

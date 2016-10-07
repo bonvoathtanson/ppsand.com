@@ -1,4 +1,5 @@
 (function(){
+    $('.list-group-item:eq(7)').addClass('active');
     $('#incomedate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: new Date()
