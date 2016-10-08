@@ -104,6 +104,7 @@
                             <tr class="bg-white">
                                 <th style="width:150px;">លេខឡាន</th>
                                 <th>បរិយាយ</th>
+                                <th>សកម្មភាព</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,6 +112,10 @@
                                 <tr>
                                     <td>{{$value->CarNo}}</td>
                                     <td>{{$value->Description}}</td>
+                                    <td class="center">
+                                        <a href="javascript:void(0);" data-description="{{$value->Description}}" data-car-name="{{$value->CarNo}}" data-id="{{$value->Id}}" class="btn btn-success btn-e edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <button type="button"  class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -125,7 +130,7 @@
                                     <th style="width:150px; background:#f2f2f2; vertical-align:middle;">លេខឡាន</th>
                                     <td>
                                         <div class="form-group" style="margin-bottom:0;">
-                                            <input type="text" class="form-control" name="CarNo">
+                                            <input type="text" class="form-control" name="CarNo" id="CarNo">
                                         </div>
                                     </td>
                                 </tr>
@@ -133,7 +138,7 @@
                                     <th style="width:150px; background:#f2f2f2; vertical-align:middle;">បរិយាយ</th>
                                     <td>
                                         <div class="form-group" style="margin-bottom:0;">
-                                            <textarea name="Description" class="form-control"></textarea>
+                                            <textarea name="Description" class="form-control" id="Description"></textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -141,6 +146,7 @@
                         </table>
                     </form>
                 </div>
+                <input type="hidden" id="CarId" name="CarId"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" id="btnadd">បន្ថែម</button>
@@ -160,6 +166,10 @@
     SetValidation();
     var select;
     $('body').on('click', '#btnsave', function(){
+        var action = '/insert/car';
+        if($('#CarId').val() !=''){
+            action = '/update/car/'+ $('#CarId').val() +'';
+        }
         var car = $('[name="CarNo"]').val();
         var des = $('[name="Description"]').val();
         if(car.length == 0){
@@ -168,16 +178,20 @@
             var item = $('#formCar').serialize();
             $.ajax({
                 type: 'POST',
-                url: burl + '/insert/car',
+                url: burl + action,
                 data: item
             }).done(function (data) {
                 if (data.IsError == false) {
                     var car = $('[name="CarNo"]').val();
                     var des = $('[name="Description"]').val();
-                    var tr = '<tr><td>' + car + '</td><td>' + des + '</td></tr>';
+                    var tr = '<tr><td>' + car + '</td><td>' + des + '</td>';
+                        tr +='<td><a href='"javascript:void(0);"' data-description='"{{$value->Description}}"' data-car-name='"{{$value->CarNo}}"' data-id='"{{$value->Id}}"' class='"btn btn-success btn-e edit"'><i class='"fa fa-pencil-square-o"' aria-hidden='"true"'></i></a>';
+                        tr +='<button type='"button"'  class='"btn btn-danger btn-e delete"'><i class='"fa fa-trash-o"' aria-hidden='"true"'></i></button>';
+                        tr +='</td></tr>';
                     var option = '<option value="' + car + '">' + car + ' (' + des + ')</option>';
                     $('.box1 table>tbody').append(tr);
                     $('[name="CarNumber"]').append(option);
+
                     Reset();
                 } else {
                     swal(data.Message, '', 'success');
@@ -187,6 +201,24 @@
     });
 
     $('body').on('click', '#btnadd', function(){
+        $('#CarNo').val('');
+        $('#Description').val('');
+        $('#CarNo').attr('readonly', false);
+        $('#CarId').val('');
+        $('.box1').hide();
+        $('.box2').show();
+        $('#btnadd').hide();
+        $('#btncancel').show();
+        $('#btnsave').show();
+    });
+    $('body').on('click', '.edit', function(){
+        var carNo = $(this).attr('data-car-name');
+        var description = $(this).attr('data-description');
+        var carId = $(this).attr('data-id');
+        $('#CarId').val(carId);
+        $('#CarNo').val(carNo);
+        $('#Description').val(description);
+        $('#CarNo').attr('readonly', true);
         $('.box1').hide();
         $('.box2').show();
         $('#btnadd').hide();
@@ -290,5 +322,7 @@
         });
     }
 })();
+
+
 </script>
 @endsection

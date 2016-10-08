@@ -32,6 +32,7 @@ class CustomerController extends Controller
     }
     public function updateinfo(Request $request)
     {
+
         $validator = Validator::make($request->all(), CustomerAsk::rules());
         if($validator->fails())
         {
