@@ -40,7 +40,29 @@ class HomeController extends Controller
         $car->CarNo = $request->CarNo;
         $car->Description = $request->Description;
         $car->save();
+        $this->Results['Id'] = $car->Id;
+        $this->Results['saveOrupdate'] = 'save';
+        return response()->json($this->Results);
+    }
 
+    public function update(Request $request)
+    {
+        $id = $request->CarId;
+        $car = CarNumber::find($id);
+        $car->Description = $request->Description;
+        $this->Results['saveOrupdate'] = 'update';
+        $car->save();
+        $this->Results['Id'] = $id;
+        return response()->json($this->Results);
+    }
+    
+    public function destroy($id)
+    {
+        $rowaffect = CarNumber::find($id)->delete();
+        if($rowaffect == 0){
+            $this->SetError(true);
+            $this->SetMessage('ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត');
+        }
         return response()->json($this->Results);
     }
 }

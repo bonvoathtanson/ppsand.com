@@ -18,7 +18,7 @@
         <tr class="bg-white font-M1">
           <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
           <th>មុខទំនិញ</th>
-          <th class="center">ថ្ងៃខែឆ្នាំ</th>
+          <th class="center">កាលបរិច្ចេទនាំចូល</th>
           <th>ចំនួន</th>
           <th>តំលៃលក់</th>
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
@@ -50,6 +50,9 @@
 </div>
 @endsection
 @section('script')
+<script type="text/javascript">
+    $('.list-group-item:eq(4)').addClass('active');
+</script>
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/imports/import.index.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/print/print.js')}}" charset="utf-8"></script>

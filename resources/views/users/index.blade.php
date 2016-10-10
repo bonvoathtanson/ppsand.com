@@ -16,7 +16,7 @@
             <thead>
                 <tr class="bg-white">
                     <th>ឈ្មោះគណនី</th>
-                    <th>អ៊ីម៉ែល</th>
+                    <th>អុីម៉ែល</th>
                     <th class="center">ថ្ងៃបង្កើត</th>
                     <th class="center" style="width:30px;"></th>
                 </tr>

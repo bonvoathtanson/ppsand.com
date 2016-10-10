@@ -92,6 +92,7 @@ Route::group(['prefix' => 'update'], function(){
     Route::post('/income', 'IncomeController@update');
     Route::post('/item', 'ItemController@update');
     Route::post('/stock', 'ItemController@stock');
+    Route::post('/car','HomeController@update');
 });
 
 Route::group(['prefix' => 'delete'], function(){
@@ -103,6 +104,7 @@ Route::group(['prefix' => 'delete'], function(){
     Route::get('/item/{id}', 'ItemController@destroy');
     Route::get('/user/{id}', 'UserController@destroy');
     Route::get('/import/{id}', 'ImportController@destroy');
+    Route::get('/car/{id}','HomeController@destroy');
 });
 
 Route::group(['prefix' => 'detail'], function(){

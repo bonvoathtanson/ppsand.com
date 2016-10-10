@@ -20,7 +20,7 @@
                 <tr class="bg-white">
                     <th>ឈ្មោះអតិថិជន</th>
                     <th>មុខទំនិញ</th>
-                    <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                    <th class="center">កាលបរិច្ចេទលក់</th>
                     <th class="center">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
                     <th class="center">ចំនួន</th>
                     <th style="width:80px;"></th>
@@ -99,7 +99,7 @@
             </div>
             <div class="modal-body">
                 <div class="box1">
-                    <table class="table table-bordered">
+                    <table id="tblCar" class="table table-bordered">
                         <thead>
                             <tr class="bg-white">
                                 <th style="width:150px;">លេខឡាន</th>
@@ -109,7 +109,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($cars as $key => $value): ?>
-                                <tr>
+                                <tr id="{{$value->Id}}">
                                     <td>{{$value->CarNo}}</td>
                                     <td>{{$value->Description}}</td>
                                     <td class="center">
@@ -144,9 +144,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <input type="hidden" id="CarId" name="CarId"/>
                     </form>
                 </div>
-                <input type="hidden" id="CarId" name="CarId"/>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" id="btnadd">បន្ថែម</button>
@@ -166,9 +167,12 @@
     SetValidation();
     var select;
     $('body').on('click', '#btnsave', function(){
+
         var action = '/insert/car';
         if($('#CarId').val() !=''){
-            action = '/update/car/'+ $('#CarId').val() +'';
+            action = '/update/car';
+            var id =$('#CarId').val();
+            $('#'+ id).remove();
         }
         var car = $('[name="CarNo"]').val();
         var des = $('[name="Description"]').val();
@@ -182,18 +186,15 @@
                 data: item
             }).done(function (data) {
                 if (data.IsError == false) {
-                    var car = $('[name="CarNo"]').val();
-                    var des = $('[name="Description"]').val();
-                    var tr = '<tr><td>' + car + '</td><td>' + des + '</td>';
-                        tr +='<td><a href='"javascript:void(0);"' data-description='"{{$value->Description}}"' data-car-name='"{{$value->CarNo}}"' data-id='"{{$value->Id}}"' class='"btn btn-success btn-e edit"'><i class='"fa fa-pencil-square-o"' aria-hidden='"true"'></i></a>';
-                        tr +='<button type='"button"'  class='"btn btn-danger btn-e delete"'><i class='"fa fa-trash-o"' aria-hidden='"true"'></i></button>';
+                    var tr  = '<tr id="'+ data.Id +'"><td>' + car + '</td><td>' + des + '</td>';
+                        tr +='<td class="center"><a href="javascript:void(0);" data-description="' + des + '" data-car-name="' + car + '" data-id="'+ data.Id +'" class="btn btn-success btn-e edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                        tr +='<button type="button"  class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
                         tr +='</td></tr>';
                     var option = '<option value="' + car + '">' + car + ' (' + des + ')</option>';
                     $('.box1 table>tbody').append(tr);
                     $('[name="CarNumber"]').append(option);
-
                     Reset();
-                } else {
+                }else {
                     swal(data.Message, '', 'success');
                 }
             });
@@ -211,7 +212,9 @@
         $('#btncancel').show();
         $('#btnsave').show();
     });
+
     $('body').on('click', '.edit', function(){
+
         var carNo = $(this).attr('data-car-name');
         var description = $(this).attr('data-description');
         var carId = $(this).attr('data-id');
@@ -233,6 +236,37 @@
     $('body').on('click', '#btncar', function(){
         $('#carmodal').modal({
             backdrop: 'static'
+        });
+    });
+
+    $('body').on('click', '.delete', function () {
+        var select = $(this).closest('tr');
+        var id = $(select).attr('id');
+        swal({
+            title: 'លុប',
+            text: 'តើអ្នកចង់លុបទិន្នន័យឬ ?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'យល់ព្រម',
+            cancelButtonText: 'បោះបង់',
+            closeOnConfirm: false
+        }, function () {
+            $('body').append(Loading());
+            $.ajax({
+                type: 'GET',
+                url: burl + '/delete/car/' + id,
+                dataType: "JSON",
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (data) {
+                if (data.IsError == false) {
+                    swal('ទិន្នន័យត្រូវបានលុបជោគជ័យ', '', 'success');
+                    $(select).remove();
+                } else {
+                    swal(data.Message, '', 'success');
+                }
+            }).complete(function (data) {
+                $('body').find('.loading').remove();
+            });
         });
     });
 
