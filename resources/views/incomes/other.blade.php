@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:160px;">ចំណូលក្នុងថ្ងៃខែឆ្នាំ</label>
+                <label class="col-sm-1 control-label" style="width:160px;">កាលបរិច្ឆេទ</label>
                 <div class="col-sm-1" style="width:200px;">
                     <input type="text" id="incomedate" name="IncomeDate" class="form-control">
                 </div>

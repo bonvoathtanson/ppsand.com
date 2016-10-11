@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំបញ្ជាទិញ</label>
+                <label class="col-sm-1 control-label" style="width:150px;">កាលបរិច្ឆេទ</label>
                 <div class="col-sm-1" style="width:220px;">
                     <input type="text" id="saleDate" name="SaleDate" class="form-control">
                 </div>

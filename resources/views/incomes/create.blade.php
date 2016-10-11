@@ -44,10 +44,10 @@
                 <tr class="bg-white">
                     <th class="center"></th>
                     <th>មុខទំនិញ</th>
-                    <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                    <th class="center">កាលបរិច្ឆេទលក់</th>
                     <th class="center">ចំនួន</th>
-                    <th class="center">ចំនួនទឹកប្រាក់</th>
                     <th class="center">តំលៃលក់</th>
+                    <th class="center">ចំនួនទឹកប្រាក់</th>
                     <th class="center">បង់ចំនួន</th>
                     <th class="center">ប្រាក់នៅសល់</th>
                 </tr>

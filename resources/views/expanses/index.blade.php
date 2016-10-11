@@ -58,7 +58,7 @@
     <table id="expanseTable" class="table table-bordered table-hover">
       <thead class="print-header">
         <tr class="bg-white font-M1">
-          <th>កាលបរិច្ចេទចំណាយ</th>
+          <th>កាលបរិច្ឆេទចំណាយ</th>
           <th>ប្រភេទចំណាយ</th>
           <th class="center">បរិយាយ</th>
           <th class="center">ចំនួនសរុប</th>

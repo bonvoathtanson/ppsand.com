@@ -135,8 +135,8 @@
                 '<td class="center"><input type="checkbox" name="SaleIds[]" value="' + item.Id + '"/></td>' +
                 '<td>' + item.item.ItemName + '</td>' +
                 '<td class="center">' + item.SaleDate + '</td>' +
-                '<td class="center">' + item.SalePrice + '</td>' +
                 '<td class="center">' + item.Quantity + '</td>' +
+                '<td class="center">' + item.SalePrice + '</td>' +
                 '<td class="center">' + item.SubTotal + '</td>' +
                 '<td class="center">' + item.PayAmount + '</td>' +
                 '<td style="text-align:right;">' + remain + '</td>' +

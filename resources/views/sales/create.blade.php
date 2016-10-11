@@ -53,7 +53,7 @@
                         <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
-                            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">កាលបរិច្ឆេទលក់</th>
                             <th class="center">លេខឡាន</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">ត្រូវដឹកចេញ</th>
@@ -83,7 +83,7 @@
                         <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
-                            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">កាលបរិច្ឆេទលក់</th>
                             <th class="center">លេខឡាន</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">តំលៃលក់</th>
@@ -115,7 +115,7 @@
                         <tr class="bg-white">
                             <th class="center">លេខកូដលក់ចេញ</th>
                             <th>មុខទំនិញ</th>
-                            <th>ថ្ងៃខែឆ្នាំលក់</th>
+                            <th>កាលបរិច្ឆេទលក់់</th>
                             <th class="center">លេខឡាន</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">តំលៃលក់</th>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំលក់</label>
+                        <label class="col-sm-1 control-label" style="width:150px;">កាលបរិច្ឆេទលក់</label>
                         <div class="col-sm-1" style="width:350px;">
                             <input type="text" id="saledate" name="SaleDate" class="form-control">
                         </div>
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                     <div id="group-date" class="form-group">
-                        <label class="col-sm-1 control-label" style="width:150px;">ថ្ងៃខែឆ្នាំដឹកអោយ</label>
+                        <label class="col-sm-1 control-label" style="width:150px;">កាលបរិច្ឆទដឹកអោយ</label>
                         <div class="col-sm-1" style="width:350px;">
                             <input type="text" id="transferdate" name="TransferDate" class="form-control">
                         </div>
@@ -223,7 +223,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
+                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">កាលបរិច្ឆេទដឹកចេញ</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
                                         <input type="text" class="form-control btn-default" name="TransferDate" id="datetransfer">

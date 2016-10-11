@@ -20,8 +20,8 @@
                 <tr class="bg-white">
                     <th>ឈ្មោះអតិថិជន</th>
                     <th>មុខទំនិញ</th>
-                    <th class="center">កាលបរិច្ចេទលក់</th>
-                    <th class="center">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
+                    <th class="center">កាលបរិច្ឆេទលក់់</th>
+                    <th class="center">កាលបរិច្ឆេទដឹកចេញ</th>
                     <th class="center">ចំនួន</th>
                     <th style="width:80px;"></th>
                 </tr>
@@ -70,7 +70,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">ថ្ងៃខែឆ្នាំដឹកចេញ</th>
+                                <th style="width:150px; background:#f2f2f2; vertical-align:middle;">កាលបរិច្ឆេទដឹកចេញ</th>
                                 <td>
                                     <div class="form-group" style="margin-bottom:0;">
                                         <input type="text" class="form-control btn-default" name="TransferDate" id="transferdate">

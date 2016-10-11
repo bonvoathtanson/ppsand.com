@@ -18,7 +18,7 @@
         <tr class="bg-white font-M1">
           <th>ឈ្មោះអ្នកផ្គត់ផ្គង់</th>
           <th>មុខទំនិញ</th>
-          <th class="center">កាលបរិច្ចេទនាំចូល</th>
+          <th class="center">កាលបរិច្ឆេទនាំចូល</th>
           <th>ចំនួន</th>
           <th>តំលៃលក់</th>
           <th style="text-align:right;">ទឹកប្រាក់សរុប</th>

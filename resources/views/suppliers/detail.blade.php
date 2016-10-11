@@ -52,7 +52,7 @@
                     <thead>
                         <tr class="bg-white">
                             <th>មុខទំនិញ</th>
-                            <th class="center">ថ្ងៃខែឆ្នាំបញ្ជាទិញ</th>
+                            <th class="center">កាលបរិច្ឆេទបញ្ជាទិញ</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">ត្រូវដឹកចូល</th>
                             <th style="width:25px;"></th>
@@ -78,7 +78,7 @@
                     <thead>
                         <tr class="bg-white">
                             <th>មុខទំនិញ</th>
-                            <th class="center">ថ្ងៃខែឆ្នាំលក់</th>
+                            <th class="center">កាលបរិច្ឆេទលក់</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">តំលៃលក់</th>
                             <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
@@ -106,7 +106,7 @@
                     <thead>
                         <tr class="bg-white">
                             <th>មុខទំនិញ</th>
-                            <th>ថ្ងៃខែឆ្នាំលក់</th>
+                            <th>កាលបរិច្ឆេទលក់</th>
                             <th class="center">លេខឡាន</th>
                             <th class="center">ចំនួន</th>
                             <th class="center">តំលៃលក់</th>

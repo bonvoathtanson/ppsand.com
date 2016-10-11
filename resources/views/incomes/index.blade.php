@@ -54,7 +54,7 @@
         <table id="incomeTable" class="table table-bordered table-hover">
             <thead>
                 <tr class="bg-white font-M1">
-                    <th>កាលបរិច្ចេទចំណូល</th>
+                    <th>កាលបរិច្ឆេទចំណូល</th>
                     <th>អតិថិជន</th>
                     <th class="center">បរិយាយ</th>
                     <th style="text-align:right;">ចំនួនសរុប</th>
