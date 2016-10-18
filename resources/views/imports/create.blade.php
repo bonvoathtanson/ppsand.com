@@ -51,7 +51,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ចំនួន</label>
                 <div class="col-sm-1" style="width:150px;">
-                    <input type="text" id="quantity" name="Quantity" class="form-control">
+                    <input type="text" id="quantity" min="1" name="Quantity" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -149,6 +149,7 @@
 <script type="text/javascript">
 
     $('.list-group-item:eq(8)').addClass('active');
+
     $('body').on('focus', '#supplyName', function(){
         $('#myModal').modal({
             backdrop: 'static'

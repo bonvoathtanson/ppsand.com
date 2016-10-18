@@ -11,7 +11,7 @@
   @yield('css')
 </head>
 <body>
-    <div class="box-left">
+    <div class="box-left no-report">
       <div class="list-group">
         <a href="{{url('/')}}" class="list-group-item font-M1 center">ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a>
         <a href="{{url('/view/transfer')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ទំនិញត្រូវដឹកចេញ <span class="badge badge2" style="display:none;">0</span></a>
@@ -26,6 +26,16 @@
         <a href="{{url('/view/user')}}" class="list-group-item bar"><i class="fa fa-users" aria-hidden="true"></i> គណនីអ្នកប្រើប្រាស់</a>
       </div>
     </div>
+    <div class="box-left report">
+      <div class="list-group">
+        <a href="{{url('/')}}" class="list-group-item font-M1 center">ប្រព័ន្ធគ្រប់គ្រងខ្សាច់</a>
+        <a href="{{url('/view/salereport')}}" class="list-group-item bar"><i class="fa fa-cart-plus" aria-hidden="true"></i> ការលក់ចេញ</a>
+        <a href="{{url('/view/importreport')}}" class="list-group-item bar"><i class="fa fa-download" aria-hidden="true"></i> ការទិញចូល</a>
+        <a href="{{url('/view/incomereport')}}" class="list-group-item bar"><i class="fa fa-money" aria-hidden="true"></i> ចំណូល</a>
+        <a href="{{url('/view/expansereport')}}" class="list-group-item bar"><i class="fa fa-share-alt-square" aria-hidden="true"></i> ចំណាយ</a>
+
+      </div>
+    </div>
     <div class="box-right">
         <header>
           <nav class="navbar navbar-default">
@@ -34,15 +44,15 @@
               <ul class="nav navbar-nav">
                   <li><a href="{{url('/')}}">ប្រតិបតិ្តការ</a></li>
                   <li><a href="{{url('/')}}">កំណត់ត្រាផ្សេងៗ</a></li>
-                  <li><a href="{{url('/')}}">របាយការណ៍</a></li>
+                  <li><a href="{{url('/view/salereport')}}">របាយការណ៍</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="{{url('/view/timetransfer')}}"><i class="fa fa-bell-o" aria-hidden="true"></i> ទំនិញដល់ពេលដឹកចេញ<span class="badge badge1">0</span></a></li>
-                <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> ចាកចេញ</a></li>
+                  <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> ចាកចេញ</a></li>
               </ul>
             </div>
-          </nav>
-        </header>
+        </nav>
+      </header>
         <div class="box-content">
             @yield('content')
         </div>

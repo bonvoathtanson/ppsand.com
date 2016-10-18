@@ -89,7 +89,7 @@
                             <th class="center">តំលៃលក់</th>
                             <th style="text-align:right;">ទឹកប្រាក់សរុប</th>
                             <th style="text-align:right;">ទឹកប្រាក់បង់</th>
-                            <th style="text-align:right;">ទឹកនៅសល់</th>
+                            <th style="text-align:right;">ទឹកប្រាក់នៅសល់</th>
                         </tr>
                     </thead>
                     <tbody>

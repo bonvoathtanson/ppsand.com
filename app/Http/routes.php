@@ -30,6 +30,10 @@ Route::group(['prefix' => 'view'], function(){
     Route::get('/selectcustomer', 'SaleController@filter_customer');
     Route::get('/selsupplier', 'SupplierController@filter_supplier');
     Route::get('/import', 'ImportController@index');
+    Route::get('/salereport','ReportController@indexsale');
+    Route::get('/importreport','ReportController@indeximport');
+    Route::get('/incomereport','ReportController@indexincome');
+    Route::get('/expansereport','ReportController@indexexpanse');
 });
 
 Route::group(['prefix' => 'filter'], function(){
@@ -47,6 +51,8 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('/item', 'ItemController@search');
     Route::get('/itemdetail/{id}', 'ItemController@detail');
     Route::get('/user', 'UserController@search');
+    Route::get('/exportsale', 'ReportController@exportsale');
+    Route::get('/exportimport', 'ReportController@exportimport');
 });
 
 Route::group(['prefix' => 'create'], function(){

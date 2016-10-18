@@ -51,7 +51,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label" style="width:150px;">ចំនួន</label>
                 <div class="col-sm-1" style="width:220px;">
-                    <input type="text" id="quantity" name="Quantity" class="form-control">
+                    <input type="text" id="quantity" min="1" name="Quantity" class="form-control">
                 </div>
                 <div class="col-sm-1" style="width:150px; padding-left:0;">
                      <label class="control-label">ចំនួនក្នុងស្តុក <span id="viewqty" style="color:blue;">0</span></label>
@@ -330,8 +330,8 @@
                             },
                             integer: {
                                 message: 'សូមបញ្ចូលចំនួនជាលេខ'
-                            }
-                        }
+                            },
+                        },
                     },
                     SalePrice:{
                         validators:{
