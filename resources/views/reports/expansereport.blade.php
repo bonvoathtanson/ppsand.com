@@ -4,16 +4,16 @@
 @endsection
 @section('content')
 <div class="box-title">
-  <i class="fa fa-list" aria-hidden="true"></i>​​ របាយការណ៏ ការចំណាយ
+    <i class="fa fa-list" aria-hidden="true"></i>​​ របាយការណ៏ ការចំណាយ
 </div>
-<form id="formSearchSale" method="post" onsubmit="return false;">
+<form id="formSearchExpanse" method="get" action="{{URL('/find/exportexpanse')}}">
     {{ csrf_field() }}
     <div class="panel panel-default" style="width:100%;padding:5px">
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-xm-1" style="width:280px; padding-left:0px;">
                     <div class="input-group">
-                        <input type="text" id="customerName" name="customerName" class="form-control btn-default" placeholder="ជ្រើសរើសអតិថិជន">
+                        <input type="text" id="supplyName" name="supplyName" class="form-control btn-default supply" placeholder="ឈ្មោះអ្នកផ្គត់ផ្គង់​">
                         <span class="input-group-btn">
                             <button id="btnClear" class="btn btn-success" style="border:1px solid #419641;" type="button">សំអាត</button>
                         </span>
@@ -22,44 +22,43 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="fromDate" name="fromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="toDate" name="toDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
-                    <button type="button" id="btnsearch" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+                    <button type="submit" id="btnsearch" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
                 </div>
             </div>
         </div>
     </div>
-    <input type="hidden" id="hdfcustomerId" name="hdfcustomerId" value="">
-    <input type="hidden" id="hdfcarNumber" name="hdfcarNumber" value="">
+    <input type="hidden" id="hdfSupplyId" name="hdfSupplyId" value="">
 </form>
 <div class="row">
 
 </div>
-<form id="formCustomer" class="form-horizontal" onsubmit="return false;">
+<form id="formSupply" class="form-horizontal" onsubmit="return false;">
     {{ csrf_field() }}
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span id="itemname" style="color:#0856ab; font-weight:bold;">ស្វែងរកឈ្មោះអតិថិជន</span>
+                    <span id="itemname" style="color:#0856ab; font-weight:bold;">ស្វែងរកឈ្មោះអ្នកផ្គត់ផ្គង់</span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body" style="min-height:350px;">
                     <div style="margin-bottom:3px;">
                         <div class="input-group">
-                            <input type="text" id="customerNameSearch" name="customerNameSearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
+                            <input type="text" id="supplyNameSearch" name="supplyNameSearch" class="form-control btn-default" placeholder="ស្វែករកតាម លេខកូដ ឈ្មោះ លេខទូស័ព្ទ">
                             <span class="input-group-btn">
-                                <button class="btn btn-success" id="btnSearchNameCustomer" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
+                                <button class="btn btn-success" id="btnSearchNameSupply" style="border:1px solid #419641;" type="button">ស្វែងរក</button>
                             </span>
                         </div>
                     </div>
                     <div class="box-table">
-                        <table id="customerTable" class="table table-bordered table-hovered">
+                        <table id="supplyTable" class="table table-bordered table-hovered">
                             <thead>
                                 <tr class="bg-white">
                                     <th>លេខកូដ</th>
@@ -71,7 +70,7 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div class="box-null-customer center" style="font-size:11pt; color:red; display:none;">
+                    <div class="box-null-supply center" style="font-size:11pt; color:red; display:none;">
                         <div class="form-group">
                             <label class="col-sm-1 control-label" style="width:180px;​padding-left:0px">ទិន្នន័យស្វែ​ងរកមិនមាន</label>
                         </div>
@@ -88,63 +87,86 @@
 <script type="text/javascript">
 (function(){
     $('.list-group-item:eq(15)').addClass('active');
-    $('body').on('focus', '#customerName', function(){
+
+
+    var dateFrom = moment().format('YYYY-MM-1');
+    var dateTo   = moment().format('YYYY-MM-DD');
+
+    $('#fromDate').val(dateFrom);
+    $('#toDate').val(dateTo);
+
+    $('#fromDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $('#toDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $("#fromDate").on("dp.change", function (e) {
+        $('#toDate').data("DateTimePicker").minDate(e.date);
+    });
+    $("#toDate").on("dp.change", function (e) {
+        $('#fromDate').data("DateTimePicker").maxDate(e.date);
+    });
+
+    $('body').on('click', '.supply', function(){
         $('#myModal').modal({
             backdrop: 'static'
         });
     });
-
     $('#myModal').on('shown.bs.modal', function (e) {
-        $('#customerNameSearch').focus();
+        $('#supplyNameSearch').focus();
     });
 
     $('#myModal').on('hidden.bs.modal', function (e) {
-        $('#customerNameSearch').val('');
+        $('#supplyNameSearch').val('');
     });
 
-    $('body').on('click', '#btnSearchNameCustomer', function(){
-        var value = $('#customerNameSearch').val();
+    $('body').on('click', '#btnSearchNameSupply', function(){
+        var value = $('#supplyNameSearch').val();
         if(value != '' && value != null){
             Search();
         }else{
-            $('.box-null-customer').show();
+            $('.box-null-supply').show();
             $('.box-table').hide();
-            $('#customerTable tbody tr').remove();
+            $('#supplyTable tbody tr').remove();
         }
     });
 
-    $('body').on('keypress', '#customerNameSearch', function(event){
+    $('body').on('keypress', '#supplyNameSearch', function(event){
         if(event.which == 13) {
-            var value = $('#customerNameSearch').val();
+            var value = $('#supplyNameSearch').val();
             if(value != '' && value != null){
                 Search();
             }else{
-                $('.box-null-customer').show();
+                $('.box-null-supply').show();
                 $('.box-table').hide();
-                $('#customerTable tbody tr').remove();
+                $('#supplyTable tbody tr').remove();
             }
         }
     });
-
     function Search(){
-        GetItems(function(customers){
-            RenderTable(customers, function(element){
+        GetItems(function(suppliers){
+            RenderTable(suppliers, function(element){
                 if(element != '' && element != null)
                 {
-                    $('.box-null-customer').hide();
+                    $('.box-null-supply').hide();
                     $('.box-table').show();
                 }else{
-                    $('.box-null-customer').show();
+                    $('.box-null-supply').show();
                     $('.box-table').hide();
                 }
-                $('#customerTable tbody').html(element);
+                $('#supplyTable tbody').html(element);
             });
         });
     }
 
     function GetItems(callback) {
         $('body').append(Loading());
-        var requestUrl = burl + '/filter/customer/' + $('#customerNameSearch').val();
+        var requestUrl = burl + '/filter/supplier/' + $('#supplyNameSearch').val();
         $.ajax({
             url: requestUrl,
             type: 'GET',
@@ -161,24 +183,40 @@
         });
     }
 
-    function RenderTable(customers, callback){
+    function RenderTable(suppliers, callback){
         var element = '';
-        if((customers != null) && (customers.length > 0)){
-            $.each(customers, function(index, item){
+        if((suppliers != null) && (suppliers.length > 0)){
+            $.each(suppliers, function(index, item){
                 element += '<tr>' +
-                                '<td>' + item.CustomerCode + '</td>' +
-                                '<td>' + item.CustomerName + '</td>' +
-                                '<td class="center">' + item.PhoneNumber + '</td>' +
-                                '<td class="center">' +
-                                    '<a data-id="' + item.Id + '" data-name="' + item.CustomerName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
-                                '</td>'
-                            '</tr>';
+                '<td>' + item.SupplierCode + '</td>' +
+                '<td>' + item.SupplierName + '</td>' +
+                '<td class="center">' + item.PhoneNumber + '</td>' +
+                '<td class="center">' +
+                '<a data-id="' + item.Id + '" data-name="' + item.SupplierName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
+                '</td>'
+                '</tr>';
             });
         }
         if(typeof callback == 'function'){
             callback(element);
         }
     }
+
+    //Function On selected supplier name
+    $('body').on('click','.selected',function(){
+        var supplyName = $(this).attr('data-name');
+        var supplyId = $(this).attr('data-id');
+        $('#supplyName').val(supplyName);
+        $('#hdfSupplyId').val(supplyId);
+        $('#myModal').modal('hide');
+    });
+
+    //Function click on button reset
+    $('body').on('click', '#btnClear', function () {
+        $('#hdfSupplyId').val('');
+        $('#supplyName').val('');
+    });
+
 })();
 </script>
 <script src="{{url('/script/report/report.js')}}" charset="utf-8"></script>

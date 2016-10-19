@@ -22,11 +22,11 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="fromDate" name="fromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="toDate" name="toDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
                     <button type="submit" id="btnsearch" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
@@ -91,30 +91,31 @@
     var dateFrom = moment().format('YYYY-MM-1');
     var dateTo   = moment().format('YYYY-MM-DD');
 
-    $('#saleFromDate').val(dateFrom);
-    $('#saleToDate').val(dateTo);
+    $('#fromDate').val(dateFrom);
+    $('#toDate').val(dateTo);
 
-    $('#saleFromDate').datetimepicker({
+    $('#fromDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
     });
 
-    $('#saleToDate').datetimepicker({
+    $('#toDate').datetimepicker({
         format: 'YYYY-MM-DD',
         defaultDate: moment()
     });
 
-    $("#saleFromDate").on("dp.change", function (e) {
-        $('#saleToDate').data("DateTimePicker").minDate(e.date);
+    $("#fromDate").on("dp.change", function (e) {
+        $('#toDate').data("DateTimePicker").minDate(e.date);
     });
-    $("#saleToDate").on("dp.change", function (e) {
-        $('#saleFromDate').data("DateTimePicker").maxDate(e.date);
+    $("#toDate").on("dp.change", function (e) {
+        $('#fromDate').data("DateTimePicker").maxDate(e.date);
     });
 
     $('body').on('focus', '#supplyName', function(){
         $('#myModal').modal({
             backdrop: 'static'
-        });
+    });
+
     });
     $('body').on('click', '.supply', function(){
         $('#myModal').modal({
@@ -207,7 +208,7 @@
         }
     }
 
-    //Function On selected customer name
+    //Function On selected supplier name
     $('body').on('click','.selected',function(){
         var supplyName = $(this).attr('data-name');
         var supplyId = $(this).attr('data-id');

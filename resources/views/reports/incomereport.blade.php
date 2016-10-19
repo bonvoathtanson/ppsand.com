@@ -4,9 +4,9 @@
 @endsection
 @section('content')
 <div class="box-title">
-  <i class="fa fa-list" aria-hidden="true"></i>​​ របាយការណ៏ ចំនូល
+    <i class="fa fa-list" aria-hidden="true"></i>​​ របាយការណ៏ ចំនូល
 </div>
-<form id="formSearchSale" method="post" onsubmit="return false;">
+<form id="formSearchIncome" method="get" action="{{URL('/find/exportincome')}}">
     {{ csrf_field() }}
     <div class="panel panel-default" style="width:100%;padding:5px">
         <div class="panel-body">
@@ -22,20 +22,19 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1" style="width:135px; padding-left:0px;">
-                    <input type="text" id="saleFromDate" name="saleFromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="fromDate" name="fromDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:25px;margin-top:5px; padding-left:0;">ដល់</div>
                 <div class="col-sm-1" style="width:135px;">
-                    <input type="text" id="saleToDate" name="saleToDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
+                    <input type="text" id="toDate" name="toDate" class="form-control btn-default" placeholder="ថ្ងៃខែឆ្នាំលក់">
                 </div>
                 <div class="col-sm-1" style="width:220px; padding-left:0;">
-                    <button type="button" id="btnsearch" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+                    <button type="submit" id="btnsearch" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
                 </div>
             </div>
         </div>
     </div>
     <input type="hidden" id="hdfcustomerId" name="hdfcustomerId" value="">
-    <input type="hidden" id="hdfcarNumber" name="hdfcarNumber" value="">
 </form>
 <div class="row">
 
@@ -88,6 +87,30 @@
 <script type="text/javascript">
 (function(){
     $('.list-group-item:eq(14)').addClass('active');
+
+    var dateFrom = moment().format('YYYY-MM-1');
+    var dateTo   = moment().format('YYYY-MM-DD');
+
+    $('#fromDate').val(dateFrom);
+    $('#toDate').val(dateTo);
+
+    $('#fromDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $('#toDate').datetimepicker({
+        format: 'YYYY-MM-DD',
+        defaultDate: moment()
+    });
+
+    $("#fromDate").on("dp.change", function (e) {
+        $('#toDate').data("DateTimePicker").minDate(e.date);
+    });
+    $("#toDate").on("dp.change", function (e) {
+        $('#fromDate').data("DateTimePicker").maxDate(e.date);
+    });
+
     $('body').on('focus', '#customerName', function(){
         $('#myModal').modal({
             backdrop: 'static'
@@ -166,19 +189,32 @@
         if((customers != null) && (customers.length > 0)){
             $.each(customers, function(index, item){
                 element += '<tr>' +
-                                '<td>' + item.CustomerCode + '</td>' +
-                                '<td>' + item.CustomerName + '</td>' +
-                                '<td class="center">' + item.PhoneNumber + '</td>' +
-                                '<td class="center">' +
-                                    '<a data-id="' + item.Id + '" data-name="' + item.CustomerName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
-                                '</td>'
-                            '</tr>';
+                '<td>' + item.CustomerCode + '</td>' +
+                '<td>' + item.CustomerName + '</td>' +
+                '<td class="center">' + item.PhoneNumber + '</td>' +
+                '<td class="center">' +
+                '<a data-id="' + item.Id + '" data-name="' + item.CustomerName + '" href="javascript:void(0)" class="btn btn-info btn-e selected">ជ្រើសរើស</a> ' +
+                '</td>'
+                '</tr>';
             });
         }
         if(typeof callback == 'function'){
             callback(element);
         }
     }
+    //Function On selected customer name
+    $('body').on('click','.selected',function(){
+        var customerName = $(this).attr('data-name');
+        var customerId   = $(this).attr('data-id');
+        $('#customerName').val(customerName);
+        $('#hdfcustomerId').val(customerId);
+        $('#myModal').modal('hide');
+    });
+    //Function click on button reset
+    $('body').on('click', '#btnClear', function () {
+        $('#customerName').val('');
+    });
+
 })();
 </script>
 <script src="{{url('/script/report/report.js')}}" charset="utf-8"></script>

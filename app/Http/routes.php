@@ -53,6 +53,8 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('/user', 'UserController@search');
     Route::get('/exportsale', 'ReportController@exportsale');
     Route::get('/exportimport', 'ReportController@exportimport');
+    Route::get('/exportincome', 'ReportController@exportincome');
+    Route::get('/exportexpanse', 'ReportController@exportexpanse');
 });
 
 Route::group(['prefix' => 'create'], function(){

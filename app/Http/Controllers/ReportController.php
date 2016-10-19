@@ -75,8 +75,8 @@ use Excel;
         public function exportimport(Request $request)
         {
             $supplyId = $request->input('hdfSupplierId');
-            $fromDate = $request->input('saleFromDate');
-            $toDate = $request->input('saleToDate');
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
             $query = DB::table('Imports')
                     ->join('Suppliers', 'Imports.supplierid', '=', 'Suppliers.id')
                     ->join('Items','Imports.itemid','=','Items.id');
@@ -105,6 +105,76 @@ use Excel;
                 })->export('xlsx');
             }else{
                 return view('reports.importreport');
+            }
+        }
+
+        public function exportincome(Request $request)
+        {
+            $customerId = $request->input('hdfcustomerId');
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
+            $query = DB::table('Incomes')
+                    ->join('Customers', 'Incomes.customerid', '=', 'Customers.id');
+            if ( !Empty($customerId)) {
+                $query->where('Incomes.customerid', '=', $customerId);
+            }
+            if ( !Empty($fromDate) ) {
+                $query->whereDate('Incomes.IncomeDate', '>=', $fromDate);
+            }
+            if ( !Empty($toDate) ){
+                $query->whereDate('Incomes.IncomeDate', '<=', $toDate);
+            }
+
+            $incomes = $query->select('Incomes.IncomeDate as IncomeDate','Incomes.Description as Description','Incomes.TotalAmount as TotalAmount')->get();
+            if($incomes){
+                Excel::create('IncomeExcel', function($excel) use($incomes) {
+                    $excel->sheet('Excel sheet', function($sheet) use($incomes) {
+                        $sumTotal=0;
+                        foreach ($incomes as &$income) {
+                            $income = (array)$income;
+                            $sumTotal  += $income['TotalAmount'];
+                        }
+                        $sheet->fromArray($incomes);
+                        $sheet->appendRow(['','Sub Total',$sumTotal]);
+                    });
+                })->export('xlsx');
+            }else{
+                return view('reports.incomereport');
+            }
+        }
+
+        public function exportexpanse(Request $request)
+        {
+            $supplyId = $request->input('hdfSupplyId');
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('foDate');
+            $query = DB::table('Expanses')
+                    ->join('Suppliers', 'Expanses.supplierid', '=', 'Suppliers.id');
+            if ( !Empty($supplyId) ) {
+                $query->where('Expanses.supplierid', '=', $supplyId);
+            }
+            if ( !Empty($fromDate) ) {
+                $query->whereDate('Expanses.ExpanseDate', '>=', $fromDate);
+            }
+            if ( !Empty($toDate) ){
+                $query->whereDate('Expanses.ExpanseDate', '<=', $toDate);
+            }
+
+            $expanses = $query->select('Expanses.ExpanseDate as ExpanseDate','Expanses.Description as Description','Expanses.TotalAmount as TotalAmount')->get();
+            if($expanses){
+                Excel::create('ExpanseExcel', function($excel) use($expanses) {
+                    $excel->sheet('Excel sheet', function($sheet) use($expanses) {
+                        $sumTotal=0;
+                        foreach ($expanses as &$expanse) {
+                            $expanse = (array)$expanse;
+                            $sumTotal  += $expanse['TotalAmount'];
+                        }
+                        $sheet->fromArray($expanses);
+                        $sheet->appendRow(['','Sub Total',$sumTotal]);
+                    });
+                })->export('xlsx');
+            }else{
+                return view('reports.expansereport');
             }
         }
     }
