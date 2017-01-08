@@ -17,7 +17,6 @@
                     <input type="text" id="customerName" class="form-control btn-default" value="{{$customer->CustomerName}}">
                 </div>
                 <div class="col-sm-1" style="width:280px; padding-left:0;">
-                    <!-- <a href="{{url('/view/selectcustomer')}}" class="btn btn-success">ជ្រើសរើសអតិថិជន</a> -->
                     <a href="javascript:void(0);" class="btn btn-success customer">ជ្រើសរើសអតិថិជន</a>
                     <a href="{{url('/create/customer')}}" class="btn btn-primary">បន្ថែមអតិថិជនថ្មី</a>
                 </div>

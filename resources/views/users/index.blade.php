@@ -12,7 +12,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table id="userTable" class="table table-bordered table-hover">
+        <table id="userTable" class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class="bg-white">
                     <th>ឈ្មោះគណនី</th>

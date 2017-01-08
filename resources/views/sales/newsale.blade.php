@@ -338,7 +338,7 @@
                             notEmpty:{
                                 message: 'សូមបញ្ចូលតំលៃលក់'
                             },
-                            integer: {
+                            numeric: {
                                 message: 'សូមបញ្ចូលតំលៃលក់ជាលេខ'
                             }
                         }
@@ -348,7 +348,7 @@
                             notEmpty:{
                                 message: 'សូមបញ្ចូលចំនួនបង់ប្រាក់'
                             },
-                            integer: {
+                            numeric: {
                                 message: 'សូមបញ្ចូលជាលេខ'
                             }
                         }

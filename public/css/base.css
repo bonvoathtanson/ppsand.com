@@ -4,7 +4,7 @@
 }
 body{
     font-family: 'Khmer Os Content';
-    font-size: 12pt;
+    font-size: 10pt;
     margin: 0;
     padding: 0;
 }
@@ -170,7 +170,7 @@ input.form-control:focus{
     font-weight: 400;
     line-height: 35px;
     padding: 0 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: #444;
     cursor: default;
 }
@@ -196,7 +196,7 @@ input.form-control:focus{
     border:none;
     border-radius: 0;
     height: 51px;
-    font-size: 14pt;
+    font-size: 11pt;
     box-shadow: none;
     background: #2b669a;
     color: #fff;
