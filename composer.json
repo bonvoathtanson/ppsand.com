@@ -9,7 +9,11 @@
         "laravel/framework": "5.2.*",
 		"barryvdh/laravel-dompdf": "^0.6.1",
         "maatwebsite/excel": "~2.1.0",
+<<<<<<< HEAD
         "mpdf/mpdf": "~5.7.3"
+=======
+		"phpoffice/phpexcel": "dev-master"
+>>>>>>> a0b3a2e277ed2024c8b73457c7b17c626956b8aa
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

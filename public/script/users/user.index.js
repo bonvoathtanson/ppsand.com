@@ -37,7 +37,7 @@
                 '<td>' + item.Email + '</td>' +
                 '<td class="center">' + item.DateCreated + '</td>' +
                 '<td class="center">' +
-                '<button type="button" class="btn btn-danger btn-e delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
+                '<button type="button" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
                 '</td>'
                 '</tr>';
             });

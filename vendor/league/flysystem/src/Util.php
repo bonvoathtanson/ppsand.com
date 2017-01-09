@@ -110,7 +110,11 @@ class Util
         $path = preg_replace('#/\.(?=/)|^\./|(/|^)\./?$#', '', $path);
 
         // Regex for resolving relative paths
+<<<<<<< HEAD
         $regex = '#/*[^/\.]+/\.\.(/|$)#Uu';
+=======
+        $regex = '#/*[^/\.]+/\.\.(?=/|$)#Uu';
+>>>>>>> a0b3a2e277ed2024c8b73457c7b17c626956b8aa
 
         while (preg_match($regex, $path)) {
             $path = preg_replace($regex, '', $path);

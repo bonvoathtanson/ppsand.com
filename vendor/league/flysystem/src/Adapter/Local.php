@@ -256,7 +256,11 @@ class Local extends AbstractAdapter
     public function listContents($directory = '', $recursive = false)
     {
         $result = [];
+<<<<<<< HEAD
         $location = rtrim($this->applyPathPrefix($directory), $this->pathSeparator) . $this->pathSeparator;
+=======
+        $location = $this->applyPathPrefix($directory);
+>>>>>>> a0b3a2e277ed2024c8b73457c7b17c626956b8aa
 
         if ( ! is_dir($location)) {
             return [];
