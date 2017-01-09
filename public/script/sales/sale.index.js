@@ -40,9 +40,9 @@
                     $('.box-null').show();
                 }
                 $('#saleTable tbody').html(element);
-                $('#totalamount').text(total + '0.00');
-                $('#payamount').text(amount + '0.00');
-                $('#remain').text(remain + '0.00');
+                $('#totalamount').text(total + '.00');
+                $('#payamount').text(amount + '.00');
+                $('#remain').text(remain + '.00');
             });
         });
 
