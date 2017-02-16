@@ -68,6 +68,8 @@ class Local extends AbstractAdapter
      * @param int    $writeFlags
      * @param int    $linkHandling
      * @param array  $permissions
+     *
+     * @throws LogicException
      */
     public function __construct($root, $writeFlags = LOCK_EX, $linkHandling = self::DISALLOW_LINKS, array $permissions = [])
     {
@@ -256,11 +258,7 @@ class Local extends AbstractAdapter
     public function listContents($directory = '', $recursive = false)
     {
         $result = [];
-<<<<<<< HEAD
-        $location = rtrim($this->applyPathPrefix($directory), $this->pathSeparator) . $this->pathSeparator;
-=======
         $location = $this->applyPathPrefix($directory);
->>>>>>> a0b3a2e277ed2024c8b73457c7b17c626956b8aa
 
         if ( ! is_dir($location)) {
             return [];
@@ -417,7 +415,9 @@ class Local extends AbstractAdapter
      *
      * @param SplFileInfo $file
      *
-     * @return array
+     * @return array|void
+     *
+     * @throws NotSupportedException
      */
     protected function normalizeFileInfo(SplFileInfo $file)
     {
@@ -490,16 +490,6 @@ class Local extends AbstractAdapter
         }
 
         return $normalized;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function applyPathPrefix($path)
-    {
-        $prefixedPath = parent::applyPathPrefix($path);
-
-        return str_replace('/', DIRECTORY_SEPARATOR, $prefixedPath);
     }
 
     /**
