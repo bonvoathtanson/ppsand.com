@@ -1,6 +1,6 @@
 (function(){
-    
-    $('.list-group-item:eq(7)').addClass('active');
+
+    $('.list-group-item:eq(6)').addClass('active');
     $('body').on('focus', '#customerName', function(){
         $('#searchModal').modal({
             backdrop: 'static'
@@ -220,6 +220,7 @@
                 dataType: "JSON",
                 contentType: 'application/json; charset=utf-8',
             }).done(function (data) {
+              console.log(data);
                 if (data.IsError == false) {
                     swal('ទិន្នន័យត្រូវបានលុបជោគជ័យ', '', 'success');
                     $(select).remove();

@@ -1,5 +1,5 @@
 (function(){
-    
+
     $(':radio').iCheck({
         radioClass: 'iradio_minimal'
     });
@@ -23,7 +23,7 @@
                     window.location.href = burl + '/view/customer';
                 }
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();
@@ -48,7 +48,7 @@
                 CustomerName: {
                     validators: {
                         notEmpty: {
-                            message: 'ឈ្មោះអតិថិជន់ តំរូវអោយបញ្ចូល'
+                            message: 'ឈ្មោះអតិថិជន តំរូវអោយបញ្ចូល'
                         }
                     }
                 },

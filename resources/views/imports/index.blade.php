@@ -51,7 +51,7 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    $('.list-group-item:eq(4)').addClass('active');
+    $('.list-group-item:eq(3)').addClass('active');
 </script>
 <script src="{{url('/script/plugin/bootstrap/moment-with-locales.js')}}" charset="utf-8"></script>
 <script src="{{url('/script/imports/import.index.js')}}" charset="utf-8"></script>

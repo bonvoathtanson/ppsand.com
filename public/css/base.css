@@ -17,7 +17,7 @@ body{
     top: 0;
     left: 0;
     bottom: 0;
-    background: #193048;
+    background: #ddd;
     transition: 0.5s;
 }
 .box-right{
@@ -54,6 +54,7 @@ input.form-control:focus{
 .navbar-default{
     background-color: #2b669a !important;
     background-image: none;
+    box-shadow: 0 4px 4px #777;
 }
 
 .navbar-default .navbar-brand{
@@ -195,25 +196,34 @@ input.form-control:focus{
 .list-group .list-group-item:first-child{
     border:none;
     border-radius: 0;
-    height: 51px;
+    height: 50px;
     font-size: 11pt;
-    box-shadow: none;
     background: #2b669a;
     color: #fff;
+    box-shadow: 0 4px 4px #777;
+    z-index: 99;
 }
 .list-group .bar{
-    background: transparent;
-    color: #fff;
-    border: none;
+    background: #efefef;
+    color: #333;
+    border: solid 1px #efefef;
     border-radius: 0;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
-
 .bar.active, .bar:hover{
     border-left: 5px solid orange !important;
-    background: #2b669a;
+    background-image: linear-gradient(to bottom,#337ab7 0,#2b669a 100%);
+    color:#fff;
 }
-
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover{
+    color:#fff;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+.list-group-item.active>.badge, .nav-pills>.active>a>.badge{
+    color: #fff;
+    background-color:orange;
+}
 .modal-header{
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
     border-bottom: 1px solid #ddd;
@@ -232,4 +242,10 @@ input.form-control:focus{
 
 .bg-white{
     background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
+}
+.report-active{
+    background-color:#337ab7;
+}
+.report-active a:hover{
+    background-color:#337ab7;
 }

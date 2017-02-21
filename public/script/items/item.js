@@ -1,5 +1,5 @@
 (function(){
-    $('.list-group-item:eq(9)').addClass('active');
+    $('.list-group-item:eq(8)').addClass('active');
     ViewItem();
 
     function ViewItem(){
@@ -104,7 +104,7 @@
                 ViewItem();
                 $('#stockmodal').modal('hide');
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();

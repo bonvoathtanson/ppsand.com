@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Models\Customer;
 use App\Models\CustomerAsk;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -45,7 +46,7 @@ class CustomerController extends Controller
             $customerask->AskDate = $request->AskDate;
             $customerask->ConfirmDate = $request->ConfirmDate;
             $customerask->Description = $request->Description;
-            $customerask->Reason = $request->Reason;
+            //$customerask->Reason = $request->Reason;
             $customerask->StatusId = $request->StatusId;
             $customerask->save();
 
@@ -103,7 +104,7 @@ class CustomerController extends Controller
             $customerask->AskDate = $request->AskDate;
             $customerask->ConfirmDate = $request->ConfirmDate;
             $customerask->Description = $request->Description;
-            $customerask->Reason = $request->Reason;
+            //$customerask->Reason = $request->Reason;
             $customerask->StatusId = $request->StatusId;
             $customerask->save();
         }
@@ -183,7 +184,6 @@ class CustomerController extends Controller
             $this->SetError(true);
             $this->SetMessage('ការលុប​ទិន្នន័យមានបញ្ហាសូមព្យា​យាម​ម្តងទៀត');
         }
-
         return response()->json($this->Results);
-    }
+      }
 }

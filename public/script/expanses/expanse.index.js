@@ -1,6 +1,6 @@
 (function(){
-    
-    $('.list-group-item:eq(8)').addClass('active');
+
+    $('.list-group-item:eq(7)').addClass('active');
     var dateFrom = moment().format('YYYY-MM-1');
     var dateTo   = moment().format('YYYY-MM-DD');
 

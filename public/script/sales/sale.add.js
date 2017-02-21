@@ -174,7 +174,7 @@ $('.list-group-item:eq(5)').addClass('active');
                 location.reload();
                 $('#myModal').modal('hide');
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();

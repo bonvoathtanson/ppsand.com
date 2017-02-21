@@ -46,7 +46,7 @@
                 <div class="col-sm-2">
                     <select class="form-control btn-default" id="typeid" style="font-size:10pt;padding:3px" name="TypeId">
                         <option value="0"></option>
-                        <option value="1">សួរពត៍មាន</option>
+                        <option value="1">សួរព័ត៍មាន</option>
                         <option value="2">បញ្ជាទិញ</option>
                     </select>
                 </div>

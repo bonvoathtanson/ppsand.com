@@ -1,7 +1,6 @@
 (function(){
 
-    $('.list-group-item:eq(2)').addClass('active');
-
+    $('.list-group-item:eq(1)').addClass('active');
     $('body').on('click','.selected',function(){
         var statusType = $('#statusTypeId').val();
         var customerId   = $(this).attr('data-id');

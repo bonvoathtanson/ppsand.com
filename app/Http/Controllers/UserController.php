@@ -19,7 +19,8 @@ class UserController extends Controller
     public function search()
     {
         $users = User::all();
-        $this->SetData($users);
+        $userId = Auth::id();
+        $this->SetData(array('Users'=> $users, 'UserId' => $userId));
         return response()->json($this->Results);
     }
 
@@ -65,7 +66,7 @@ class UserController extends Controller
     public function dologin(Request $request)
     {
         $data = $request->all();
-        if (Auth::attempt(['Name' => $data['name'], 'password' => $data['password']])) {
+        if (Auth::attempt(['Name' => $data['name'] , 'password' => $data['password'] ])) {
             return Redirect::intended('/');
         } else {
             return Redirect::back()->withErrors('That username/password combo does not exist.');

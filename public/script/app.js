@@ -38,20 +38,25 @@ function Notification()
         contentType: 'application/json; charset=utf-8',
     }).done(function (data) {
         if(data.IsError == false){
-            var a = data.Data.timetransfer;
-            var b = data.Data.transfer;
-            var c = data.Data.customerask;
-            if(a > 0)
+            var timeTransfer = data.Data.timetransfer;
+            var transfer = data.Data.transfer;
+            var customerAsk = data.Data.customerask;
+            var item =  data.Data.item;
+            if(timeTransfer > 0)
             {
-                $('body').find('.badge1').text(a).show();
+                $('body').find('.badge1').text(timeTransfer).show();
             }
-            if(b > 0)
+            if(transfer > 0)
             {
-                $('body').find('.badge2').text(b).show();
+                $('body').find('.badge2').text(transfer).show();
             }
-            if(c > 0)
+            if(customerAsk > 0)
             {
-                $('body').find('.badge3').text(c).show();
+                $('body').find('.badge3').text(customerAsk).show();
+            }
+            if(item > 0)
+            {
+                $('body').find('.badge4').text(item).show();
             }
         }
     });

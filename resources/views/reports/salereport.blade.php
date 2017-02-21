@@ -96,8 +96,8 @@
 <script type="text/javascript">
 (function(){
 
-    $('.list-group-item:eq(12)').addClass('active');
-
+    $('.list-group-item:eq(11)').addClass('active');
+    $('.salereport:eq(0)').addClass('report-active');
     var dateFrom = moment().format('YYYY-MM-1');
     var dateTo   = moment().format('YYYY-MM-DD');
 
@@ -117,6 +117,7 @@
     $("#saleFromDate").on("dp.change", function (e) {
         $('#saleToDate').data("DateTimePicker").minDate(e.date);
     });
+
     $("#saleToDate").on("dp.change", function (e) {
         $('#saleFromDate').data("DateTimePicker").maxDate(e.date);
     });

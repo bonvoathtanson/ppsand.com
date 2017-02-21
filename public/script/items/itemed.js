@@ -1,5 +1,5 @@
 (function(){
-    $('.list-group-item:eq(9)').addClass('active');
+    $('.list-group-item:eq(8)').addClass('active');
     SetValidation();
     function SaveOrUpdate() {
         $('body').append(Loading());
@@ -12,7 +12,7 @@
             if (data.IsError == false) {
                 window.location.href = burl + '/view/item';
             } else {
-                swal(data.Message, '', 'success');
+                swal(data.Message, '', 'warning');
             }
         }).complete(function (data) {
             $('body').find('.loading').remove();

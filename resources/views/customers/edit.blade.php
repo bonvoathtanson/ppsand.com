@@ -61,7 +61,7 @@
                 <div class="col-sm-2">
                     <select class="form-control btn-default" style="padding:3px" name="TypeId" style="font-size:10pt;">
                         <option value="0" {{sel($customer->TypeId, 0)}}></option>
-                        <option value="1" {{sel($customer->TypeId, 1)}}>សួរពត៍មាន</option>
+                        <option value="1" {{sel($customer->TypeId, 1)}}>សួរព័ត៍មាន</option>
                         <option value="2" {{sel($customer->TypeId, 2)}}>បញ្ជាទិញ</option>
                         <option value="3" {{sel($customer->TypeId, 3)}}>បោះបង់</option>
                     </select>

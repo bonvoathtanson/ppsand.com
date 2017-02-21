@@ -34,7 +34,7 @@ class IncomeController extends Controller
 
     public function search(Request $request)
     {
-      
+
       $customerId = $request->customerId;
       $fromDate = $request->incomeFromDate;
       $toDate = $request->incomeToDate;

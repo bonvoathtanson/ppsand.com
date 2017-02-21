@@ -1,10 +1,10 @@
 (function(){
-    $('.list-group-item:eq(10)').addClass('active');
+    $('.list-group-item:eq(9)').addClass('active');
     ViewItem();
 
     function ViewItem(){
-        GetItems(function(items){
-            RenderTable(items, function(element){
+        GetItems(function(item){
+            RenderTable(item.Users, item.UserId, function(element){
                 $('#userTable tbody').html(element);
             });
         });
@@ -28,7 +28,7 @@
         });
     }
 
-    function RenderTable(users, callback){
+    function RenderTable(users,userId, callback){
         var element = '';
         if((users != null) && (users.length > 0)){
             $.each(users, function(index, item){
@@ -36,10 +36,11 @@
                 '<td>' + item.Name + '</td>' +
                 '<td>' + item.Email + '</td>' +
                 '<td class="center">' + item.DateCreated + '</td>' +
-                '<td class="center">' +
-                '<button type="button" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>' +
-                '</td>'
-                '</tr>';
+                '<td class="center">';
+                if(userId != item.Id){
+                 element += '<button type="button" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+               }
+                 element += '</td></tr>';
             });
         }
         if(typeof callback == 'function'){

@@ -52,8 +52,8 @@ use Excel;
             if(!Empty($toDate)){
                 $query->whereDate('Sales.SaleDate', '<=', $toDate);
             }
-            $query->where('Sales.isorder', '=',0)->where('Sales.SubTotal', '=', DB::raw('Sales.PayAmount'))->orderBy('Sales.saledate','DESC')->get();
-            $sales = $query->select('Customers.customername as CustomerName','Sales.saledate as SaleDate','Items.itemname as ItemName','CarNumber','Sales.quantity as Qauntity','Sales.saleprice as SalePrice',DB::raw('Sales.quantity*Sales.saleprice as Total'))->get();
+            $query->where('Sales.IsOrder', '=',0)->where('Sales.SubTotal', '=', DB::raw('Sales.PayAmount'))->orderBy('Sales.SaleDate','DESC')->get();
+            $sales = $query->select('Customers.CustomerName as CustomerName','Sales.SaleDate as SaleDate','Items.ItemName as ItemName','CarNumber','Sales.Quantity as Qauntity','Sales.SalePrice as SalePrice',DB::raw('Sales.Quantity*Sales.SalePrice as Total'))->get();
             if($sales){
                 Excel::create('SaleExcel', function($excel) use($sales) {
                     $excel->sheet('Excel sheet', function($sheet) use($sales) {

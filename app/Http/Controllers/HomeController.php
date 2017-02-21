@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\CustomerAsk;
 use App\Models\CarNumber;
+use App\Models\Item;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -16,18 +17,18 @@ class HomeController extends Controller
 
     public function notification()
     {
-        $customerask = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)->count();
-
+        $customerask  = CustomerAsk::where('StatusId', '=', CustomerAsk::WAITING)->count();
         $timetransfer = Sale::where('IsOrder', '=', 1)
                     ->where('TransferDate', '<=', date('Y-m-d H:i:s'))
                     ->count();
-
         $transfer = Sale::where('IsOrder', '=', 1)->count();
+        $item = Item::all()->count();
 
         $response = array(
             'timetransfer'  => $timetransfer,
             'customerask'   => $customerask,
-            'transfer'      => $transfer
+            'transfer'      => $transfer,
+            'item'          => $item
         );
         $this->SetData($response);
 
@@ -55,7 +56,7 @@ class HomeController extends Controller
         $this->Results['Id'] = $id;
         return response()->json($this->Results);
     }
-    
+
     public function destroy($id)
     {
         $rowaffect = CarNumber::find($id)->delete();

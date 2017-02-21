@@ -86,8 +86,8 @@
 <script src="{{url('/script/plugin/bootstrap/bootstrap-datetimepicker.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 (function(){
-    $('.list-group-item:eq(14)').addClass('active');
-
+    $('.list-group-item:eq(13)').addClass('active');
+  $('.salereport:eq(0)').addClass('report-active');
     var dateFrom = moment().format('YYYY-MM-1');
     var dateTo   = moment().format('YYYY-MM-DD');
 
